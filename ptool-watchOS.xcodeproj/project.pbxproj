@@ -23,6 +23,12 @@
 		800C79D128D2D4EA00432CA2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 800C79CF28D2D4EA00432CA2 /* GoogleService-Info.plist */; };
 		800C79D228D2D4EA00432CA2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 800C79CF28D2D4EA00432CA2 /* GoogleService-Info.plist */; };
 		800C79D328D2D4EA00432CA2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 800C79CF28D2D4EA00432CA2 /* GoogleService-Info.plist */; };
+		800C79D528D2D5FC00432CA2 /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800C79D428D2D5FC00432CA2 /* Report.swift */; };
+		800C79D628D2D5FC00432CA2 /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800C79D428D2D5FC00432CA2 /* Report.swift */; };
+		800C79D728D2D5FC00432CA2 /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800C79D428D2D5FC00432CA2 /* Report.swift */; };
+		800C79DD28D2D64A00432CA2 /* LoginInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800C79DC28D2D64A00432CA2 /* LoginInView.swift */; };
+		800C79DE28D2D64A00432CA2 /* LoginInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800C79DC28D2D64A00432CA2 /* LoginInView.swift */; };
+		800C79DF28D2D64A00432CA2 /* LoginInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800C79DC28D2D64A00432CA2 /* LoginInView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +82,8 @@
 		800C78F828D1885300432CA2 /* ptool_watchOS_Watch_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ptool_watchOS_Watch_AppUITests.swift; sourceTree = "<group>"; };
 		800C78FA28D1885300432CA2 /* ptool_watchOS_Watch_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ptool_watchOS_Watch_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		800C79CF28D2D4EA00432CA2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		800C79D428D2D5FC00432CA2 /* Report.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
+		800C79DC28D2D64A00432CA2 /* LoginInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +141,8 @@
 			children = (
 				800C78DD28D1885200432CA2 /* ptool_watchOSApp.swift */,
 				800C78DF28D1885200432CA2 /* ContentView.swift */,
+				800C79D428D2D5FC00432CA2 /* Report.swift */,
+				800C79DC28D2D64A00432CA2 /* LoginInView.swift */,
 				800C78E128D1885300432CA2 /* Assets.xcassets */,
 				800C79CF28D2D4EA00432CA2 /* GoogleService-Info.plist */,
 				800C78E328D1885300432CA2 /* Preview Content */,
@@ -277,6 +287,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"fr-CA",
 			);
 			mainGroup = 800C78CB28D1885100432CA2;
 			packageReferences = (
@@ -338,6 +349,8 @@
 			files = (
 				800C78E028D1885200432CA2 /* ContentView.swift in Sources */,
 				800C78DE28D1885200432CA2 /* ptool_watchOSApp.swift in Sources */,
+				800C79D528D2D5FC00432CA2 /* Report.swift in Sources */,
+				800C79DD28D2D64A00432CA2 /* LoginInView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,7 +358,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				800C79DE28D2D64A00432CA2 /* LoginInView.swift in Sources */,
 				800C78EF28D1885300432CA2 /* ptool_watchOS_Watch_AppTests.swift in Sources */,
+				800C79D628D2D5FC00432CA2 /* Report.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -355,6 +370,8 @@
 			files = (
 				800C78F928D1885300432CA2 /* ptool_watchOS_Watch_AppUITests.swift in Sources */,
 				800C78FB28D1885300432CA2 /* ptool_watchOS_Watch_AppUITestsLaunchTests.swift in Sources */,
+				800C79D728D2D5FC00432CA2 /* Report.swift in Sources */,
+				800C79DF28D2D64A00432CA2 /* LoginInView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
