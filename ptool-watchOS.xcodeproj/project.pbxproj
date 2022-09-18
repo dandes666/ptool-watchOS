@@ -29,6 +29,12 @@
 		800C79DD28D2D64A00432CA2 /* LoginInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800C79DC28D2D64A00432CA2 /* LoginInView.swift */; };
 		800C79DE28D2D64A00432CA2 /* LoginInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800C79DC28D2D64A00432CA2 /* LoginInView.swift */; };
 		800C79DF28D2D64A00432CA2 /* LoginInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800C79DC28D2D64A00432CA2 /* LoginInView.swift */; };
+		808225EF28D6BC2600EE53E2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808225EE28D6BC2600EE53E2 /* User.swift */; };
+		8082260028D6E00900EE53E2 /* ViewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808225FF28D6E00800EE53E2 /* ViewRouter.swift */; };
+		8082260628D6E01600EE53E2 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8082260228D6E01600EE53E2 /* HomeView.swift */; };
+		8082260728D6E01600EE53E2 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8082260328D6E01600EE53E2 /* SignInView.swift */; };
+		8082260828D6E01600EE53E2 /* MotherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8082260428D6E01600EE53E2 /* MotherView.swift */; };
+		8082260928D6E01600EE53E2 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8082260528D6E01600EE53E2 /* SignUpView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +90,12 @@
 		800C79CF28D2D4EA00432CA2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		800C79D428D2D5FC00432CA2 /* Report.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
 		800C79DC28D2D64A00432CA2 /* LoginInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInView.swift; sourceTree = "<group>"; };
+		808225EE28D6BC2600EE53E2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		808225FF28D6E00800EE53E2 /* ViewRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewRouter.swift; sourceTree = "<group>"; };
+		8082260228D6E01600EE53E2 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		8082260328D6E01600EE53E2 /* SignInView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
+		8082260428D6E01600EE53E2 /* MotherView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotherView.swift; sourceTree = "<group>"; };
+		8082260528D6E01600EE53E2 /* SignUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +154,9 @@
 				800C78DD28D1885200432CA2 /* ptool_watchOSApp.swift */,
 				800C78DF28D1885200432CA2 /* ContentView.swift */,
 				800C79D428D2D5FC00432CA2 /* Report.swift */,
+				808225FF28D6E00800EE53E2 /* ViewRouter.swift */,
+				808225EE28D6BC2600EE53E2 /* User.swift */,
+				8082260128D6E01600EE53E2 /* Views */,
 				800C79DC28D2D64A00432CA2 /* LoginInView.swift */,
 				800C78E128D1885300432CA2 /* Assets.xcassets */,
 				800C79CF28D2D4EA00432CA2 /* GoogleService-Info.plist */,
@@ -173,6 +188,17 @@
 				800C78FA28D1885300432CA2 /* ptool_watchOS_Watch_AppUITestsLaunchTests.swift */,
 			);
 			path = "ptool-watchOS Watch AppUITests";
+			sourceTree = "<group>";
+		};
+		8082260128D6E01600EE53E2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8082260228D6E01600EE53E2 /* HomeView.swift */,
+				8082260328D6E01600EE53E2 /* SignInView.swift */,
+				8082260428D6E01600EE53E2 /* MotherView.swift */,
+				8082260528D6E01600EE53E2 /* SignUpView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -348,8 +374,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				800C78E028D1885200432CA2 /* ContentView.swift in Sources */,
+				8082260628D6E01600EE53E2 /* HomeView.swift in Sources */,
 				800C78DE28D1885200432CA2 /* ptool_watchOSApp.swift in Sources */,
 				800C79D528D2D5FC00432CA2 /* Report.swift in Sources */,
+				8082260828D6E01600EE53E2 /* MotherView.swift in Sources */,
+				8082260028D6E00900EE53E2 /* ViewRouter.swift in Sources */,
+				8082260928D6E01600EE53E2 /* SignUpView.swift in Sources */,
+				808225EF28D6BC2600EE53E2 /* User.swift in Sources */,
+				8082260728D6E01600EE53E2 /* SignInView.swift in Sources */,
 				800C79DD28D2D64A00432CA2 /* LoginInView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

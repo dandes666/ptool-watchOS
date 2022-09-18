@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "ptool-logo-100x100.png",
+      "filename" : "ptool-logo-120x120 1.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -11,7 +11,7 @@
       "scale" : "2x"
     },
     {
-      "filename" : "ptool-logo-135x135.png",
+      "filename" : "ptool-logo-120x120 2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

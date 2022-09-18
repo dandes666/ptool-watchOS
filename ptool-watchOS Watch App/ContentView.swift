@@ -6,27 +6,31 @@
 //
 
 import SwiftUI
+import Firebase
 
-struct ContentView: View {
-    var body: some View {
-        VStack {
-            Image("Logo")
-                .imageScale(.small)
-                .foregroundColor(.accentColor)
-            NavigationLink("Login", destination: LoginInView())
-            NavigationView {
-                Text("Hello, World!")
-                    .navigationTitle("Navigation")
-                    .navigationBarTitleDisplayMode(.inline)
-            }
-            
-        }
-        .padding()
-    }
-}
+//struct ContentView: View {
+//    var body: some View {
+//        NavigationView {
+//
+//            VStack {
+////                Text("PTOOL")
+////                    .font(.title)
+//                Image("Logo")
+//                    .resizable()
+//                    .frame(width: 120, height: 120, alignment: .center)
+//                    .padding()
+////                    .clipShape(Circle())
+////                    .imageScale(.small)
+////                    .foregroundColor(.accentColor)
+//
+//                NavigationLink("Connect", destination: LoginInView())
+//            }
+//        }
+//    }
+//}
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
+//struct ContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ContentView()
+//    }
+//}
