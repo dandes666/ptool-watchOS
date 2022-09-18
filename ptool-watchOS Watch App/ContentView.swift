@@ -10,14 +10,16 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
+            Image("Logo")
+                .imageScale(.small)
                 .foregroundColor(.accentColor)
-            Text("Hello, world! test")
             NavigationLink("Login", destination: LoginInView())
-            Button(/*@START_MENU_TOKEN@*/"Button"/*@END_MENU_TOKEN@*/) {
- 
+            NavigationView {
+                Text("Hello, World!")
+                    .navigationTitle("Navigation")
+                    .navigationBarTitleDisplayMode(.inline)
             }
+            
         }
         .padding()
     }
