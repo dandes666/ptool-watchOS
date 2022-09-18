@@ -22,6 +22,9 @@ struct SignInView: View {
         VStack() {
 //            LogoView()
 //            Spacer()
+            Image("Logo")
+                .resizable()
+                .frame(width: 50, height: 50, alignment: .center)
             SignInCredentialFields(email: $email, password: $password)
             Button(action: {
                 signInUser(userEmail: email, userPassword: password)
@@ -32,16 +35,16 @@ struct SignInView: View {
 //                    .background(.thinMaterial)
                     .cornerRadius(10)
             }
-            Spacer()
-            HStack {
-                Text("Don't have an account?")
-                Button(action: {
-                    viewRouter.currentPage = .signUpPage
-                }) {
-                    Text("Sign Up")
-                }
-            }
-                .opacity(0.9)
+//            Spacer()
+//            HStack {
+//                Text("Don't have an account?")
+//                Button(action: {
+//                    viewRouter.currentPage = .signUpPage
+//                }) {
+//                    Text("Sign Up")
+//                }
+//            }
+//                .opacity(0.9)
         }
             .padding()
     }
