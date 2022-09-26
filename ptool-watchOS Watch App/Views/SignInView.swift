@@ -7,16 +7,18 @@
 
 import SwiftUI
 import Firebase
+import FirebaseFunctions
 
 struct SignInView: View {
     
     @EnvironmentObject var viewRouter: ViewRouter
     
-    @State var email = ""
-    @State var password = ""
+    @State var email = "dave.thibeault@me.com"
+    @State var password = "chr1st1naT"
     
     @State var signInProcessing = false
     @State var signInErrorMessage = ""
+//    lazy var functions = Functions.functions()
     
     var body: some View {
         VStack() {
@@ -24,7 +26,7 @@ struct SignInView: View {
 //            Spacer()
             Image("Logo")
                 .resizable()
-                .frame(width: 50, height: 50, alignment: .center)
+                .frame(width: 60, height: 60, alignment: .center)
             SignInCredentialFields(email: $email, password: $password)
             Button(action: {
                 signInUser(userEmail: email, userPassword: password)
@@ -32,19 +34,8 @@ struct SignInView: View {
                 Text("Log In")
                     .bold()
                     .frame(width: 360, height: 50)
-//                    .background(.thinMaterial)
                     .cornerRadius(10)
             }
-//            Spacer()
-//            HStack {
-//                Text("Don't have an account?")
-//                Button(action: {
-//                    viewRouter.currentPage = .signUpPage
-//                }) {
-//                    Text("Sign Up")
-//                }
-//            }
-//                .opacity(0.9)
         }
             .padding()
     }
@@ -67,6 +58,8 @@ struct SignInView: View {
                 print("User signed in")
 
                 signInProcessing = false
+                
+                
                 let user = Auth.auth().currentUser
                 if let user = user {
                   // The user's ID, unique to the Firebase project.
@@ -78,16 +71,42 @@ struct SignInView: View {
 
                     print("email = \(String(describing: uemail))")
                     print("uid = \(uid)")
-//                    print(multiFactorString)
-                  // ...
+                    print ("loadData start")
+                    lazy var functions = Functions.functions()
+                    functions.httpsCallable("getGuardianInfo").call(["email": uemail]) { result, error in
+                        if let error = error as NSError? {
+                            print("trace error2")
+                            print(error)
+                            if error.domain == FunctionsErrorDomain {
+                                print("trace error3")
+                                let code = FunctionsErrorCode(rawValue: error.code)
+                              let message = error.localizedDescription
+                              let details = error.userInfo[FunctionsErrorDetailsKey]
+                            }
+            // ...
+                        }
+                        if let data = result?.data as? [String: Any], let text = data["text"] as? String {
+            //            self.resultField.text = text
+                          print(text)
+                        }
+                        print("trace result")
+                        print(result?.data)
+                        
+                        withAnimation {
+                            viewRouter.currentPage = .homePage
+                        }
+                    }
+                    
                 }
                 withAnimation {
-                    viewRouter.currentPage = .homePage
+                    viewRouter.currentPage = .loadingPage
                 }
             }
             
         }
+        
     }
+
 }
 
 struct SignInView_Previews: PreviewProvider {

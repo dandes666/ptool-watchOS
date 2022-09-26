@@ -11,11 +11,38 @@ import Firebase
 struct HomeView: View {
     
     @EnvironmentObject var viewRouter: ViewRouter
+    @StateObject var locationManager = LocationManager()
+        
+    var userLatitude: String {
+        return "\(locationManager.lastLocation?.coordinate.latitude ?? 0)"
+    }
     
+    var userLongitude: String {
+        return "\(locationManager.lastLocation?.coordinate.longitude ?? 0)"
+    }
+        
+      
+    var dataLoading: Bool = true
+//    @frozen struct RadialGradient
     var body: some View {
+        
         NavigationView {
-            Text("HomeView")
-                .navigationTitle("PTOOL")
+            ScrollView {
+                VStack {
+                    Text("location status: \(locationManager.statusString)")
+                    HStack {
+                        Text("latitude: \(userLatitude)")
+                        Text("longitude: \(userLongitude)")
+                    }
+                }
+                Image("Logo")
+                    .resizable()
+                    .frame(width: 10, height: 10, alignment: .center)
+                    .navigationTitle("PTOOL")
+                Text("HomeView")
+            }
+                
+
         }
     }
 }

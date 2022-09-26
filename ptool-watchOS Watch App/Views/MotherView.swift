@@ -20,6 +20,8 @@ struct MotherView: View {
             SignInView()
         case .homePage:
             HomeView()
+        case .loadingPage:
+            LoadingView()
         }
     }
 }

@@ -11,9 +11,13 @@ import Firebase
 struct ptool_watchOS_Watch_AppApp: App {
     
     @StateObject var viewRouter = ViewRouter()
+//    let var ref: DatabaseReference!
+    
+    
     
     init() {
         FirebaseApp.configure()
+//        ref = Database.database().reference()
       }
     var body: some Scene {
         WindowGroup {

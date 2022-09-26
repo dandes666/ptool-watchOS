@@ -17,6 +17,7 @@ class ViewRouter: ObservableObject {
 enum Page {
     case signUpPage
     case signInPage
+    case loadingPage
     case homePage
 }
 
