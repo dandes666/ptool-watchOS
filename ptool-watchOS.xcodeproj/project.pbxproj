@@ -31,6 +31,7 @@
 		802F528728E1F58000E79AF1 /* ReportNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802F528628E1F58000E79AF1 /* ReportNote.swift */; };
 		802F528928E1F5F300E79AF1 /* ReportPocInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802F528828E1F5F300E79AF1 /* ReportPocInfo.swift */; };
 		802F52B128E2164400E79AF1 /* info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 802F52B028E2164400E79AF1 /* info.plist */; };
+		802F52B328E2170300E79AF1 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802F52B228E2170300E79AF1 /* Route.swift */; };
 		808225EF28D6BC2600EE53E2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808225EE28D6BC2600EE53E2 /* User.swift */; };
 		8082260028D6E00900EE53E2 /* ViewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808225FF28D6E00800EE53E2 /* ViewRouter.swift */; };
 		8082260628D6E01600EE53E2 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8082260228D6E01600EE53E2 /* HomeView.swift */; };
@@ -104,6 +105,7 @@
 		802F528628E1F58000E79AF1 /* ReportNote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportNote.swift; sourceTree = "<group>"; };
 		802F528828E1F5F300E79AF1 /* ReportPocInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportPocInfo.swift; sourceTree = "<group>"; };
 		802F52B028E2164400E79AF1 /* info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = info.plist; sourceTree = "<group>"; };
+		802F52B228E2170300E79AF1 /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		808225EE28D6BC2600EE53E2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		808225FF28D6E00800EE53E2 /* ViewRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewRouter.swift; sourceTree = "<group>"; };
 		8082260228D6E01600EE53E2 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -217,6 +219,7 @@
 				802F528628E1F58000E79AF1 /* ReportNote.swift */,
 				802F528828E1F5F300E79AF1 /* ReportPocInfo.swift */,
 				802F527B28E1E1E300E79AF1 /* Report.swift */,
+				802F52B228E2170300E79AF1 /* Route.swift */,
 			);
 			path = "Table Class";
 			sourceTree = "<group>";
@@ -441,6 +444,7 @@
 				802F527A28E1E17600E79AF1 /* Office.swift in Sources */,
 				802F527728E1D90500E79AF1 /* DataController.swift in Sources */,
 				800C79DD28D2D64A00432CA2 /* LoginInView.swift in Sources */,
+				802F52B328E2170300E79AF1 /* Route.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
