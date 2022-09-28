@@ -10,6 +10,7 @@ import Firebase
 
 struct HomeView: View {
     
+    @EnvironmentObject var db: DataController
     @EnvironmentObject var viewRouter: ViewRouter
     @StateObject var locationManager = LocationManager()
         
@@ -29,10 +30,10 @@ struct HomeView: View {
         NavigationView {
             ScrollView {
                 VStack {
-                    Text("location status: \(locationManager.statusString)")
+                    Text("\(db.userInfo.fName) \(db.userInfo.lName) \(locationManager.statusString)")
                     HStack {
-                        Text("latitude: \(userLatitude)")
-                        Text("longitude: \(userLongitude)")
+                        Text("lat: \(userLatitude)")
+                        Text("lng: \(userLongitude)")
                     }
                 }
                 Image("Logo")

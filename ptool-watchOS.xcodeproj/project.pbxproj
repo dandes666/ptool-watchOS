@@ -20,8 +20,6 @@
 		800C79CC28D2D47900432CA2 /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = 800C79CB28D2D47900432CA2 /* FirebaseFunctions */; };
 		800C79CE28D2D47900432CA2 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 800C79CD28D2D47900432CA2 /* FirebaseStorage */; };
 		800C79DD28D2D64A00432CA2 /* LoginInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800C79DC28D2D64A00432CA2 /* LoginInView.swift */; };
-		800C79DE28D2D64A00432CA2 /* LoginInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800C79DC28D2D64A00432CA2 /* LoginInView.swift */; };
-		800C79DF28D2D64A00432CA2 /* LoginInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800C79DC28D2D64A00432CA2 /* LoginInView.swift */; };
 		802F527728E1D90500E79AF1 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802F527628E1D90500E79AF1 /* DataController.swift */; };
 		802F527A28E1E17600E79AF1 /* Office.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802F527928E1E17600E79AF1 /* Office.swift */; };
 		802F527C28E1E1E300E79AF1 /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802F527B28E1E1E300E79AF1 /* Report.swift */; };
@@ -31,6 +29,10 @@
 		802F528728E1F58000E79AF1 /* ReportNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802F528628E1F58000E79AF1 /* ReportNote.swift */; };
 		802F528928E1F5F300E79AF1 /* ReportPocInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802F528828E1F5F300E79AF1 /* ReportPocInfo.swift */; };
 		802F52B328E2170300E79AF1 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802F52B228E2170300E79AF1 /* Route.swift */; };
+		802F536F28E246BA00E79AF1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 802F536E28E246BA00E79AF1 /* GoogleService-Info.plist */; };
+		802F537528E2754100E79AF1 /* FirebaseApiDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802F537228E2754100E79AF1 /* FirebaseApiDecoder.swift */; };
+		802F537628E2754100E79AF1 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 802F537328E2754100E79AF1 /* LICENSE */; };
+		802F537728E2754100E79AF1 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 802F537428E2754100E79AF1 /* README.md */; };
 		808225EF28D6BC2600EE53E2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808225EE28D6BC2600EE53E2 /* User.swift */; };
 		8082260028D6E00900EE53E2 /* ViewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808225FF28D6E00800EE53E2 /* ViewRouter.swift */; };
 		8082260628D6E01600EE53E2 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8082260228D6E01600EE53E2 /* HomeView.swift */; };
@@ -38,10 +40,6 @@
 		8082260828D6E01600EE53E2 /* MotherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8082260428D6E01600EE53E2 /* MotherView.swift */; };
 		8082260928D6E01600EE53E2 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8082260528D6E01600EE53E2 /* SignUpView.swift */; };
 		80AF57B628DE0922002AF88D /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AF57B528DE0922002AF88D /* LoadingView.swift */; };
-		80AF57BD28DE1CAA002AF88D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80AF57BC28DE1CAA002AF88D /* GoogleService-Info.plist */; };
-		80AF57BE28DE1CAA002AF88D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80AF57BC28DE1CAA002AF88D /* GoogleService-Info.plist */; };
-		80AF57BF28DE1CAA002AF88D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80AF57BC28DE1CAA002AF88D /* GoogleService-Info.plist */; };
-		80AF57C028DE1CAA002AF88D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80AF57BC28DE1CAA002AF88D /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +102,11 @@
 		802F528628E1F58000E79AF1 /* ReportNote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportNote.swift; sourceTree = "<group>"; };
 		802F528828E1F5F300E79AF1 /* ReportPocInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportPocInfo.swift; sourceTree = "<group>"; };
 		802F52B228E2170300E79AF1 /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
+		802F536D28E2405800E79AF1 /* ptool-watchOS-Watch-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "ptool-watchOS-Watch-App-Info.plist"; sourceTree = SOURCE_ROOT; };
+		802F536E28E246BA00E79AF1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		802F537228E2754100E79AF1 /* FirebaseApiDecoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseApiDecoder.swift; sourceTree = "<group>"; };
+		802F537328E2754100E79AF1 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		802F537428E2754100E79AF1 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		808225EE28D6BC2600EE53E2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		808225FF28D6E00800EE53E2 /* ViewRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewRouter.swift; sourceTree = "<group>"; };
 		8082260228D6E01600EE53E2 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -111,7 +114,6 @@
 		8082260428D6E01600EE53E2 /* MotherView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotherView.swift; sourceTree = "<group>"; };
 		8082260528D6E01600EE53E2 /* SignUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		80AF57B528DE0922002AF88D /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
-		80AF57BC28DE1CAA002AF88D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,15 +169,17 @@
 		800C78DC28D1885200432CA2 /* ptool-watchOS Watch App */ = {
 			isa = PBXGroup;
 			children = (
+				802F537028E2752A00E79AF1 /* tool */,
+				802F536D28E2405800E79AF1 /* ptool-watchOS-Watch-App-Info.plist */,
 				802F527F28E1EC1E00E79AF1 /* GpsLocation */,
 				80E143B828D810AA009DF8D6 /* Data */,
 				800C78DD28D1885200432CA2 /* ptool_watchOSApp.swift */,
 				800C78DF28D1885200432CA2 /* ContentView.swift */,
 				808225FF28D6E00800EE53E2 /* ViewRouter.swift */,
 				8082260128D6E01600EE53E2 /* Views */,
-				800C79DC28D2D64A00432CA2 /* LoginInView.swift */,
 				800C78E128D1885300432CA2 /* Assets.xcassets */,
-				80AF57BC28DE1CAA002AF88D /* GoogleService-Info.plist */,
+				800C79DC28D2D64A00432CA2 /* LoginInView.swift */,
+				802F536E28E246BA00E79AF1 /* GoogleService-Info.plist */,
 				800C78E328D1885300432CA2 /* Preview Content */,
 			);
 			path = "ptool-watchOS Watch App";
@@ -227,6 +231,24 @@
 				802F528028E1EC8100E79AF1 /* LocationManager.swift */,
 			);
 			path = GpsLocation;
+			sourceTree = "<group>";
+		};
+		802F537028E2752A00E79AF1 /* tool */ = {
+			isa = PBXGroup;
+			children = (
+				802F537128E2754100E79AF1 /* HTTPSCallableResultDecoder-master */,
+			);
+			path = tool;
+			sourceTree = "<group>";
+		};
+		802F537128E2754100E79AF1 /* HTTPSCallableResultDecoder-master */ = {
+			isa = PBXGroup;
+			children = (
+				802F537228E2754100E79AF1 /* FirebaseApiDecoder.swift */,
+				802F537328E2754100E79AF1 /* LICENSE */,
+				802F537428E2754100E79AF1 /* README.md */,
+			);
+			path = "HTTPSCallableResultDecoder-master";
 			sourceTree = "<group>";
 		};
 		8082260128D6E01600EE53E2 /* Views */ = {
@@ -385,7 +407,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				80AF57BD28DE1CAA002AF88D /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -394,8 +415,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				800C78E528D1885300432CA2 /* Preview Assets.xcassets in Resources */,
+				802F536F28E246BA00E79AF1 /* GoogleService-Info.plist in Resources */,
+				802F537728E2754100E79AF1 /* README.md in Resources */,
+				802F537628E2754100E79AF1 /* LICENSE in Resources */,
 				800C78E228D1885300432CA2 /* Assets.xcassets in Resources */,
-				80AF57BE28DE1CAA002AF88D /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -403,7 +426,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				80AF57BF28DE1CAA002AF88D /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,7 +433,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				80AF57C028DE1CAA002AF88D /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,6 +459,7 @@
 				802F527C28E1E1E300E79AF1 /* Report.swift in Sources */,
 				8082260728D6E01600EE53E2 /* SignInView.swift in Sources */,
 				802F527A28E1E17600E79AF1 /* Office.swift in Sources */,
+				802F537528E2754100E79AF1 /* FirebaseApiDecoder.swift in Sources */,
 				802F527728E1D90500E79AF1 /* DataController.swift in Sources */,
 				800C79DD28D2D64A00432CA2 /* LoginInView.swift in Sources */,
 				802F52B328E2170300E79AF1 /* Route.swift in Sources */,
@@ -448,7 +470,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				800C79DE28D2D64A00432CA2 /* LoginInView.swift in Sources */,
 				800C78EF28D1885300432CA2 /* ptool_watchOS_Watch_AppTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -459,7 +480,6 @@
 			files = (
 				800C78F928D1885300432CA2 /* ptool_watchOS_Watch_AppUITests.swift in Sources */,
 				800C78FB28D1885300432CA2 /* ptool_watchOS_Watch_AppUITestsLaunchTests.swift in Sources */,
-				800C79DF28D2D64A00432CA2 /* LoginInView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -605,7 +625,10 @@
 				DEVELOPMENT_TEAM = X4XVCCC9TR;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "ptool-watchOS-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "ptool-watchOS";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "faut ton gps";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = test;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKWatchOnly = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -636,7 +659,10 @@
 				DEVELOPMENT_TEAM = X4XVCCC9TR;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "ptool-watchOS-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "ptool-watchOS";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "faut ton gps";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = test;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKWatchOnly = YES;
 				LD_RUNPATH_SEARCH_PATHS = (

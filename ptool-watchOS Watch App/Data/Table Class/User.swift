@@ -16,7 +16,15 @@ class User: NSObject {
     var officeSelected: String
     var routeSelected: String
     
-
+    init(isEmpty: Bool) {
+        self.userId = ""
+        self.empId = ""
+        self.fName = ""
+        self.lName = ""
+        self.userType = 0
+        self.officeSelected = ""
+        self.routeSelected = ""
+    }
     init(userId: String, empId: String, fName: String, lName: String, userType: Int, officeSelected: String, routeSelected: String) {
         self.userId = userId
         self.empId = empId
