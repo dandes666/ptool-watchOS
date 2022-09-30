@@ -14,6 +14,7 @@ struct ConfigView: View {
                 Text("Deconnection")
             }
             
+            
 //            NavigationLink
 //            .navigationTitle("Config")
         }.navigationTitle("Config")
