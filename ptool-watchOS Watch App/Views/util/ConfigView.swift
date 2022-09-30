@@ -13,6 +13,7 @@ struct ConfigView: View {
             Button(action: signOutUser) {
                 Text("Deconnection")
             }
+            
 //            NavigationLink
 //            .navigationTitle("Config")
         }.navigationTitle("Config")
