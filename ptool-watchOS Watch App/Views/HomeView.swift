@@ -30,11 +30,13 @@ struct HomeView: View {
         NavigationView {
             ScrollView {
                 VStack {
-                    Text("\(db.userInfo.fName) \(db.userInfo.lName) \(locationManager.statusString)")
-                    HStack {
-                        Text("lat: \(userLatitude)")
-                        Text("lng: \(userLongitude)")
-                    }
+                    Text("\(db.userInfo.fName) \(db.userInfo.lName)")
+                    Text("\(db.officeArray[db.userInfo.officeIdx].name)")
+                    Text("\(db.officeArray[db.userInfo.officeIdx].routeArray[db.userInfo.routeIdx].name)")
+//                    HStack {
+//                        Text("lat: \(userLatitude)")
+//                        Text("lng: \(userLongitude)")
+//                    }
                 }
                 Image("Logo")
                     .resizable()

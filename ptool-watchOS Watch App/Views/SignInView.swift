@@ -40,73 +40,6 @@ struct SignInView: View {
         }
             .padding()
     }
-    func loadResultData(result: NSDictionary) {
-//        print(result)
-        if let u = result["userInfo"] as? NSDictionary {
-            
-            if let userId = u["userId"] as? String {
-                ptooldb.userInfo.userId = userId
-            }
-            if let empId = u["empId"] as? String {
-                ptooldb.userInfo.empId = empId
-            }
-            if let fName = u["fName"] as? String {
-                ptooldb.userInfo.fName = fName
-            }
-            if let lName = u["lName"] as? String {
-                ptooldb.userInfo.lName = lName
-            }
-            if let userType = u["userType"] as? Int {
-                ptooldb.userInfo.userType = userType
-            }
-            
-            if let woData = u["watchOSData"] as? NSDictionary {
-                if let officeId = woData["officeId"] as? String {
-                    ptooldb.userInfo.officeSelected = officeId
-                }
-                if let routeId = woData["routeId"] as? String {
-                    ptooldb.userInfo.routeSelected = routeId
-                }
-            }
-        }
-        if let u = result["officeInfo"] as? NSArray {
-            var offArray = <#T##[Office]#>
-            for off in u {
-                if let office = off as? NSDictionary {
-                    if let officeId = office["id"] as? String {
-                        var o = Office(officeId: officeId)
-                        if let address = office["address"] as? String {
-                            o.address = address
-                        }
-                        if let oName = office["name"] as? String {
-                            o.name = oName
-                        }
-                        if let rArray = office["routeInfo"] as? NSArray {
-                            for rou in rArray {
-                                if let route = rou as? NSDictionary {
-                                    if let routeId = route["id"] as? String {
-                                        var r = Route(routeId: routeId)
-                                        if let rName = route["name"] as? String {
-                                            r.setName(name: rName)
-                                        }
-                                        if let rType = route["type"] as? Int {
-                                            r.setType(type: rType)
-                                        }
-                                        o.routeArray += [r]
-                                    }
-                                }
-                                
-                            }
-                        }
-                        offArray += [o]
-                    }
-                }
-                
-            }
-            ptooldb.loadOfficeArray(officeArray: offArray)
-        }
-        print(ptooldb.officeArray)
-    }
     func completion(value: AnyObject?, error: NSError) {
         print("completion")
         print(error.localizedDescription)
@@ -124,8 +57,7 @@ struct SignInView: View {
                 completion(value: nil, error: error)
             } else {
                 if let data = result?.data as? NSDictionary {
-                    loadResultData(result: data)
-                    
+                    ptooldb.loadResultData(result: data)
                 }
             }
             withAnimation {

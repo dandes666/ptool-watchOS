@@ -33,6 +33,7 @@
 		802F537528E2754100E79AF1 /* FirebaseApiDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802F537228E2754100E79AF1 /* FirebaseApiDecoder.swift */; };
 		802F537628E2754100E79AF1 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 802F537328E2754100E79AF1 /* LICENSE */; };
 		802F537728E2754100E79AF1 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 802F537428E2754100E79AF1 /* README.md */; };
+		805F274928E66349001AB184 /* ReportListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805F274828E66349001AB184 /* ReportListView.swift */; };
 		808225EF28D6BC2600EE53E2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808225EE28D6BC2600EE53E2 /* User.swift */; };
 		8082260028D6E00900EE53E2 /* ViewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808225FF28D6E00800EE53E2 /* ViewRouter.swift */; };
 		8082260628D6E01600EE53E2 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8082260228D6E01600EE53E2 /* HomeView.swift */; };
@@ -107,6 +108,7 @@
 		802F537228E2754100E79AF1 /* FirebaseApiDecoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseApiDecoder.swift; sourceTree = "<group>"; };
 		802F537328E2754100E79AF1 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		802F537428E2754100E79AF1 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		805F274828E66349001AB184 /* ReportListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportListView.swift; sourceTree = "<group>"; };
 		808225EE28D6BC2600EE53E2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		808225FF28D6E00800EE53E2 /* ViewRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewRouter.swift; sourceTree = "<group>"; };
 		8082260228D6E01600EE53E2 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -259,6 +261,7 @@
 				8082260428D6E01600EE53E2 /* MotherView.swift */,
 				8082260528D6E01600EE53E2 /* SignUpView.swift */,
 				80AF57B528DE0922002AF88D /* LoadingView.swift */,
+				805F274828E66349001AB184 /* ReportListView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -451,6 +454,7 @@
 				8082260828D6E01600EE53E2 /* MotherView.swift in Sources */,
 				802F528528E1F53300E79AF1 /* ReportImage.swift in Sources */,
 				80AF57B628DE0922002AF88D /* LoadingView.swift in Sources */,
+				805F274928E66349001AB184 /* ReportListView.swift in Sources */,
 				802F528928E1F5F300E79AF1 /* ReportPocInfo.swift in Sources */,
 				8082260028D6E00900EE53E2 /* ViewRouter.swift in Sources */,
 				8082260928D6E01600EE53E2 /* SignUpView.swift in Sources */,
