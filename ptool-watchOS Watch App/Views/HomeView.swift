@@ -26,27 +26,31 @@ struct HomeView: View {
     var dataLoading: Bool = true
 //    @frozen struct RadialGradient
     var body: some View {
-        
-        NavigationView {
+        NavigationView() {
             ScrollView {
                 VStack {
-                    Text("\(db.userInfo.fName) \(db.userInfo.lName)")
-                    Text("\(db.officeArray[db.userInfo.officeIdx].name)")
-                    Text("\(db.officeArray[db.userInfo.officeIdx].routeArray[db.userInfo.routeIdx].name)")
-//                    HStack {
-//                        Text("lat: \(userLatitude)")
-//                        Text("lng: \(userLongitude)")
-//                    }
+                                        Text("\(db.userInfo.fName) \(db.userInfo.lName)")
+                    //                    Text("\(db.officeArray[db.userInfo.officeIdx].name)")
+                    //                    Text("\(db.officeArray[db.userInfo.officeIdx].routeArray[db.userInfo.routeIdx].name)")
+                    NavigationLink(destination: ConfigView()) {
+                        Text("configuration")
+//                        PtoolLogoView()
+                    }
+                    NavigationLink(destination: ReportListView()) {
+                        Text("signalement(\(db.reportArray.count))")
+                    }
+                    
+                    
                 }
-                Image("Logo")
-                    .resizable()
-                    .frame(width: 10, height: 10, alignment: .center)
-                    .navigationTitle("PTOOL")
-                Text("HomeView")
-            }
+                .navigationTitle("\(db.officeArray[db.userInfo.officeIdx].name) - \(db.officeArray[db.userInfo.officeIdx].routeArray[db.userInfo.routeIdx].name)")
+                TabView() {
+                    PtoolLogoView()
+                }
                 
-
+                
+            }
         }
+
     }
 }
 

@@ -20,6 +20,9 @@
 		800C79CC28D2D47900432CA2 /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = 800C79CB28D2D47900432CA2 /* FirebaseFunctions */; };
 		800C79CE28D2D47900432CA2 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 800C79CD28D2D47900432CA2 /* FirebaseStorage */; };
 		800C79DD28D2D64A00432CA2 /* LoginInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800C79DC28D2D64A00432CA2 /* LoginInView.swift */; };
+		801E698728E6988600919E9F /* PtoolLogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801E698628E6988600919E9F /* PtoolLogoView.swift */; };
+		801E698928E699CF00919E9F /* ConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801E698828E699CF00919E9F /* ConfigView.swift */; };
+		801E698C28E69E7F00919E9F /* ReportDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801E698B28E69E7F00919E9F /* ReportDetailView.swift */; };
 		802F527728E1D90500E79AF1 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802F527628E1D90500E79AF1 /* DataController.swift */; };
 		802F527A28E1E17600E79AF1 /* Office.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802F527928E1E17600E79AF1 /* Office.swift */; };
 		802F527C28E1E1E300E79AF1 /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802F527B28E1E1E300E79AF1 /* Report.swift */; };
@@ -94,6 +97,9 @@
 		800C78F828D1885300432CA2 /* ptool_watchOS_Watch_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ptool_watchOS_Watch_AppUITests.swift; sourceTree = "<group>"; };
 		800C78FA28D1885300432CA2 /* ptool_watchOS_Watch_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ptool_watchOS_Watch_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		800C79DC28D2D64A00432CA2 /* LoginInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInView.swift; sourceTree = "<group>"; };
+		801E698628E6988600919E9F /* PtoolLogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PtoolLogoView.swift; sourceTree = "<group>"; };
+		801E698828E699CF00919E9F /* ConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigView.swift; sourceTree = "<group>"; };
+		801E698B28E69E7F00919E9F /* ReportDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportDetailView.swift; sourceTree = "<group>"; };
 		802F527628E1D90500E79AF1 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		802F527928E1E17600E79AF1 /* Office.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Office.swift; sourceTree = "<group>"; };
 		802F527B28E1E1E300E79AF1 /* Report.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
@@ -212,6 +218,24 @@
 			path = "ptool-watchOS Watch AppUITests";
 			sourceTree = "<group>";
 		};
+		801E698328E6980900919E9F /* util */ = {
+			isa = PBXGroup;
+			children = (
+				801E698628E6988600919E9F /* PtoolLogoView.swift */,
+				801E698828E699CF00919E9F /* ConfigView.swift */,
+			);
+			path = util;
+			sourceTree = "<group>";
+		};
+		801E698A28E69E4D00919E9F /* ReportViews */ = {
+			isa = PBXGroup;
+			children = (
+				801E698B28E69E7F00919E9F /* ReportDetailView.swift */,
+				805F274828E66349001AB184 /* ReportListView.swift */,
+			);
+			path = ReportViews;
+			sourceTree = "<group>";
+		};
 		802F527828E1E13700E79AF1 /* Table Class */ = {
 			isa = PBXGroup;
 			children = (
@@ -256,12 +280,13 @@
 		8082260128D6E01600EE53E2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				801E698A28E69E4D00919E9F /* ReportViews */,
+				801E698328E6980900919E9F /* util */,
 				8082260228D6E01600EE53E2 /* HomeView.swift */,
 				8082260328D6E01600EE53E2 /* SignInView.swift */,
 				8082260428D6E01600EE53E2 /* MotherView.swift */,
 				8082260528D6E01600EE53E2 /* SignUpView.swift */,
 				80AF57B528DE0922002AF88D /* LoadingView.swift */,
-				805F274828E66349001AB184 /* ReportListView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -464,8 +489,11 @@
 				8082260728D6E01600EE53E2 /* SignInView.swift in Sources */,
 				802F527A28E1E17600E79AF1 /* Office.swift in Sources */,
 				802F537528E2754100E79AF1 /* FirebaseApiDecoder.swift in Sources */,
+				801E698928E699CF00919E9F /* ConfigView.swift in Sources */,
+				801E698C28E69E7F00919E9F /* ReportDetailView.swift in Sources */,
 				802F527728E1D90500E79AF1 /* DataController.swift in Sources */,
 				800C79DD28D2D64A00432CA2 /* LoginInView.swift in Sources */,
+				801E698728E6988600919E9F /* PtoolLogoView.swift in Sources */,
 				802F52B328E2170300E79AF1 /* Route.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

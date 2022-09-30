@@ -1,0 +1,4 @@
+/* Bundle display name */
+"CFBundleDisplayName" = "ptool-watchOS";
+/* Bundle name */
+"CFBundleName" = "ptool-watchOS Watch App";
