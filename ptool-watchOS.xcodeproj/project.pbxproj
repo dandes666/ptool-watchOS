@@ -15,10 +15,6 @@
 		800C78EF28D1885300432CA2 /* ptool_watchOS_Watch_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800C78EE28D1885300432CA2 /* ptool_watchOS_Watch_AppTests.swift */; };
 		800C78F928D1885300432CA2 /* ptool_watchOS_Watch_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800C78F828D1885300432CA2 /* ptool_watchOS_Watch_AppUITests.swift */; };
 		800C78FB28D1885300432CA2 /* ptool_watchOS_Watch_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800C78FA28D1885300432CA2 /* ptool_watchOS_Watch_AppUITestsLaunchTests.swift */; };
-		800C79C828D2D47900432CA2 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 800C79C728D2D47900432CA2 /* FirebaseAuth */; };
-		800C79CA28D2D47900432CA2 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 800C79C928D2D47900432CA2 /* FirebaseDatabase */; };
-		800C79CC28D2D47900432CA2 /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = 800C79CB28D2D47900432CA2 /* FirebaseFunctions */; };
-		800C79CE28D2D47900432CA2 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 800C79CD28D2D47900432CA2 /* FirebaseStorage */; };
 		800C79DD28D2D64A00432CA2 /* LoginInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800C79DC28D2D64A00432CA2 /* LoginInView.swift */; };
 		801E698728E6988600919E9F /* PtoolLogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801E698628E6988600919E9F /* PtoolLogoView.swift */; };
 		801E698928E699CF00919E9F /* ConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801E698828E699CF00919E9F /* ConfigView.swift */; };
@@ -33,11 +29,13 @@
 		801E69A228E799C300919E9F /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801E69A128E799C300919E9F /* WelcomeView.swift */; };
 		801E69A428E7AA6700919E9F /* GuardianActiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801E69A328E7AA6700919E9F /* GuardianActiveView.swift */; };
 		801E69A628E7C43800919E9F /* ReportItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801E69A528E7C43800919E9F /* ReportItemView.swift */; };
-		801E69A928E7FAE600919E9F /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 801E69A828E7FAE600919E9F /* FirebaseAppCheck */; };
+		801E69B728E806C100919E9F /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 801E69B628E806C100919E9F /* FirebaseAuth */; };
+		801E69B928E806C100919E9F /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = 801E69B828E806C100919E9F /* FirebaseFunctions */; };
+		801E69BB28E806C100919E9F /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 801E69BA28E806C100919E9F /* FirebaseStorage */; };
+		801E69BD28E8081200919E9F /* RouteClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801E69BC28E8081200919E9F /* RouteClass.swift */; };
 		802F527728E1D90500E79AF1 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802F527628E1D90500E79AF1 /* DataController.swift */; };
 		802F527A28E1E17600E79AF1 /* Office.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802F527928E1E17600E79AF1 /* Office.swift */; };
 		802F527C28E1E1E300E79AF1 /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802F527B28E1E1E300E79AF1 /* Report.swift */; };
-		802F527E28E1E55F00E79AF1 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802F527D28E1E55F00E79AF1 /* Route.swift */; };
 		802F528128E1EC8100E79AF1 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802F528028E1EC8100E79AF1 /* LocationManager.swift */; };
 		802F528528E1F53300E79AF1 /* ReportImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802F528428E1F53300E79AF1 /* ReportImage.swift */; };
 		802F528728E1F58000E79AF1 /* ReportNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802F528628E1F58000E79AF1 /* ReportNote.swift */; };
@@ -116,10 +114,10 @@
 		801E69A128E799C300919E9F /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		801E69A328E7AA6700919E9F /* GuardianActiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianActiveView.swift; sourceTree = "<group>"; };
 		801E69A528E7C43800919E9F /* ReportItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportItemView.swift; sourceTree = "<group>"; };
+		801E69BC28E8081200919E9F /* RouteClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteClass.swift; sourceTree = "<group>"; };
 		802F527628E1D90500E79AF1 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		802F527928E1E17600E79AF1 /* Office.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Office.swift; sourceTree = "<group>"; };
 		802F527B28E1E1E300E79AF1 /* Report.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
-		802F527D28E1E55F00E79AF1 /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		802F528028E1EC8100E79AF1 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		802F528428E1F53300E79AF1 /* ReportImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportImage.swift; sourceTree = "<group>"; };
 		802F528628E1F58000E79AF1 /* ReportNote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportNote.swift; sourceTree = "<group>"; };
@@ -140,11 +138,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				800C79CC28D2D47900432CA2 /* FirebaseFunctions in Frameworks */,
-				800C79CE28D2D47900432CA2 /* FirebaseStorage in Frameworks */,
-				800C79CA28D2D47900432CA2 /* FirebaseDatabase in Frameworks */,
-				801E69A928E7FAE600919E9F /* FirebaseAppCheck in Frameworks */,
-				800C79C828D2D47900432CA2 /* FirebaseAuth in Frameworks */,
+				801E69B728E806C100919E9F /* FirebaseAuth in Frameworks */,
+				801E69B928E806C100919E9F /* FirebaseFunctions in Frameworks */,
+				801E69BB28E806C100919E9F /* FirebaseStorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,13 +282,13 @@
 			isa = PBXGroup;
 			children = (
 				808225EE28D6BC2600EE53E2 /* User.swift */,
-				802F527D28E1E55F00E79AF1 /* Route.swift */,
 				802F527928E1E17600E79AF1 /* Office.swift */,
 				802F528428E1F53300E79AF1 /* ReportImage.swift */,
 				802F528628E1F58000E79AF1 /* ReportNote.swift */,
 				802F528828E1F5F300E79AF1 /* ReportPocInfo.swift */,
 				802F527B28E1E1E300E79AF1 /* Report.swift */,
 				801E699928E7759A00919E9F /* DeliveryNote.swift */,
+				801E69BC28E8081200919E9F /* RouteClass.swift */,
 			);
 			path = "Table Class";
 			sourceTree = "<group>";
@@ -367,11 +363,9 @@
 			);
 			name = "ptool-watchOS Watch App";
 			packageProductDependencies = (
-				800C79C728D2D47900432CA2 /* FirebaseAuth */,
-				800C79C928D2D47900432CA2 /* FirebaseDatabase */,
-				800C79CB28D2D47900432CA2 /* FirebaseFunctions */,
-				800C79CD28D2D47900432CA2 /* FirebaseStorage */,
-				801E69A828E7FAE600919E9F /* FirebaseAppCheck */,
+				801E69B628E806C100919E9F /* FirebaseAuth */,
+				801E69B828E806C100919E9F /* FirebaseFunctions */,
+				801E69BA28E806C100919E9F /* FirebaseStorage */,
 			);
 			productName = "ptool-watchOS Watch App";
 			productReference = 800C78D828D1885200432CA2 /* ptool-watchOS Watch App.app */;
@@ -450,7 +444,7 @@
 			);
 			mainGroup = 800C78CB28D1885100432CA2;
 			packageReferences = (
-				800C79C628D2D47900432CA2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				801E69B528E806C100919E9F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 800C78D328D1885200432CA2 /* Products */;
 			projectDirPath = "";
@@ -507,10 +501,10 @@
 				800C78E028D1885200432CA2 /* ContentView.swift in Sources */,
 				8082260628D6E01600EE53E2 /* HomeView.swift in Sources */,
 				800C78DE28D1885200432CA2 /* ptool_watchOSApp.swift in Sources */,
-				802F527E28E1E55F00E79AF1 /* Route.swift in Sources */,
 				802F528128E1EC8100E79AF1 /* LocationManager.swift in Sources */,
 				8082260828D6E01600EE53E2 /* MotherView.swift in Sources */,
 				802F528528E1F53300E79AF1 /* ReportImage.swift in Sources */,
+				801E69BD28E8081200919E9F /* RouteClass.swift in Sources */,
 				80AF57B628DE0922002AF88D /* LoadingView.swift in Sources */,
 				801E699628E7638400919E9F /* OfficeSelectView.swift in Sources */,
 				805F274928E66349001AB184 /* ReportListView.swift in Sources */,
@@ -929,41 +923,31 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		800C79C628D2D47900432CA2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+		801E69B528E806C100919E9F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 8.10.0;
+				minimumVersion = 9.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		800C79C728D2D47900432CA2 /* FirebaseAuth */ = {
+		801E69B628E806C100919E9F /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 800C79C628D2D47900432CA2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = 801E69B528E806C100919E9F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
 		};
-		800C79C928D2D47900432CA2 /* FirebaseDatabase */ = {
+		801E69B828E806C100919E9F /* FirebaseFunctions */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 800C79C628D2D47900432CA2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseDatabase;
-		};
-		800C79CB28D2D47900432CA2 /* FirebaseFunctions */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 800C79C628D2D47900432CA2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = 801E69B528E806C100919E9F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFunctions;
 		};
-		800C79CD28D2D47900432CA2 /* FirebaseStorage */ = {
+		801E69BA28E806C100919E9F /* FirebaseStorage */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 800C79C628D2D47900432CA2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = 801E69B528E806C100919E9F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
-		};
-		801E69A828E7FAE600919E9F /* FirebaseAppCheck */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 800C79C628D2D47900432CA2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAppCheck;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
