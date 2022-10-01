@@ -37,7 +37,7 @@ extension CLLocation {
 class Report: NSObject, Identifiable {
     var reportId: String
     var id: String
-    var name: String
+    var name: String?
     var desc: String?
     var type: String?
     var proximityAlert: Bool
@@ -51,7 +51,7 @@ class Report: NSObject, Identifiable {
     init(reportId: String) {
         self.reportId = reportId
         self.id = reportId
-        self.name = ""
+        self.name = nil
         self.desc = nil
         self.type = nil
         self.proximityAlert = false
@@ -62,8 +62,20 @@ class Report: NSObject, Identifiable {
         self.securedistance = nil
         self.status = nil
     }
+    func title() -> String {
+        if let name = self.name {
+            return name
+        } else if let type = self.type {
+            return type
+        } else if let desc = self.desc {
+            return desc
+        } else {
+            return self.reportId
+        }
+    }
+    
     func string () -> String {
-        return "name= \(self.name) type= \(String(describing: self.type)) desc= \(String(describing: self.desc))"
+        return "name= \(String(describing: self.name)) type= \(String(describing: self.type)) desc= \(String(describing: self.desc))"
     }
 
 }

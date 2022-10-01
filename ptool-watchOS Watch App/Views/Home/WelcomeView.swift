@@ -15,9 +15,15 @@ struct WelcomeView: View {
         Button(action: goLogin){
             Text("Connection")
         }
-        Text("De PTOOL")
+        Text("Produit par")
             .font(.system(size: 10))
-            .padding(20)
+            .padding(10)
+        HStack {
+            Image("PTOOL-LOGO")
+                .resizable()
+                .frame(width: 30, height: 30, alignment: .center)
+            Text("PTOOL")
+        }
     }
     func goLogin() {
         withAnimation {
