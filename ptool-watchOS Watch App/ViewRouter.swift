@@ -10,12 +10,13 @@ import Firebase
 
 class ViewRouter: ObservableObject {
     
-    @Published var currentPage: Page = .signInPage
+    @Published var currentPage: Page = .welcomePage
     
 }
 
 enum Page {
-    case signUpPage
+//    case signUpPage
+    case welcomePage
     case signInPage
     case loadingPage
     case homePage

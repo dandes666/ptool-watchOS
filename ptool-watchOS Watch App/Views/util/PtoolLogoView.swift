@@ -8,11 +8,15 @@
 import SwiftUI
 
 struct PtoolLogoView: View {
+    var imageWidth:CGFloat
+    var imageHeight:CGFloat
+    
     var body: some View {
         HStack {
             Image("Logo")
                 .resizable()
-                .frame(width: 40, height: 40, alignment: .center)
+                .frame(width: imageWidth, height: imageHeight, alignment: .center)
+                
             Text("Guardian")
         }
     }
@@ -20,6 +24,6 @@ struct PtoolLogoView: View {
 
 struct PtoolLogoView_Previews: PreviewProvider {
     static var previews: some View {
-        PtoolLogoView()
+        PtoolLogoView(imageWidth: 40, imageHeight: 40)
     }
 }

@@ -27,7 +27,7 @@ struct SignInView: View {
 //            Spacer()
             Image("Logo")
                 .resizable()
-                .frame(width: 60, height: 60, alignment: .center)
+                .frame(width: 40, height: 40, alignment: .topLeading)
             SignInCredentialFields(email: $email, password: $password)
             Button(action: {
                 signInUser(userEmail: email, userPassword: password)

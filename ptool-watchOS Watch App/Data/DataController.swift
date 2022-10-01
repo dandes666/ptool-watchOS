@@ -14,6 +14,9 @@ class DataController: ObservableObject {
     @Published var userInfo = User(isEmpty: true)
     @Published var officeArray: [Office] = []
     @Published var reportArray: [Report] = []
+    @Published var deliveryNoteArray: [DeliveryNote] = []
+    @Published var guardianActive: Bool = true
+    
 //    init() {
 //        var userId = "testtest"
 //        var empId = "testtest"
@@ -27,6 +30,12 @@ class DataController: ObservableObject {
 //        self.reportArray = []
 //
 //    }
+    func logout() {
+        self.userInfo = User(isEmpty: true)
+        self.officeArray = []
+        self.reportArray = []
+        self.deliveryNoteArray = [] 
+    }
     func loadUserInfo(userInfo: User) {
         self.userInfo = userInfo
     }

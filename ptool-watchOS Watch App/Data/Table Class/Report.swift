@@ -34,8 +34,9 @@ extension CLLocation {
         return sortedLabel
     }
 }
-class Report: NSObject {
+class Report: NSObject, Identifiable {
     var reportId: String
+    var id: String
     var name: String
     var desc: String?
     var type: String?
@@ -49,6 +50,7 @@ class Report: NSObject {
     
     init(reportId: String) {
         self.reportId = reportId
+        self.id = reportId
         self.name = ""
         self.desc = nil
         self.type = nil

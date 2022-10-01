@@ -8,14 +8,19 @@
 import SwiftUI
 
 struct ReportListView: View {
-    @EnvironmentObject var ptooldb: DataController
+    @EnvironmentObject var db: DataController
     var body: some View {
-        Text("Report List View")
-//        for report in ptooldb.reportArray {
-//            NavigationLink(destination: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Destination@*/Text("Destination")/*@END_MENU_TOKEN@*/) {
-//                /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Label Content@*/Text("Navigate")/*@END_MENU_TOKEN@*/
-//            }
-//        }
+//        var r: Report
+//        var reportArray: [Report] = db.reportArray
+        NavigationView() {
+            ScrollView {
+                ForEach(db.reportArray) { r in
+                    NavigationLink(destination: ReportDetailView(report: r)) {
+                        ReportItemView(report: r)
+                    }
+                }
+            }
+        }
     }
 }
 
