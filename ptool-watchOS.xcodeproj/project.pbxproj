@@ -33,6 +33,11 @@
 		801E69B928E806C100919E9F /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = 801E69B828E806C100919E9F /* FirebaseFunctions */; };
 		801E69BB28E806C100919E9F /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 801E69BA28E806C100919E9F /* FirebaseStorage */; };
 		801E69BD28E8081200919E9F /* RouteClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801E69BC28E8081200919E9F /* RouteClass.swift */; };
+		801E69BF28E8812000919E9F /* PushNotificationPayload.apns in Resources */ = {isa = PBXBuildFile; fileRef = 801E69BE28E8812000919E9F /* PushNotificationPayload.apns */; };
+		801E69C128E88B4200919E9F /* PushNotificationPayloadTest.apns in Resources */ = {isa = PBXBuildFile; fileRef = 801E69C028E88B4200919E9F /* PushNotificationPayloadTest.apns */; };
+		801E69C228E88B4200919E9F /* PushNotificationPayloadTest.apns in Resources */ = {isa = PBXBuildFile; fileRef = 801E69C028E88B4200919E9F /* PushNotificationPayloadTest.apns */; };
+		801E69C328E88B4200919E9F /* PushNotificationPayloadTest.apns in Resources */ = {isa = PBXBuildFile; fileRef = 801E69C028E88B4200919E9F /* PushNotificationPayloadTest.apns */; };
+		801E69C428E88B4200919E9F /* PushNotificationPayloadTest.apns in Resources */ = {isa = PBXBuildFile; fileRef = 801E69C028E88B4200919E9F /* PushNotificationPayloadTest.apns */; };
 		802F527728E1D90500E79AF1 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802F527628E1D90500E79AF1 /* DataController.swift */; };
 		802F527A28E1E17600E79AF1 /* Office.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802F527928E1E17600E79AF1 /* Office.swift */; };
 		802F527C28E1E1E300E79AF1 /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802F527B28E1E1E300E79AF1 /* Report.swift */; };
@@ -41,6 +46,9 @@
 		802F528728E1F58000E79AF1 /* ReportNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802F528628E1F58000E79AF1 /* ReportNote.swift */; };
 		802F528928E1F5F300E79AF1 /* ReportPocInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802F528828E1F5F300E79AF1 /* ReportPocInfo.swift */; };
 		805F274928E66349001AB184 /* ReportListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805F274828E66349001AB184 /* ReportListView.swift */; };
+		8081632528E94B9100A765F2 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8081632428E94B9100A765F2 /* NotificationController.swift */; };
+		8081632728E94BD900A765F2 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8081632628E94BD900A765F2 /* NotificationView.swift */; };
+		8081632A28E968CE00A765F2 /* NotificationReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8081632928E968CE00A765F2 /* NotificationReportView.swift */; };
 		808225EF28D6BC2600EE53E2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808225EE28D6BC2600EE53E2 /* User.swift */; };
 		8082260028D6E00900EE53E2 /* ViewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808225FF28D6E00800EE53E2 /* ViewRouter.swift */; };
 		8082260628D6E01600EE53E2 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8082260228D6E01600EE53E2 /* HomeView.swift */; };
@@ -115,6 +123,8 @@
 		801E69A328E7AA6700919E9F /* GuardianActiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianActiveView.swift; sourceTree = "<group>"; };
 		801E69A528E7C43800919E9F /* ReportItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportItemView.swift; sourceTree = "<group>"; };
 		801E69BC28E8081200919E9F /* RouteClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteClass.swift; sourceTree = "<group>"; };
+		801E69BE28E8812000919E9F /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		801E69C028E88B4200919E9F /* PushNotificationPayloadTest.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayloadTest.apns; sourceTree = "<group>"; };
 		802F527628E1D90500E79AF1 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		802F527928E1E17600E79AF1 /* Office.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Office.swift; sourceTree = "<group>"; };
 		802F527B28E1E1E300E79AF1 /* Report.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
@@ -124,6 +134,9 @@
 		802F528828E1F5F300E79AF1 /* ReportPocInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportPocInfo.swift; sourceTree = "<group>"; };
 		802F536D28E2405800E79AF1 /* ptool-watchOS-Watch-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "ptool-watchOS-Watch-App-Info.plist"; sourceTree = SOURCE_ROOT; };
 		805F274828E66349001AB184 /* ReportListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportListView.swift; sourceTree = "<group>"; };
+		8081632428E94B9100A765F2 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		8081632628E94BD900A765F2 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
+		8081632928E968CE00A765F2 /* NotificationReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationReportView.swift; sourceTree = "<group>"; };
 		808225EE28D6BC2600EE53E2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		808225FF28D6E00800EE53E2 /* ViewRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewRouter.swift; sourceTree = "<group>"; };
 		8082260228D6E01600EE53E2 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -164,6 +177,7 @@
 		800C78CB28D1885100432CA2 = {
 			isa = PBXGroup;
 			children = (
+				801E69C028E88B4200919E9F /* PushNotificationPayloadTest.apns */,
 				800C78DC28D1885200432CA2 /* ptool-watchOS Watch App */,
 				800C78ED28D1885300432CA2 /* ptool-watchOS Watch AppTests */,
 				800C78F728D1885300432CA2 /* ptool-watchOS Watch AppUITests */,
@@ -186,6 +200,8 @@
 		800C78DC28D1885200432CA2 /* ptool-watchOS Watch App */ = {
 			isa = PBXGroup;
 			children = (
+				8081632328E94B3600A765F2 /* Notification */,
+				801E69BE28E8812000919E9F /* PushNotificationPayload.apns */,
 				802F537028E2752A00E79AF1 /* tool */,
 				802F536D28E2405800E79AF1 /* ptool-watchOS-Watch-App-Info.plist */,
 				802F527F28E1EC1E00E79AF1 /* GpsLocation */,
@@ -308,9 +324,27 @@
 			path = tool;
 			sourceTree = "<group>";
 		};
+		8081632328E94B3600A765F2 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				8081632428E94B9100A765F2 /* NotificationController.swift */,
+			);
+			path = Notification;
+			sourceTree = "<group>";
+		};
+		8081632828E9688000A765F2 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				8081632628E94BD900A765F2 /* NotificationView.swift */,
+				8081632928E968CE00A765F2 /* NotificationReportView.swift */,
+			);
+			path = Notification;
+			sourceTree = "<group>";
+		};
 		8082260128D6E01600EE53E2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8081632828E9688000A765F2 /* Notification */,
 				801E69A028E7994E00919E9F /* Home */,
 				801E699B28E7763300919E9F /* DeliveryNoteViews */,
 				801E698A28E69E4D00919E9F /* ReportViews */,
@@ -463,6 +497,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				801E69C128E88B4200919E9F /* PushNotificationPayloadTest.apns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -471,7 +506,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				800C78E528D1885300432CA2 /* Preview Assets.xcassets in Resources */,
+				801E69BF28E8812000919E9F /* PushNotificationPayload.apns in Resources */,
 				801E699028E7497C00919E9F /* GoogleService-Info.plist in Resources */,
+				801E69C228E88B4200919E9F /* PushNotificationPayloadTest.apns in Resources */,
 				800C78E228D1885300432CA2 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -480,6 +517,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				801E69C328E88B4200919E9F /* PushNotificationPayloadTest.apns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -487,6 +525,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				801E69C428E88B4200919E9F /* PushNotificationPayloadTest.apns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -498,7 +537,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				801E699428E7636D00919E9F /* RouteSelectView.swift in Sources */,
+				8081632A28E968CE00A765F2 /* NotificationReportView.swift in Sources */,
 				800C78E028D1885200432CA2 /* ContentView.swift in Sources */,
+				8081632528E94B9100A765F2 /* NotificationController.swift in Sources */,
 				8082260628D6E01600EE53E2 /* HomeView.swift in Sources */,
 				800C78DE28D1885200432CA2 /* ptool_watchOSApp.swift in Sources */,
 				802F528128E1EC8100E79AF1 /* LocationManager.swift in Sources */,
@@ -510,6 +551,7 @@
 				805F274928E66349001AB184 /* ReportListView.swift in Sources */,
 				802F528928E1F5F300E79AF1 /* ReportPocInfo.swift in Sources */,
 				801E699228E7552E00919E9F /* UserEditIView.swift in Sources */,
+				8081632728E94BD900A765F2 /* NotificationView.swift in Sources */,
 				8082260028D6E00900EE53E2 /* ViewRouter.swift in Sources */,
 				8082260928D6E01600EE53E2 /* SignUpView.swift in Sources */,
 				808225EF28D6BC2600EE53E2 /* User.swift in Sources */,

@@ -8,6 +8,7 @@
 import Foundation
 import CoreLocation
 import Combine
+import UserNotifications
 
 class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
 
@@ -21,6 +22,13 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.sound,.badge]) { (success, error) in
+            if success{
+                print("All set")
+            } else if let error = error {
+                print(error.localizedDescription)
+            }
+        }
     }
 
    
@@ -48,6 +56,26 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else { return }
         lastLocation = location
+        verifLocation(location: location)
 //        print(#function, location)
+    }
+    func verifLocation(location: CLLocation) {
+//        let content = UNMutableNotificationContent()
+//        content.title = "Drink some milk!"
+//        content.subtitle = "you have 10 sec"
+//        content.sound = .default
+//        content.categoryIdentifier = "myCategory"
+//        let category = UNNotificationCategory(identifier: "myCategory", actions: [], intentIdentifiers: [], options: [])
+//        UNUserNotificationCenter.current().setNotificationCategories([category])
+//        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)
+//        let request = UNNotificationRequest(identifier: "milk", content: content, trigger: trigger)
+//        UNUserNotificationCenter.current().add(request) { (error) in
+//            if let error = error{
+//                print(error.localizedDescription)
+//            }else{
+//                print("scheduled successfully")
+//                ReportDetailView(report: Report(reportId: "testtetetet"))
+//            }
+//        }
     }
 }

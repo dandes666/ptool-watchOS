@@ -26,5 +26,8 @@ struct ptool_watchOS_Watch_AppApp: App {
                 .environmentObject(dataController)
 //            ContentView()
         }
+        #if os(watchOS)
+        WKNotificationScene(controller: NotificationController.self, category: "reportProximityAlert")
+        #endif
     }
 }

@@ -62,6 +62,65 @@ class Report: NSObject, Identifiable {
         self.securedistance = nil
         self.status = nil
     }
+    init(reportId: String, name: String?, desc: String?, type: String?, status: Int?, gps: CLLocation?, proximityAlert: Bool?, imageList: [ReportImage]?, note: [ReportNote]?, pocList: [ReportPocInfo]?, securedistance: Int?) {
+        self.reportId = reportId
+        self.id = reportId
+        if let n = name {
+            self.name = n
+        } else {
+            self.name = nil
+        }
+        if let d = desc {
+            self.desc = d
+        } else {
+            self.desc = nil
+        }
+        if let t = type {
+            self.type = t
+        } else {
+            self.type = nil
+        }
+        if let g = gps {
+            self.gps = g
+        } else {
+            self.gps = nil
+        }
+        if let pa = proximityAlert {
+            self.proximityAlert = pa
+        } else {
+            self.proximityAlert = false
+        }
+        if let il = imageList {
+            self.imageList = il
+        } else {
+            self.imageList = []
+        }
+        if let no = note {
+            self.note = no
+        } else {
+            self.note = []
+        }
+        if let pl = pocList {
+            self.pocList = pl
+        } else {
+            self.pocList = []
+        }
+        if let sd = securedistance {
+            self.securedistance = sd
+        } else {
+            self.securedistance = nil
+        }
+        if let pl = pocList {
+            self.pocList = pl
+        } else {
+            self.pocList = []
+        }
+        if let sta = status {
+            self.status = sta
+        } else {
+            self.status = nil
+        }
+    }
     func title() -> String {
         if let name = self.name {
             return name

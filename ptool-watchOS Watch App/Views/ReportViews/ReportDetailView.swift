@@ -10,7 +10,23 @@ import SwiftUI
 struct ReportDetailView: View {
     var report: Report
     var body: some View {
-        Text("detail")
+        VStack {
+            if let type = report.type {
+                switch type {
+                case "dog":
+                    Image("Dog")
+                        .resizable()
+                        .frame(width: 40, height: 40, alignment: .center)
+                        
+                default:
+                    Image("Alert")
+                        .resizable()
+                        .frame(width: 40, height: 40, alignment: .center)
+                }
+            } else {
+                Text("no type")
+            }
+        }
     }
 }
 
