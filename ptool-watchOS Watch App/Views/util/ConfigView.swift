@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ConfigView: View {
-    @EnvironmentObject var db: DataController
+    @EnvironmentObject var db: AppManager
     var body: some View {
         NavigationView {
             ScrollView {

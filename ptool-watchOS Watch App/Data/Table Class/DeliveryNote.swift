@@ -6,15 +6,20 @@
 //
 
 import Foundation
+import CoreLocation
+
 class DeliveryNote: NSObject {
 //    DeliveryNote
     var deliveryNoteId: String
     var desc: String
+    var gps: CLLocation
     var pocArray: [ReportPocInfo] = []
+    var userAdvicedAt: Date? = nil
     
-    init(adviceId: String) {
+    init(adviceId: String, desc: String?, gps: CLLocation) {
         self.deliveryNoteId = adviceId
         self.desc = ""
+        self.gps = gps
     }
 }
 

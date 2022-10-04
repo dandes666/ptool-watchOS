@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ReportListView: View {
-    @EnvironmentObject var db: DataController
+    @EnvironmentObject var db: AppManager
     var body: some View {
 //        var r: Report
 //        var reportArray: [Report] = db.reportArray

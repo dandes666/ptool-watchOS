@@ -18,45 +18,8 @@ struct NotificationReportView: View {
             ScrollView {
                 VStack(alignment: .leading) {
                     
-                    if let type = report.type {
-                        
-                        HStack {
-                            switch type {
-                            case "wdog":
-                                Image("Dog")
-                                    .resizable()
-                                //                                .scaledToFit()
-                                    .frame(width: 40, height: 40, alignment: .center)
-                                
-                            default:
-                                Image("Alert")
-                                    .resizable()
-                                    .frame(width: 40, height: 40, alignment: .center)
-                            }
-                            
-                            if let nTitle = title {
-                                VStack {
-                                    Text(nTitle)
-                                    //                                    .font(.system(size: 12, weight: .light, design: .serif))
-                                    //                                    .italic()
-                                        .font(.headline)
-                                        .lineLimit(2)
-                                    //                                .font()
-                                        .foregroundColor(Color.red)
-                                }
-                            }
-                        }
-                        .padding(2)
-                        if let nMessage = message {
-                            Text(nMessage)
-                                .font(.caption)
-                                .lineLimit(nil)
-                                .padding(5)
-                            
-                        }
-                    } else {
-                        Text("no type")
-                    }
+                    
+                    NotificationReportBannerView(title: title, message: message, report: report)
                     if let desc = report.desc {
                         Text(desc)
                             .lineLimit(nil)

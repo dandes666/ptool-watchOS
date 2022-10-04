@@ -10,7 +10,7 @@ import SwiftUI
 struct ReportItemView: View {
     var report: Report
     var body: some View {
-        Text(report.title())
+        Text(report.getReportTypeTitle())
     }
 }
 

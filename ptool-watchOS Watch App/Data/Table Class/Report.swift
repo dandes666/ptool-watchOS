@@ -8,32 +8,32 @@
 import Foundation
 import CoreLocation
 
-extension CLLocation {
-    /// Provide optional coordinate components labels
-    func locationString(with labels:[String]? = ["lat","lon"]) -> String {
-        return "\(latitudeString(with: labels!.first!))- \(longitudeString(with: labels!.last!))"
-    }
-
-    // Get string for each component
-    //This is not necessary, as you could combine this into formattedLabel: label
-    //But it's good to have these separate in case you need just one of the components
-    func latitudeString(with label: String?) -> String {
-        return "\(formattedLabel(from: label))\(self.coordinate.latitude)"
-    }
-
-    func longitudeString(with label: String?) -> String {
-        return "\(formattedLabel(from: label))\(self.coordinate.longitude)"
-    }
-
-    // Returns formatted label or nothing in case nothing is needed
-    func formattedLabel(from label: String?) -> String {
-        var sortedLabel = ""
-        if label != nil {
-            sortedLabel = "\(label!): "
-        }
-        return sortedLabel
-    }
-}
+//extension CLLocation {
+//    /// Provide optional coordinate components labels
+//    func locationString(with labels:[String]? = ["lat","lon"]) -> String {
+//        return "\(latitudeString(with: labels!.first!))- \(longitudeString(with: labels!.last!))"
+//    }
+//
+//    // Get string for each component
+//    //This is not necessary, as you could combine this into formattedLabel: label
+//    //But it's good to have these separate in case you need just one of the components
+//    func latitudeString(with label: String?) -> String {
+//        return "\(formattedLabel(from: label))\(self.coordinate.latitude)"
+//    }
+//
+//    func longitudeString(with label: String?) -> String {
+//        return "\(formattedLabel(from: label))\(self.coordinate.longitude)"
+//    }
+//
+//    // Returns formatted label or nothing in case nothing is needed
+//    func formattedLabel(from label: String?) -> String {
+//        var sortedLabel = ""
+//        if label != nil {
+//            sortedLabel = "\(label!): "
+//        }
+//        return sortedLabel
+//    }
+//}
 class Report: NSObject, Identifiable {
     var reportId: String
     var id: String
@@ -45,8 +45,9 @@ class Report: NSObject, Identifiable {
     var imageList: [ReportImage]
     var note: [ReportNote]
     var pocList: [ReportPocInfo]
-    var securedistance: Int?
+    var securedistance: Double?
     var status: Int?
+    var userAdvicedAt: Date? = nil
     
     init(reportId: String) {
         self.reportId = reportId
@@ -62,7 +63,7 @@ class Report: NSObject, Identifiable {
         self.securedistance = nil
         self.status = nil
     }
-    init(reportId: String, name: String?, desc: String?, type: String?, status: Int?, gps: CLLocation?, proximityAlert: Bool?, imageList: [ReportImage]?, note: [ReportNote]?, pocList: [ReportPocInfo]?, securedistance: Int?) {
+    init(reportId: String, name: String?, desc: String?, type: String?, status: Int?, gps: CLLocation?, proximityAlert: Bool?, imageList: [ReportImage]?, note: [ReportNote]?, pocList: [ReportPocInfo]?, securedistance: Double?) {
         self.reportId = reportId
         self.id = reportId
         if let n = name {
@@ -132,9 +133,52 @@ class Report: NSObject, Identifiable {
             return self.reportId
         }
     }
-    
+    func getReportTypeTitle() -> String {
+        if let t = self.type {
+            switch t {
+            case "dog":
+                return "Risque de Chien"
+            case "ice":
+                return "Risque de glace"
+            case "brokenstep":
+                return "Escalier endomagé"
+            default:
+                return "Zone Dangereuse"
+            }
+        } else {
+            return "non défini"
+        }
+    }
+    func getName() -> String {
+        if let name = self.name {
+            return name
+        } else {
+            return ""
+        }
+    }
+    func getDesc() -> String {
+        if let desc = self.desc {
+            return desc
+        } else {
+            return ""
+        }
+    }
+    func getType() -> String {
+        if let type = self.type {
+            return type
+        } else {
+            return ""
+        }
+    }
+    func getStatus() -> Int {
+        if let status = self.status {
+            return status
+        } else {
+            return 0
+        }
+    }
     func string () -> String {
-        return "name= \(String(describing: self.name)) type= \(String(describing: self.type)) desc= \(String(describing: self.desc))"
+        return "name= \(getName()) type= \(getType()) desc= \(getDesc())"
     }
 
 }

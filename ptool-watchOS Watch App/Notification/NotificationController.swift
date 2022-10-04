@@ -13,11 +13,11 @@ class NotificationController: WKUserNotificationHostingController<NotificationVi
 //    var landmark: Landmark?
     var title: String?
     var message: String?
-    var type: String?
+    var nType: String?
     var report: Report?
     
     override var body: NotificationView {
-        NotificationView(notifTitle: title, notifMessage: message, notificationType: type, report: report)
+        NotificationView(notifTitle: title, notifMessage: message, notificationType: nType, report: report)
     }
     
     override func willActivate() {
@@ -31,30 +31,45 @@ class NotificationController: WKUserNotificationHostingController<NotificationVi
     }
     
     override func didReceive(_ notification: UNNotification) {
-//        let modelData = ModelData()
-
         let notificationData =
             notification.request.content.userInfo as? [String: Any]
-
         let aps = notificationData?["aps"] as? [String: Any]
         let alert = aps?["alert"] as? [String: Any]
-//        reportIdx = alert?["reportIdx"] as? Int
-        type = alert?["notificationType"] as? String
+
         title = alert?["title"] as? String
         message = alert?["body"] as? String
 
-        if let reportData = notificationData?["reportData"] as? NSDictionary {
-            if let reportId = reportData["reportId"] as? String {
-                if let name = reportData["name"] as? String {
-                    if let desc = reportData["desc"] as? String {
-                        if let type = reportData["type"] as? String {
-                            if let status = reportData["status"] as? Int {
-                                report = Report(reportId: reportId, name: name, desc: desc, type: type, status: status, gps: nil, proximityAlert: nil, imageList: nil, note: nil, pocList: nil, securedistance: nil)
-//                                report = Report(reportId: reportId, name: name, desc: desc, type: type, status: status)
+        if let notificationType = notificationData?["notificationType"] as? String {
+            self.nType = notificationType
+            
+            if let reportData = notificationData?["notifData"] as? NSDictionary {
+                switch notificationType {
+                    case "reportProximityAlert":
+                        if let reportId = reportData["reportId"] as? String {
+                            if let name = reportData["name"] as? String {
+                                if let desc = reportData["desc"] as? String {
+                                    if let type = reportData["type"] as? String {
+                                        if let status = reportData["status"] as? Int {
+                                            report = Report(reportId: reportId, name: name, desc: desc, type: type, status: status, gps: nil, proximityAlert: nil, imageList: nil, note: nil, pocList: nil, securedistance: nil)
+                                        }
+                                    }
+                                }
                             }
                         }
-                    }
+                    default:
+                        if let reportId = reportData["reportId"] as? String {
+                            if let name = reportData["name"] as? String {
+                                if let desc = reportData["desc"] as? String {
+                                    if let type = reportData["type"] as? String {
+                                        if let status = reportData["status"] as? Int {
+                                            report = Report(reportId: reportId, name: name, desc: desc, type: type, status: status, gps: nil, proximityAlert: nil, imageList: nil, note: nil, pocList: nil, securedistance: nil)
+                                        }
+                                    }
+                                }
+                            }
+                        }
                 }
+                
             }
         }
     }

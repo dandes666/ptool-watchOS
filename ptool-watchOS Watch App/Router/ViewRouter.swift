@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Firebase
 
 class ViewRouter: ObservableObject {
     

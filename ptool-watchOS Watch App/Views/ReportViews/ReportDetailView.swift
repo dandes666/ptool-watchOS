@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+import UserNotifications
 struct ReportDetailView: View {
     var report: Report
     var body: some View {
@@ -25,6 +25,38 @@ struct ReportDetailView: View {
                 }
             } else {
                 Text("no type")
+            }
+            Button("Schedule Notification")
+            {
+                let content = UNMutableNotificationContent()
+                content.title = "Alerte de proximité"
+
+                content.body = report.getReportTypeTitle()
+
+                content.sound = .defaultCritical
+//                content.sound = UNNotificationSound.
+                content.categoryIdentifier = "reportProximityAlert"
+                content.userInfo = [
+                    "notifData": [
+                        "reportId": report.reportId,
+                        "name": report.getName(),
+                        "desc": report.getDesc(),
+                        "type": report.getType(),
+                        "status": report.getStatus()
+                    ],
+                    "notificationType" : "reportProximityAlert"
+                ]
+                let category = UNNotificationCategory(identifier: "reportProximityAlert", actions: [], intentIdentifiers: [], options: [])
+                UNUserNotificationCenter.current().setNotificationCategories([category])
+                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+                let request = UNNotificationRequest(identifier: "milk", content: content, trigger: trigger)
+                UNUserNotificationCenter.current().add(request) { (error) in
+                    if let error = error{
+                        print(error.localizedDescription)
+                    }else{
+                        print("notification envoyer")
+                    }
+                }
             }
         }
     }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct GuardianActiveView: View {
-    @EnvironmentObject var db: DataController
+    @EnvironmentObject var db: AppManager
     var body: some View {
         Toggle(isOn: $db.guardianActive) {
             Text("Notification")

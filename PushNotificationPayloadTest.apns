@@ -2,19 +2,20 @@
     "aps": {
         "alert": {
             "body": "Danger de Chien",
-            "title": "Alert De Proximite",
+            "title": "Alerte De Proximité",
             "subtitle": "Optional subtitle",
-            "notificationType": "reportProximityAlert",
+            
         },
         "category": "reportProximityAlert",
         "thread-id": "5280"
     },
-    "reportData": {
+    "notificationType": "reportProximityAlert",
+    "notifData": {
         "reportId": "REPID12345",
-            "name": "Nom du report",
-            "desc": "Desc du report",
-            "type": "dog",
-            "status": 3
+        "name": "Nom du report",
+        "desc": "Desc du report",
+        "type": "dog",
+        "status": 3
     },
     "WatchKit Simulator Actions": [
         {

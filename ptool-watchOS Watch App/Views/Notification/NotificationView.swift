@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct NotificationView: View {
-    @EnvironmentObject var db: DataController
+    @EnvironmentObject var db: AppManager
     var notifTitle: String?
     var notifMessage: String?
     var notificationType: String?
@@ -16,6 +16,7 @@ struct NotificationView: View {
     var body: some View {
         VStack {
             if let type = notificationType {
+//                print("Trace Notification View")
                 if type == "reportProximityAlert" {
                     if let r = report {
                         NotificationReportView(title: notifTitle, message: notifMessage, report: r)

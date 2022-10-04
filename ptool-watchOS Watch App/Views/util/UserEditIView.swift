@@ -9,7 +9,7 @@ import SwiftUI
 
 struct UserEditIView: View {
     @EnvironmentObject var viewRouter: ViewRouter
-    @EnvironmentObject var db: DataController
+    @EnvironmentObject var db: AppManager
     let user: User
     var body: some View {
         PtoolLogoView(imageWidth: 40, imageHeight: 40)

@@ -7,7 +7,7 @@
 
 import XCTest
 @testable import ptool_watchOS_Watch_App
-@StateObject private var dataController = DataController()
+//@StateObject private var dataController = DataController()
 final class ptool_watchOS_Watch_AppTests: XCTestCase {
 
     override func setUpWithError() throws {

@@ -11,7 +11,8 @@ import Firebase
 struct ptool_watchOS_Watch_AppApp: App {
     
     @StateObject var viewRouter = ViewRouter()
-    @StateObject private var dataController = DataController()
+    @StateObject private var appManager = AppManager()
+//    @StateObject private var dataController = DataController()
 //    let var ref: DatabaseReference!
     
     
@@ -23,7 +24,7 @@ struct ptool_watchOS_Watch_AppApp: App {
     var body: some Scene {
         WindowGroup {
             MotherView().environmentObject(viewRouter)
-                .environmentObject(dataController)
+                .environmentObject(appManager)
 //            ContentView()
         }
         #if os(watchOS)

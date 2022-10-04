@@ -10,17 +10,17 @@ import Firebase
 
 struct HomeView: View {
     
-    @EnvironmentObject var db: DataController
+    @EnvironmentObject var db: AppManager
     @EnvironmentObject var viewRouter: ViewRouter
-    @StateObject var locationManager = LocationManager()
+//    @StateObject var locationManager = LocationManager()
         
-    var userLatitude: String {
-        return "\(locationManager.lastLocation?.coordinate.latitude ?? 0)"
-    }
-    
-    var userLongitude: String {
-        return "\(locationManager.lastLocation?.coordinate.longitude ?? 0)"
-    }
+//    var userLatitude: String {
+//        return "\(locationManager.lastLocation?.coordinate.latitude ?? 0)"
+//    }
+//    
+//    var userLongitude: String {
+//        return "\(locationManager.lastLocation?.coordinate.longitude ?? 0)"
+//    }
         
       
     var dataLoading: Bool = true

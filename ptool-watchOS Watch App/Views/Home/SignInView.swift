@@ -12,7 +12,7 @@ import FirebaseFunctions
 struct SignInView: View {
     
     @EnvironmentObject var viewRouter: ViewRouter
-    @EnvironmentObject var ptooldb: DataController
+    @EnvironmentObject var ptooldb: AppManager
     
     @State var email = "dave.thibeault@me.com"
     @State var password = "chr1st1naT"

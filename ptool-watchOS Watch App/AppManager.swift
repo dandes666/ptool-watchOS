@@ -1,53 +1,131 @@
 //
-//  DataController.swift
+//  AppManager.swift
 //  ptool-watchOS Watch App
 //
-//  Created by Dave Thibeault on 2022-09-26.
+//  Created by Dave Thibeault on 2022-10-02.
 //
+
 import Foundation
-import CoreData
 import CoreLocation
+import Combine
+import UserNotifications
 
-
-class DataController: ObservableObject {
-    @Published var myGps: CLLocation?
+class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
+    private let locationManager = CLLocationManager()
+    @Published var locationStatus: CLAuthorizationStatus?
+    @Published var lastLocation: CLLocation?
+//    @Published var db = DataController()
+    
     @Published var userInfo = User(isEmpty: true)
     @Published var officeArray: [Office] = []
     @Published var reportArray: [Report] = []
+    @Published var alertReportArray: [Report] = []
+    @Published var alertDeleveryNote: [DeliveryNote] = []
     @Published var deliveryNoteArray: [DeliveryNote] = []
     @Published var guardianActive: Bool = true
     
-//    init() {
-//        var userId = "testtest"
-//        var empId = "testtest"
-//        var fName = "testtest"
-//        var lName  = "testtest"
-//        var type = 0
-//        var officeSelected = "testtest"
-//        var routeSelected = "testtest"
-//        self.userInfo = User(userId, empId, fName ,lName, type, officeSelected, routeSelected)
-//        self.officeArray = []
-//        self.reportArray = []
-//
-//    }
-    func logout() {
-        self.userInfo = User(isEmpty: true)
-        self.officeArray = []
-        self.reportArray = []
-        self.deliveryNoteArray = [] 
+    let objectWillChange = PassthroughSubject<Void, Never>()
+    @Published var status: CLAuthorizationStatus? {
+        willSet { objectWillChange.send() }
     }
-    func loadUserInfo(userInfo: User) {
-        self.userInfo = userInfo
+    @Published var location: CLLocation? {
+        willSet { objectWillChange.send() }
     }
-    func loadOfficeArray(officeArray: [Office]) {
-        self.officeArray = officeArray
+    override init() {
+        super.init()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.sound,.badge]) { (success, error) in
+            if success{
+                print("All set")
+            } else if let error = error {
+                print(error.localizedDescription)
+            }
+        }
     }
-    func loadUserInfo(reportArray: [Report]) {
-        self.reportArray = reportArray
+    
+    var statusString: String {
+        guard let status = locationStatus else {
+            return "unknown"
+        }
+        
+        switch status {
+        case .notDetermined: return "notDetermined"
+        case .authorizedWhenInUse: return "authorizedWhenInUse"
+        case .authorizedAlways: return "authorizedAlways"
+        case .restricted: return "restricted"
+        case .denied: return "denied"
+        default: return "unknown"
+        }
     }
-    func loadData(result: String) {
-        print(result)
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        locationStatus = status
+        //        print(#function, statusString)
     }
+    func addAlert(report: Report?, note: DeliveryNote?) {
+        print("Trace -> addAlert")
+        if let r = report {
+            r.userAdvicedAt = Date()
+            alertReportArray += [r]
+        }
+        if let n = note {
+            n.userAdvicedAt = Date()
+            deliveryNoteArray += [n]
+        }
+    }
+    func cleanAlert() {
+        
+    }
+    func verifPoximity () {
+        if guardianActive == true {
+            if let location = lastLocation {
+                //  Verifier Les report
+                for i in 0 ..< reportArray.count {
+                    let r = reportArray[i]
+                    if (r.proximityAlert == true && r.userAdvicedAt == nil) {
+                        if let gps = r.gps {
+                            if let securedist = r.securedistance {
+                                if gps.distance(from: location) < securedist {
+                                    addAlert(report: r, note: nil)
+                                } else {
+                                    print("Report id: \(r.reportId) sd: \(securedist) dist: \(gps.distance(from: location))")
+                                }
+                            } else {
+                                //                            mettre une distance par default si pas de securdist
+                                if gps.distance(from: location) < 30 {
+                                    addAlert(report: r, note: nil)
+                                } else {
+                                    print("Report id: \(r.reportId) dist: \(gps.distance(from: location))")
+                                }
+                            }
+                        }
+                    }
+                }
+                //  Verifier Les Notes
+                for i in 0 ..< deliveryNoteArray.count {
+                    let nt = deliveryNoteArray[i]
+                    if nt.gps.distance(from: location) < 30 {
+                        addAlert(report: nil, note: nt)
+                    } else {
+                        print("Note id: \(nt.deliveryNoteId) dist: \(nt.gps.distance(from: location))")
+                    }
+                }
+                print("verif Proximity FINISH")
+            }
+        }
+    }
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.last else { return }
+        lastLocation = location
+        verifPoximity()
+//        verifLocation(location: location)
+        
+//        print(#function, location)
+    }
+    
     func loadResultData(result: NSDictionary) {
 //        print(result)
         if let u = result["userInfo"] as? NSDictionary {
@@ -186,7 +264,8 @@ class DataController: ObservableObject {
 
                             }
                         }
-                        if let securedistance = report["securedistance"] as? Int {
+                        if let securedistance = report["securedistance"] as? Double {
+//                            print(securedistance)
                             o.securedistance = securedistance
                         }
                         if let status = report["status"] as? Int {
@@ -194,16 +273,13 @@ class DataController: ObservableObject {
                         }
 
                         self.reportArray += [o]
-                        print(o.string())
+//                        print(o.string())
                     }
                 }
                 
             }
 //            self.loadOfficeArray(officeArray: offArray)
         }
-        print(self.officeArray[0].name)
+//        print(self.officeArray[0].name)
     }
-//    func getReportSorted(from: CLLocation, ascending: Bool) -> NSArray {
-//        return self.reportArray.sorted(by: <#T##(Report, Report) throws -> Bool#>)
-//    }
 }
