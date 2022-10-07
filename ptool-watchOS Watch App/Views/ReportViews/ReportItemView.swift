@@ -10,12 +10,35 @@ import SwiftUI
 struct ReportItemView: View {
     var report: Report
     var body: some View {
-        Text(report.getReportTypeTitle())
+        HStack {
+            Image(report.getReportImageName())
+            VStack {
+                Text(report.getReportTypeTitle())
+                    .font(.system(size: 15, weight: .medium))
+                    .foregroundColor(Color.red)
+                ForEach(report.pocList, id: \.self) { poc in
+                    //            for p in report.pocList {
+                    if let add = poc.address {
+                        Text(add)
+                            .font(.system(size: 10, weight: .medium))
+                            .lineLimit(1)
+                            .foregroundColor(Color.cyan)
+                    }
+                }
+                
+            }
+        }
     }
 }
 
 struct ReportItemView_Previews: PreviewProvider {
+
     static var previews: some View {
-        ReportItemView(report: Report(reportId: "234234234234"))
+        ReportItemView(report: Report(reportId: "id12345", name: nil, desc: "Description du Signalement", type: "dog", status: 1, gps: nil, proximityAlert: false, imageList: [], note: [], pocList: [
+                ReportPocInfo(pocId: "1", address: "123 de la martine"),
+                ReportPocInfo(pocId: "1", address: "777 monseigneur bourget benb ben long"),
+                ReportPocInfo(pocId: "1", address: "123 de la martine"),
+                ReportPocInfo(pocId: "1", address: "123 de la martine")
+            ], securedistance: 20))
     }
 }

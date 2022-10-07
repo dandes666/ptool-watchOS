@@ -8,9 +8,12 @@
 import Foundation
 class ReportImage: NSObject {
     var url: String
-
-    init(url: String) {
+    var isPrimary: Bool
+    var fullPath: String
+    init(url: String, fullPath:String, isPrimary: Bool) {
         self.url = url
+        self.isPrimary = isPrimary
+        self.fullPath = fullPath
     }
 
 }

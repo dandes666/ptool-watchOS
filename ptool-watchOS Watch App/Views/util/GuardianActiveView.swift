@@ -9,10 +9,20 @@ import SwiftUI
 
 struct GuardianActiveView: View {
     @EnvironmentObject var db: AppManager
+//        .onChange(of:)
     var body: some View {
+//        Text("Verification de proximite")
         Toggle(isOn: $db.guardianActive) {
-            Text("Notification")
+            Text("Alerte de proximité")
+                .lineLimit(2)
+        }.padding(2)
+        if db.guardianActive {
+            Toggle("Signalements", isOn: $db.isPoximityReportActive)
+                .padding()
+            Toggle("Notes", isOn: $db.isPoximityDeleveryNoteActive)
+                .padding()
         }
+//        PtoolLogoView(imageWidth: 40, imageHeight: 40)
     }
 }
 

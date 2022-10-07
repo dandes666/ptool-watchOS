@@ -149,6 +149,22 @@ class Report: NSObject, Identifiable {
             return "non défini"
         }
     }
+    func getReportImageName () -> String {
+        if let t = self.type {
+            switch t {
+            case "dog":
+                return "Dog"
+            case "ice":
+                return "Ice"
+            case "brokenstep":
+                return "BrokenStep"
+            default:
+                return "Alert"
+            }
+        } else {
+            return "Alert"
+        }
+    }
     func getName() -> String {
         if let name = self.name {
             return name

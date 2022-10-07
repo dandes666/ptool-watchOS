@@ -6,13 +6,17 @@
 //
 
 import Foundation
-class ReportPocInfo: NSObject {
+class ReportPocInfo: NSObject, Identifiable {
     var pocId: String
     var address: String?
     
 
     init(pocId: String) {
         self.pocId = pocId
+    }
+    init(pocId: String, address: String) {
+        self.pocId = pocId
+        self.address = address
     }
 //    init(officeId: String, name: String, address: String, routeArray: [Route]) {
 //        self.officeId = officeId

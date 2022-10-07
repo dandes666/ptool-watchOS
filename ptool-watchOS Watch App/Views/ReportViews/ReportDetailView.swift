@@ -10,53 +10,56 @@ import UserNotifications
 struct ReportDetailView: View {
     var report: Report
     var body: some View {
-        VStack {
-            if let type = report.type {
-                switch type {
-                case "dog":
-                    Image("Dog")
-                        .resizable()
-                        .frame(width: 40, height: 40, alignment: .center)
-                        
-                default:
-                    Image("Alert")
-                        .resizable()
-                        .frame(width: 40, height: 40, alignment: .center)
-                }
-            } else {
-                Text("no type")
-            }
-            Button("Schedule Notification")
-            {
-                let content = UNMutableNotificationContent()
-                content.title = "Alerte de proximité"
-
-                content.body = report.getReportTypeTitle()
-
-                content.sound = .defaultCritical
-//                content.sound = UNNotificationSound.
-                content.categoryIdentifier = "reportProximityAlert"
-                content.userInfo = [
-                    "notifData": [
-                        "reportId": report.reportId,
-                        "name": report.getName(),
-                        "desc": report.getDesc(),
-                        "type": report.getType(),
-                        "status": report.getStatus()
-                    ],
-                    "notificationType" : "reportProximityAlert"
-                ]
-                let category = UNNotificationCategory(identifier: "reportProximityAlert", actions: [], intentIdentifiers: [], options: [])
-                UNUserNotificationCenter.current().setNotificationCategories([category])
-                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
-                let request = UNNotificationRequest(identifier: "milk", content: content, trigger: trigger)
-                UNUserNotificationCenter.current().add(request) { (error) in
-                    if let error = error{
-                        print(error.localizedDescription)
-                    }else{
-                        print("notification envoyer")
+        ScrollView {
+            VStack {
+                if let type = report.type {
+                    HStack {
+                        switch type {
+                        case "dog":
+                            Image("Dog")
+                                .resizable()
+                                .frame(width: 30, height: 30, alignment: .center)
+                            
+                        default:
+                            Image("Alert")
+                                .resizable()
+                                .frame(width: 30, height: 30, alignment: .center)
+                        }
+                        Text(report.getReportTypeTitle())
+                            .foregroundColor(Color.red)
+                            .lineLimit(2)
+                            .font(.system(size: 17, weight: .bold))
                     }
                 }
+                ForEach(report.pocList, id: \.self) { poc in
+                    //            for p in report.pocList {
+                    if let add = poc.address {
+                        Text(add)
+                            .font(.system(size: 13, weight: .medium))
+                            .lineLimit(1)
+                            .foregroundColor(Color.cyan)
+                    }
+                }
+                if let desc = report.desc {
+                    Text(desc)
+                        .lineLimit(nil)
+                        .font(.system(size: 14, weight: .medium))
+                        .padding()
+                }
+                ForEach(report.imageList, id: \.self) { ri in
+                    AsyncImage(url: URL(string: ri.url)) { image in
+                        image.resizable()
+                    } placeholder: {
+                        LoadingView()
+                        Color.red
+                    }
+                    .frame(width: 160, height: 160)
+                    .clipShape(RoundedRectangle(cornerRadius: 5))
+                }
+//                Button("Schedule Notification")
+//                {
+//                    //                db.sendReportProximityNotification(report: report)
+//                }
             }
         }
     }
@@ -64,6 +67,13 @@ struct ReportDetailView: View {
 
 struct ReportDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        ReportDetailView(report: Report(reportId: "2342342"))
+        ReportDetailView(report: Report(reportId: "id12345", name: nil, desc: "Description du Signalement", type: "dog", status: 1, gps: nil, proximityAlert: false, imageList: [
+                ReportImage(url: "https://firebasestorage.googleapis.com/v0/b/postmantools.appspot.com/o/c3rHI71qQcrPRGnAT4uF%2Fimage%2Fmessage%2Fn7Z61DqH4pMxP0p0Jm3WzHXBVW72%2Ffd5d289e-0d67-4c9b-bcf0-68364471c90c.jpg?alt=media&token=fccd5ff7-c0d8-4e7e-b5a3-818f39ffa82c", fullPath: "", isPrimary: true)
+            ], note: [], pocList: [
+            ReportPocInfo(pocId: "1", address: "123 de la martine"),
+            ReportPocInfo(pocId: "1", address: "777 monseigneur bourget benb ben long"),
+            ReportPocInfo(pocId: "1", address: "123 de la martine"),
+            ReportPocInfo(pocId: "1", address: "123 de la martine")
+        ], securedistance: 20))
     }
 }

@@ -9,11 +9,30 @@ import SwiftUI
 
 struct ConfigView: View {
     @EnvironmentObject var db: AppManager
+    @Binding var isGuardianActive: Bool
     var body: some View {
         NavigationView {
             ScrollView {
-                GuardianActiveView()
-                    .padding(20)
+//                GuardianActiveView()
+//                    .padding(20)
+                NavigationLink(destination: GuardianActiveView()) {
+                    VStack() {
+                        Text("Alert de Proximite")
+                            .font(.system(size: 16))
+                        HStack {
+                            if db.isPoximityReportActive == true {
+                                Text("Signalement")
+                                    .foregroundColor(Color.red)
+                                    .font(.system(size: 12))
+                            }
+                            if db.isPoximityDeleveryNoteActive {
+                                Text("Notes")
+                                    .foregroundColor(Color.red)
+                                    .font(.system(size: 12))
+                            }
+                        }
+                    }
+                }
                 Text("Utilisateur")
 
                 NavigationLink(destination: UserEditIView(user: db.userInfo)) {
@@ -50,6 +69,6 @@ struct ConfigView: View {
 
 struct ConfigView_Previews: PreviewProvider {
     static var previews: some View {
-        ConfigView()
+        ConfigView(isGuardianActive: .constant(true))
     }
 }
