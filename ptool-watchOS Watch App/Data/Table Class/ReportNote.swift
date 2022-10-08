@@ -13,5 +13,17 @@ class ReportNote: NSObject {
     init(note: String) {
         self.note = note
     }
+    init(dictionaryFormat: NSDictionary) {
+        if let note = dictionaryFormat["note"] as? String {
+            self.note = note
+        } else {
+            self.note = ""
+        }
+    }
+    func getDictionaryFormat() -> NSDictionary {
+        return [
+            "note": self.note
+        ]
+    }
 
 }

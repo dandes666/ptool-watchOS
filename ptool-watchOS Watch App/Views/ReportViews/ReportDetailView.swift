@@ -10,6 +10,7 @@ import UserNotifications
 struct ReportDetailView: View {
     var report: Report
     var body: some View {
+        
         ScrollView {
             VStack {
                 if let type = report.type {
@@ -32,13 +33,10 @@ struct ReportDetailView: View {
                     }
                 }
                 ForEach(report.pocList, id: \.self) { poc in
-                    //            for p in report.pocList {
-                    if let add = poc.address {
-                        Text(add)
-                            .font(.system(size: 13, weight: .medium))
-                            .lineLimit(1)
-                            .foregroundColor(Color.cyan)
-                    }
+                    Text(poc.getAddress())
+                        .font(.system(size: 13, weight: .medium))
+                        .lineLimit(1)
+                        .foregroundColor(Color.cyan)
                 }
                 if let desc = report.desc {
                     Text(desc)
@@ -56,10 +54,11 @@ struct ReportDetailView: View {
                     .frame(width: 160, height: 160)
                     .clipShape(RoundedRectangle(cornerRadius: 5))
                 }
-//                Button("Schedule Notification")
-//                {
-//                    //                db.sendReportProximityNotification(report: report)
-//                }
+                Button("test")
+                {
+                    //                db.sendReportProximityNotification(report: report)
+                    print(report.getDictionaryFormat())
+                }
             }
         }
     }
@@ -67,7 +66,7 @@ struct ReportDetailView: View {
 
 struct ReportDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        ReportDetailView(report: Report(reportId: "id12345", name: nil, desc: "Description du Signalement", type: "dog", status: 1, gps: nil, proximityAlert: false, imageList: [
+        ReportDetailView(report: Report(reportId: "id12345", name: nil, desc: "Description du Signalement", type: "dog", status: 1, gps: CLLocation(latitude: 46.826, longitude: -71.169), proximityAlert: false, imageList: [
                 ReportImage(url: "https://firebasestorage.googleapis.com/v0/b/postmantools.appspot.com/o/c3rHI71qQcrPRGnAT4uF%2Fimage%2Fmessage%2Fn7Z61DqH4pMxP0p0Jm3WzHXBVW72%2Ffd5d289e-0d67-4c9b-bcf0-68364471c90c.jpg?alt=media&token=fccd5ff7-c0d8-4e7e-b5a3-818f39ffa82c", fullPath: "", isPrimary: true)
             ], note: [], pocList: [
             ReportPocInfo(pocId: "1", address: "123 de la martine"),

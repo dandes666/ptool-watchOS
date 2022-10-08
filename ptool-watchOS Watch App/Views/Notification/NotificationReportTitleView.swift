@@ -59,6 +59,6 @@ struct NotificationReportTitleView: View {
 
 struct NotificationReportTitleView_Previews: PreviewProvider {
     static var previews: some View {
-        NotificationReportTitleView(title: "Alerte de Proximite", message: "Danger de Chien", report: Report(reportId: "IdREport", name: nil, desc: "Chien extérieur occasionnel", type: "ice", status: 1, gps: nil, proximityAlert: nil, imageList: nil, note: nil, pocList: nil, securedistance: nil))
+        NotificationReportTitleView(title: "Alerte de Proximite", message: "Danger de Chien", report: Report(reportId: "IdREport", name: nil, desc: "Chien extérieur occasionnel", type: "ice", status: 1, gps: CLLocation(latitude: 46.826, longitude: -71.169), proximityAlert: nil, imageList: nil, note: nil, pocList: nil, securedistance: nil))
     }
 }

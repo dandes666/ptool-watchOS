@@ -10,13 +10,47 @@
         "thread-id": "5280"
     },
     "notificationType": "reportProximityAlert",
-    "notifData": {
-        "reportId": "REPID12345",
-        "name": "Nom du report",
-        "desc": "Desc du report",
-        "type": "dog",
-        "status": 3
-    },
+    "reportDictionaryFormat": {
+        "desc": "Chien ext\U00e9rieur occasionnel ",
+        "gps": {
+            "lat": "46.82824054444012",
+            "long": "-71.16184553366843"
+        },
+        "imageList": [
+            {
+                "fullPath": "c3rHI71qQcrPRGnAT4uF/image/message/n7Z61DqH4pMxP0p0Jm3WzHXBVW72/d012a8a7-56c0-42b4-905a-5447247d12ad.jpg",
+                "isPrimary": 0,
+                "url": "https://firebasestorage.googleapis.com/v0/b/postmantools.appspot.com/o/c3rHI71qQcrPRGnAT4uF%2Fimage%2Fmessage%2Fn7Z61DqH4pMxP0p0Jm3WzHXBVW72%2Fd012a8a7-56c0-42b4-905a-5447247d12ad.jpg?alt=media&token=1a268350-4a4e-4608-8af5-e4702880a6ad"
+            },
+            {
+                "fullPath": "c3rHI71qQcrPRGnAT4uF/image/message/n7Z61DqH4pMxP0p0Jm3WzHXBVW72/7067ad95-db74-4f51-b853-35e30f75c8b9.jpg",
+                "isPrimary": 1,
+                "url": "https://firebasestorage.googleapis.com/v0/b/postmantools.appspot.com/o/c3rHI71qQcrPRGnAT4uF%2Fimage%2Fmessage%2Fn7Z61DqH4pMxP0p0Jm3WzHXBVW72%2F7067ad95-db74-4f51-b853-35e30f75c8b9.jpg?alt=media&token=59620354-9332-4fb4-b230-1ae341dcd9cd"
+            },
+            {
+                "fullPath": "c3rHI71qQcrPRGnAT4uF/image/message/n7Z61DqH4pMxP0p0Jm3WzHXBVW72/e975b20d-d536-4806-a087-5d6daaecd6e4.jpg",
+                "isPrimary": 0,
+                "url": "https://firebasestorage.googleapis.com/v0/b/postmantools.appspot.com/o/c3rHI71qQcrPRGnAT4uF%2Fimage%2Fmessage%2Fn7Z61DqH4pMxP0p0Jm3WzHXBVW72%2Fe975b20d-d536-4806-a087-5d6daaecd6e4.jpg?alt=media&token=bf5e8e90-1d1f-4d20-8c4e-3ffd4029e241"
+            }
+        ],
+        "name": "",
+        "note":  [],
+        "pocList": [
+            {
+                "address": "30A RUE BOURASSA",
+                "pocId": "7RPQgisCtPn5fzy7gQ6L"
+            },
+            {
+                "address": "30 RUE BOURASSA",
+                "pocId": "uuGHxNliA3wj0spIJ2tx"
+            }
+        ],
+        "proximityAlert": 1,
+        "reportId": "3JqvYNjcCK0MQLoRl64U",
+        "securedistance": 45,
+        "status": 2,
+        "type": "dog"
+    }
     "WatchKit Simulator Actions": [
         {
             "title": "First Button",

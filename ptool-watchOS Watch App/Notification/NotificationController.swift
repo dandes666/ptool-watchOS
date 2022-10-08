@@ -22,11 +22,13 @@ class NotificationController: WKUserNotificationHostingController<NotificationVi
     
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
+        print("trace notification controller visible")
         super.willActivate()
     }
     
     override func didDeactivate() {
         // This method is called when watch view controller is no longer visible
+        print("trace notification controller invisible")
         super.didDeactivate()
     }
     
@@ -38,38 +40,21 @@ class NotificationController: WKUserNotificationHostingController<NotificationVi
 
         title = alert?["title"] as? String
         message = alert?["body"] as? String
-
+        print("trace 1")
         if let notificationType = notificationData?["notificationType"] as? String {
             self.nType = notificationType
             
-            if let reportData = notificationData?["notifData"] as? NSDictionary {
-                switch notificationType {
-                    case "reportProximityAlert":
-                        if let reportId = reportData["reportId"] as? String {
-                            if let name = reportData["name"] as? String {
-                                if let desc = reportData["desc"] as? String {
-                                    if let type = reportData["type"] as? String {
-                                        if let status = reportData["status"] as? Int {
-                                            report = Report(reportId: reportId, name: name, desc: desc, type: type, status: status, gps: nil, proximityAlert: nil, imageList: nil, note: nil, pocList: nil, securedistance: nil)
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    default:
-                        if let reportId = reportData["reportId"] as? String {
-                            if let name = reportData["name"] as? String {
-                                if let desc = reportData["desc"] as? String {
-                                    if let type = reportData["type"] as? String {
-                                        if let status = reportData["status"] as? Int {
-                                            report = Report(reportId: reportId, name: name, desc: desc, type: type, status: status, gps: nil, proximityAlert: nil, imageList: nil, note: nil, pocList: nil, securedistance: nil)
-                                        }
-                                    }
-                                }
-                            }
-                        }
+            
+            switch notificationType {
+            case "reportProximityAlert":
+                print("trace 2")
+                if let r = notificationData?["reportDictionaryFormat"] as? NSDictionary{
+                    report = Report(dictionaryFormat: r)
                 }
+            default:
+                print("Erreur notificationType -> \(notificationType)")
                 
+                //            }
             }
         }
     }

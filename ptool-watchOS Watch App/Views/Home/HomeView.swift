@@ -26,7 +26,7 @@ struct HomeView: View {
 //    @frozen struct RadialGradient
     var body: some View {
         
-        let title1: String = "\(db.officeArray[db.userInfo.officeIdx].routeArray[db.userInfo.routeIdx].name) - \(db.officeArray[db.userInfo.officeIdx].name)"
+        let title1: String = "\(db.officeArray[db.userInfo.officeIdx].routeArray[db.userInfo.routeIdx].name)-\(db.officeArray[db.userInfo.officeIdx].name)"
         let title2: String = "\(db.officeArray[db.userInfo.officeIdx].routeArray[db.userInfo.routeIdx].name) - \(db.officeArray[db.userInfo.officeIdx].name)"
 
         MainMenuView(title1: title1, title2: title2)

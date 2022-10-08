@@ -9,6 +9,8 @@ import Foundation
 import CoreLocation
 import Combine
 import UserNotifications
+import WatchKit
+import SwiftUI
 
 class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     private let locationManager = CLLocationManager()
@@ -39,7 +41,20 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var isPoximityDeleveryNoteActive: Bool {
         willSet { objectWillChange.send() }
     }
-    
+    var statusString: String {
+        guard let status = locationStatus else {
+            return "unknown"
+        }
+        
+        switch status {
+        case .notDetermined: return "notDetermined"
+        case .authorizedWhenInUse: return "authorizedWhenInUse"
+        case .authorizedAlways: return "authorizedAlways"
+        case .restricted: return "restricted"
+        case .denied: return "denied"
+        default: return "unknown"
+        }
+    }
     
     override init() {
         self.guardianActive = true
@@ -62,21 +77,23 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         }
     }
     
-    var statusString: String {
-        guard let status = locationStatus else {
-            return "unknown"
+    func getReportById(reportId: String) -> Report? {
+        if let report = reportArray.first(where: {$0.reportId == reportId}) {
+            return report
+           // do something with foo
+        } else {
+           return nil
         }
         
-        switch status {
-        case .notDetermined: return "notDetermined"
-        case .authorizedWhenInUse: return "authorizedWhenInUse"
-        case .authorizedAlways: return "authorizedAlways"
-        case .restricted: return "restricted"
-        case .denied: return "denied"
-        default: return "unknown"
-        }
+//        var r: Report?
+//
+//        ForEach(reportArray, id: \.self) { rep in
+//            if (rep.reportId == reportId) {
+//                r = rep
+//            }
+//        }
+//        return r
     }
-    
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         locationStatus = status
         //        print(#function, statusString)
@@ -101,26 +118,26 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
             if let location = lastLocation {
                 //  Verifier Les report
                 if self.isPoximityReportActive {
-                    print("verifProximity Report")
+//                    print("verifProximity Report")
                     for i in 0 ..< reportArray.count {
                         let r = reportArray[i]
                         if (r.proximityAlert == true && r.userAdvicedAt == nil) {
-                            if let gps = r.gps {
+//                            if let gps = r.gps {
                                 if let securedist = r.securedistance {
-                                    if gps.distance(from: location) < securedist {
+                                    if r.gps.distance(from: location) < securedist {
                                         addAlert(report: r, note: nil)
                                     } else {
-                                        print("Report id: \(r.reportId) sd: \(securedist) dist: \(gps.distance(from: location))")
+//                                        print("Report id: \(r.reportId) sd: \(securedist) dist: \(gps.distance(from: location))")
                                     }
                                 } else {
                                     //                            mettre une distance par default si pas de securdist
-                                    if gps.distance(from: location) < 30 {
+                                    if r.gps.distance(from: location) < 30 {
                                         addAlert(report: r, note: nil)
                                     } else {
-                                        print("Report id: \(r.reportId) dist: \(gps.distance(from: location))")
+//                                        print("Report id: \(r.reportId) dist: \(gps.distance(from: location))")
                                     }
                                 }
-                            }
+//                            }
                         }
                     }
                 }
@@ -128,10 +145,12 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
                 if self.isPoximityDeleveryNoteActive {
                     for i in 0 ..< deliveryNoteArray.count {
                         let nt = deliveryNoteArray[i]
-                        if nt.gps.distance(from: location) < 30 {
-                            addAlert(report: nil, note: nt)
-                        } else {
-                            print("Note id: \(nt.deliveryNoteId) dist: \(nt.gps.distance(from: location))")
+                        if let gps = nt.gps {
+                            if gps.distance(from: location) < 30 {
+                                addAlert(report: nil, note: nt)
+                            } else {
+                                //                            print("Note id: \(nt.deliveryNoteId) dist: \(nt.gps.distance(from: location))")
+                            }
                         }
                     }
                 }
@@ -143,7 +162,13 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         
         guard let location = locations.last else { return }
         lastLocation = location
-        print("trace receive new location lat:\(location.coordinate.latitude) lng:\(location.coordinate.longitude)")
+        self.reportArray.sort {
+            $0.gps.distance(from: location) < $1.gps.distance(from: location)
+        }
+//        self.deliveryNoteArray.sort {
+//            $0.gps.distance(from: location) < $1.gps.distance(from: location)
+//        }
+//        print("trace receive new location lat:\(location.coordinate.latitude) lng:\(location.coordinate.longitude)")
         verifPoximity()
     }
     
@@ -325,19 +350,20 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
 //                content.sound = UNNotificationSound.
         content.categoryIdentifier = "reportProximityAlert"
         content.userInfo = [
-            "notifData": [
-                "reportId": report.reportId,
-                "name": report.getName(),
-                "desc": report.getDesc(),
-                "type": report.getType(),
-                "status": report.getStatus()
-            ],
+//            "notifData": [
+//                "reportId": report.reportId,
+//                "name": report.getName(),
+//                "desc": report.getDesc(),
+//                "type": report.getType(),
+//                "status": report.getStatus()
+//            ],
+            "reportDictionaryFormat": report.getDictionaryFormat(),
             "notificationType" : "reportProximityAlert"
         ]
         let category = UNNotificationCategory(identifier: "reportProximityAlert", actions: [], intentIdentifiers: [], options: [])
         UNUserNotificationCenter.current().setNotificationCategories([category])
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
-        let request = UNNotificationRequest(identifier: "milk", content: content, trigger: trigger)
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+        let request = UNNotificationRequest(identifier: "reportProximityAlert", content: content, trigger: trigger)
         UNUserNotificationCenter.current().add(request) { (error) in
             if let error = error{
                 print(error.localizedDescription)

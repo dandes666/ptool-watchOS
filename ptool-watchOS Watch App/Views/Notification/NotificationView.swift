@@ -16,11 +16,9 @@ struct NotificationView: View {
     var body: some View {
         VStack {
             if let type = notificationType {
-//                print("Trace Notification View")
                 if type == "reportProximityAlert" {
                     if let r = report {
-                        NotificationReportView(title: notifTitle, message: notifMessage, report: r)
-//                        ReportDetailView(report: r)
+                        ReportDetailView(report: r)
                     } else {
                         Text("trace 3")
                     }

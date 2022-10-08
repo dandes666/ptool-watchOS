@@ -18,11 +18,31 @@ class ReportPocInfo: NSObject, Identifiable {
         self.pocId = pocId
         self.address = address
     }
-//    init(officeId: String, name: String, address: String, routeArray: [Route]) {
-//        self.officeId = officeId
-//        self.name = name
-//        self.address = address
-//        self.routeArray = routeArray
-//    }
+    
+    init(dictionaryFormat: NSDictionary) {
+        if let pocId = dictionaryFormat["pocId"] as? String {
+            self.pocId = pocId
+        } else {
+            self.pocId = ""
+        }
+        if let address = dictionaryFormat["address"] as? String {
+            self.address = address
+        } else {
+            self.address = nil
+        }
+    }
+    func getDictionaryFormat() -> NSDictionary {
+        return [
+            "pocId": self.pocId,
+            "address": self.getAddress()
+        ]
+    }
+    func getAddress() -> String {
+        if let add = self.address {
+            return add
+        } else {
+            return ""
+        }
+    }
 
 }

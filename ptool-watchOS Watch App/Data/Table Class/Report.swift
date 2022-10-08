@@ -41,7 +41,7 @@ class Report: NSObject, Identifiable {
     var desc: String?
     var type: String?
     var proximityAlert: Bool
-    var gps: CLLocation?
+    var gps: CLLocation
     var imageList: [ReportImage]
     var note: [ReportNote]
     var pocList: [ReportPocInfo]
@@ -56,14 +56,14 @@ class Report: NSObject, Identifiable {
         self.desc = nil
         self.type = nil
         self.proximityAlert = false
-        self.gps = nil
+        self.gps = CLLocation(latitude: 46.826, longitude: -71.169)
         self.imageList = []
         self.note = []
         self.pocList = []
         self.securedistance = nil
         self.status = nil
     }
-    init(reportId: String, name: String?, desc: String?, type: String?, status: Int?, gps: CLLocation?, proximityAlert: Bool?, imageList: [ReportImage]?, note: [ReportNote]?, pocList: [ReportPocInfo]?, securedistance: Double?) {
+    init(reportId: String, name: String?, desc: String?, type: String?, status: Int?, gps: CLLocation, proximityAlert: Bool?, imageList: [ReportImage]?, note: [ReportNote]?, pocList: [ReportPocInfo]?, securedistance: Double?) {
         self.reportId = reportId
         self.id = reportId
         if let n = name {
@@ -81,11 +81,12 @@ class Report: NSObject, Identifiable {
         } else {
             self.type = nil
         }
-        if let g = gps {
-            self.gps = g
-        } else {
-            self.gps = nil
-        }
+        self.gps = gps
+//        if let g = gps {
+//            self.gps = g
+//        } else {
+//            self.gps = nil
+//        }
         if let pa = proximityAlert {
             self.proximityAlert = pa
         } else {
@@ -122,6 +123,81 @@ class Report: NSObject, Identifiable {
             self.status = nil
         }
     }
+    init(dictionaryFormat: NSDictionary) {
+        if let reportId = dictionaryFormat["reportId"] as? String {
+            self.reportId = reportId
+            self.id = reportId
+        } else {
+            self.reportId = ""
+            self.id = ""
+        }
+        if let name = dictionaryFormat["name"] as? String {
+            self.name = name
+        } else {
+            self.name = ""
+        }
+        if let desc = dictionaryFormat["desc"] as? String {
+            self.desc = desc
+        } else {
+            self.desc = ""
+        }
+        if let type = dictionaryFormat["type"] as? String {
+            self.type = type
+        } else {
+            self.type = ""
+        }
+        if let proximityAlert = dictionaryFormat["proximityAlert"] as? Bool {
+            self.proximityAlert = proximityAlert
+        } else {
+            self.proximityAlert = false
+        }
+        if let gps = dictionaryFormat["gps"] as? NSDictionary {
+            if let lat = gps["lat"] as? Double {
+                if let long = gps["long"] as? Double {
+                    self.gps = CLLocation(latitude: lat, longitude: long)
+                } else { self.gps = CLLocation(latitude: 46.826, longitude: -71.169) }
+            } else { self.gps = CLLocation(latitude: 46.826, longitude: -71.169) }
+        } else { self.gps = CLLocation(latitude: 46.826, longitude: -71.169) }
+        if let status = dictionaryFormat["status"] as? Int {
+            self.status = status
+        } else {
+            self.status = 0
+        }
+        if let imageList = dictionaryFormat["imageList"] as? NSArray {
+            self.imageList = imageList.map { (re) -> ReportImage in
+                if let r = re as? NSDictionary {
+                    return ReportImage(dictionaryFormat: r)
+                } else {
+                    return ReportImage(url: "", fullPath: "", isPrimary: false)
+                }
+            }
+        } else {
+            self.imageList = []
+        }
+        if let note = dictionaryFormat["note"] as? NSArray {
+            self.note = note.map { (re) -> ReportNote in
+                if let r = re as? NSDictionary {
+                    return ReportNote(dictionaryFormat: r)
+                } else {
+                    return ReportNote(note: "")
+                }
+            }
+        } else {
+            self.note = []
+        }
+        if let pocList = dictionaryFormat["pocList"] as? NSArray {
+            self.pocList = pocList.map { (re) -> ReportPocInfo in
+                if let r = re as? NSDictionary {
+                    return ReportPocInfo(dictionaryFormat: r)
+                } else {
+                    return ReportPocInfo(pocId: "")
+                }
+            }
+        } else {
+            self.pocList = []
+        }
+    }
+    
     func title() -> String {
         if let name = self.name {
             return name
@@ -193,6 +269,40 @@ class Report: NSObject, Identifiable {
             return 0
         }
     }
+    func getGpsLat() -> Double {
+        return self.gps.coordinate.latitude
+
+    }
+    func getGpsLong() -> Double {
+        return self.gps.coordinate.longitude
+
+    }
+    func getSecuredistance() -> Double {
+        if let securedistance = self.securedistance {
+            return securedistance
+        } else {
+            return 0
+        }
+    }
+    func getDictionaryFormat() -> NSDictionary {
+        return [
+            "reportId": reportId,
+            "name": getName(),
+            "desc": getDesc(),
+            "type": getType(),
+            "proximityAlert": self.proximityAlert,
+            "gps": [
+                "lat": self.getGpsLat(),
+                "long": getGpsLong()
+            ],
+            "status": getStatus(),
+            "imageList": imageList.map { $0.getDictionaryFormat() },
+            "note": note.map { $0.getDictionaryFormat() },
+            "pocList": pocList.map { $0.getDictionaryFormat() },
+            "securedistance": self.getSecuredistance(),
+        ]
+    }
+    
     func string () -> String {
         return "name= \(getName()) type= \(getType()) desc= \(getDesc())"
     }
