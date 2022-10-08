@@ -11,11 +11,8 @@
     },
     "notificationType": "reportProximityAlert",
     "reportDictionaryFormat": {
-        "desc": "Chien ext\U00e9rieur occasionnel ",
-        "gps": {
-            "lat": "46.82824054444012",
-            "long": "-71.16184553366843"
-        },
+        "desc": "Chien exterieur occasionnel ",
+        "gps": { "lat": "46.82824054444012", "long": "-71.16184553366843" },
         "imageList": [
             {
                 "fullPath": "c3rHI71qQcrPRGnAT4uF/image/message/n7Z61DqH4pMxP0p0Jm3WzHXBVW72/d012a8a7-56c0-42b4-905a-5447247d12ad.jpg",
@@ -50,7 +47,7 @@
         "securedistance": 45,
         "status": 2,
         "type": "dog"
-    }
+    },
     "WatchKit Simulator Actions": [
         {
             "title": "First Button",
