@@ -220,26 +220,34 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
                             for rou in rArray {
                                 if let route = rou as? NSDictionary {
                                     if let routeId = route["id"] as? String {
-                                        if (routeId == self.userInfo.routeSelected) {
-                                            self.userInfo.routeIdx = self.officeArray.count
-                                        }
-                                        let r = Route(routeId: routeId)
+//                                        if (routeId == self.userInfo.routeSelected) {
+//                                            self.userInfo.routeIdx = self.officeArray.count
+//                                        }
                                         if let rName = route["name"] as? String {
-                                            r.setName(name: rName)
+                                            if let rType = route["type"] as? Int {
+                                                o.routeArray += [Route(routeId: routeId, officeId: officeId, name: rName, type: rType, active: true)]
+                                            }
                                         }
-                                        if let rType = route["type"] as? Int {
-                                            r.setType(type: rType)
-                                        }
-                                        o.routeArray += [r]
+                                        
+                                        
                                     }
                                 }
                                 
+                            }
+                            o.routeArray.sort {
+                                $0.name < $1.name
+                            }
+                            if let routeIdx = o.routeArray.firstIndex(where: {$0.routeId == self.userInfo.routeSelected}) {
+                                self.userInfo.routeIdx = routeIdx
                             }
                         }
                         self.officeArray += [o]
                     }
                 }
                 
+            }
+            self.officeArray.sort {
+                $0.name < $1.name
             }
 //            self.loadOfficeArray(officeArray: offArray)
         }
@@ -339,6 +347,7 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
 //        print(self.officeArray[0].name)
         verifPoximity()
     }
+    
     func sendReportProximityNotification(report: Report) {
         print("trace sendReportProximityNotification")
         let content = UNMutableNotificationContent()
@@ -371,5 +380,9 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
                 print("notification envoyer")
             }
         }
+    }
+    
+    func setRouteSelection(officeId:String, routeId: String) {
+        print("set RouteId = \(routeId) officeId = \(officeId)")
     }
 }

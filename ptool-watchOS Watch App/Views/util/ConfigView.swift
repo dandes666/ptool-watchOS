@@ -55,7 +55,7 @@ struct ConfigView: View {
                 }
                 Spacer()
                 Text("Route")
-                NavigationLink(destination: RouteSelectView()) {
+                NavigationLink(destination: RouteSelectView(routeArray: db.officeArray[db.userInfo.officeIdx].routeArray)) {
                     VStack() {
                         Text("\(db.officeArray[db.userInfo.officeIdx].routeArray[db.userInfo.routeIdx].name)")
                     }
@@ -63,7 +63,7 @@ struct ConfigView: View {
             }
 //            NavigationLink
 //            .navigationTitle("Config")
-        }.navigationTitle("Config")
+        }.navigationTitle("Annuler")
     }
 }
 

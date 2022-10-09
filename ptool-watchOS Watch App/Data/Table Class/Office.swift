@@ -6,7 +6,7 @@
 //
 
 import Foundation
-class Office: NSObject {
+class Office: NSObject, Identifiable {
     var officeId: String
     var name: String
     var address: String

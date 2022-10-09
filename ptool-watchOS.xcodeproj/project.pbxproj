@@ -43,6 +43,7 @@
 		802F528728E1F58000E79AF1 /* ReportNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802F528628E1F58000E79AF1 /* ReportNote.swift */; };
 		802F528928E1F5F300E79AF1 /* ReportPocInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802F528828E1F5F300E79AF1 /* ReportPocInfo.swift */; };
 		805F274928E66349001AB184 /* ReportListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805F274828E66349001AB184 /* ReportListView.swift */; };
+		8073D17028F230FF00916AC5 /* RouteSelectConfirmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8073D16F28F230FF00916AC5 /* RouteSelectConfirmView.swift */; };
 		8081632528E94B9100A765F2 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8081632428E94B9100A765F2 /* NotificationController.swift */; };
 		8081632728E94BD900A765F2 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8081632628E94BD900A765F2 /* NotificationView.swift */; };
 		8081632A28E968CE00A765F2 /* NotificationReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8081632928E968CE00A765F2 /* NotificationReportView.swift */; };
@@ -132,6 +133,7 @@
 		802F528828E1F5F300E79AF1 /* ReportPocInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportPocInfo.swift; sourceTree = "<group>"; };
 		802F536D28E2405800E79AF1 /* ptool-watchOS-Watch-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "ptool-watchOS-Watch-App-Info.plist"; sourceTree = SOURCE_ROOT; };
 		805F274828E66349001AB184 /* ReportListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportListView.swift; sourceTree = "<group>"; };
+		8073D16F28F230FF00916AC5 /* RouteSelectConfirmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteSelectConfirmView.swift; sourceTree = "<group>"; };
 		8081632428E94B9100A765F2 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
 		8081632628E94BD900A765F2 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		8081632928E968CE00A765F2 /* NotificationReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationReportView.swift; sourceTree = "<group>"; };
@@ -251,8 +253,6 @@
 				801E698628E6988600919E9F /* PtoolLogoView.swift */,
 				801E698828E699CF00919E9F /* ConfigView.swift */,
 				801E699128E7552E00919E9F /* UserEditIView.swift */,
-				801E699328E7636D00919E9F /* RouteSelectView.swift */,
-				801E699528E7638400919E9F /* OfficeSelectView.swift */,
 				801E69A328E7AA6700919E9F /* GuardianActiveView.swift */,
 			);
 			path = util;
@@ -318,6 +318,16 @@
 			path = tool;
 			sourceTree = "<group>";
 		};
+		8073D16E28F2308800916AC5 /* Setting office-Route */ = {
+			isa = PBXGroup;
+			children = (
+				801E699328E7636D00919E9F /* RouteSelectView.swift */,
+				801E699528E7638400919E9F /* OfficeSelectView.swift */,
+				8073D16F28F230FF00916AC5 /* RouteSelectConfirmView.swift */,
+			);
+			path = "Setting office-Route";
+			sourceTree = "<group>";
+		};
 		8081632328E94B3600A765F2 /* Notification */ = {
 			isa = PBXGroup;
 			children = (
@@ -340,6 +350,7 @@
 		8082260128D6E01600EE53E2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8073D16E28F2308800916AC5 /* Setting office-Route */,
 				8081632828E9688000A765F2 /* Notification */,
 				801E69A028E7994E00919E9F /* Home */,
 				801E699B28E7763300919E9F /* DeliveryNoteViews */,
@@ -558,6 +569,7 @@
 				8082260928D6E01600EE53E2 /* SignUpView.swift in Sources */,
 				808225EF28D6BC2600EE53E2 /* User.swift in Sources */,
 				801E69A428E7AA6700919E9F /* GuardianActiveView.swift in Sources */,
+				8073D17028F230FF00916AC5 /* RouteSelectConfirmView.swift in Sources */,
 				80B9581D28EBD16000097827 /* LocationManager.swift in Sources */,
 				802F528728E1F58000E79AF1 /* ReportNote.swift in Sources */,
 				802F527C28E1E1E300E79AF1 /* Report.swift in Sources */,
