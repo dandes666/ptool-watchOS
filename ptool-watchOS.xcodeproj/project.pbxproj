@@ -58,6 +58,9 @@
 		80AF57B628DE0922002AF88D /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AF57B528DE0922002AF88D /* LoadingView.swift */; };
 		80B9581B28EA82AA00097827 /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B9581A28EA82AA00097827 /* AppManager.swift */; };
 		80B9581D28EBD16000097827 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B9581C28EBD16000097827 /* LocationManager.swift */; };
+		80F0AC3128F32E4C00731752 /* NotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F0AC3028F32E4C00731752 /* NotificationDelegate.swift */; };
+		80F0AC3228F32E4C00731752 /* NotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F0AC3028F32E4C00731752 /* NotificationDelegate.swift */; };
+		80F0AC3328F32E4C00731752 /* NotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F0AC3028F32E4C00731752 /* NotificationDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -148,6 +151,7 @@
 		80AF57B528DE0922002AF88D /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		80B9581A28EA82AA00097827 /* AppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
 		80B9581C28EBD16000097827 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		80F0AC3028F32E4C00731752 /* NotificationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -332,6 +336,7 @@
 			isa = PBXGroup;
 			children = (
 				8081632428E94B9100A765F2 /* NotificationController.swift */,
+				80F0AC3028F32E4C00731752 /* NotificationDelegate.swift */,
 			);
 			path = Notification;
 			sourceTree = "<group>";
@@ -559,6 +564,7 @@
 				802F528528E1F53300E79AF1 /* ReportImage.swift in Sources */,
 				801E69BD28E8081200919E9F /* RouteClass.swift in Sources */,
 				80AF57B628DE0922002AF88D /* LoadingView.swift in Sources */,
+				80F0AC3128F32E4C00731752 /* NotificationDelegate.swift in Sources */,
 				801E699628E7638400919E9F /* OfficeSelectView.swift in Sources */,
 				805F274928E66349001AB184 /* ReportListView.swift in Sources */,
 				802F528928E1F5F300E79AF1 /* ReportPocInfo.swift in Sources */,
@@ -594,6 +600,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				800C78EF28D1885300432CA2 /* ptool_watchOS_Watch_AppTests.swift in Sources */,
+				80F0AC3228F32E4C00731752 /* NotificationDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -602,6 +609,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				800C78F928D1885300432CA2 /* ptool_watchOS_Watch_AppUITests.swift in Sources */,
+				80F0AC3328F32E4C00731752 /* NotificationDelegate.swift in Sources */,
 				800C78FB28D1885300432CA2 /* ptool_watchOS_Watch_AppUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

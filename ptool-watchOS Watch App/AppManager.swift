@@ -13,7 +13,9 @@ import WatchKit
 import SwiftUI
 
 class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
+    
     private let locationManager = CLLocationManager()
+    @Published var currentPage: Page = .welcomePage
     @Published var locationStatus: CLAuthorizationStatus?
     @Published var lastLocation: CLLocation?
 //    @Published var db = DataController()
@@ -68,13 +70,13 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.sound,.badge]) { (success, error) in
-            if success{
-                print("All set")
-            } else if let error = error {
-                print(error.localizedDescription)
-            }
-        }
+//        UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.sound,.badge]) { (success, error) in
+//            if success{
+//                print("All set")
+//            } else if let error = error {
+//                print(error.localizedDescription)
+//            }
+//        }
     }
     
     func getReportById(reportId: String) -> Report? {
@@ -385,4 +387,12 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     func setRouteSelection(officeId:String, routeId: String) {
         print("set RouteId = \(routeId) officeId = \(officeId)")
     }
+}
+
+enum Page {
+//    case signUpPage
+    case welcomePage
+    case signInPage
+    case loadingPage
+    case homePage
 }

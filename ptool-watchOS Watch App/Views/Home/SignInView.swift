@@ -11,8 +11,7 @@ import FirebaseFunctions
 
 struct SignInView: View {
     
-    @EnvironmentObject var viewRouter: ViewRouter
-    @EnvironmentObject var ptooldb: AppManager
+    @EnvironmentObject var db: AppManager
     
     @State var email = "dave.thibeault@me.com"
     @State var password = "chr1st1naT"
@@ -57,7 +56,7 @@ struct SignInView: View {
                 completion(value: nil, error: error)
             } else {
                 if let data = result?.data as? NSDictionary {
-                    ptooldb.loadResultData(result: data)
+                    db.loadResultData(result: data)
                 }
             }
             withAnimation {
@@ -102,7 +101,7 @@ struct SignInView: View {
                     
                 }
                 withAnimation {
-                    viewRouter.currentPage = .loadingPage
+                    db.currentPage = .loadingPage
                 }
             }
             
