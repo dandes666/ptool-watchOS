@@ -45,25 +45,25 @@ struct SignInView: View {
         
         print(type(of: value))
     }
-    func loadUserData(uid: String, uemail: String) {
-        print("trace result loadUserData")
-        let decoder = JSONDecoder()
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
-        lazy var functions = Functions.functions()
-        functions.httpsCallable("getGuardianInfo").call(["email": uemail]) { result, error in
-            if let error = error as NSError? {
-                print("trace 1")
-                completion(value: nil, error: error)
-            } else {
-                if let data = result?.data as? NSDictionary {
-                    db.loadResultData(result: data)
-                }
-            }
-            withAnimation {
-                viewRouter.currentPage = .homePage
-            }
-        }
-    }
+//    func loadUserData(uid: String, uemail: String) {
+//        print("trace result loadUserData")
+//        let decoder = JSONDecoder()
+//        decoder.keyDecodingStrategy = .convertFromSnakeCase
+//        lazy var functions = Functions.functions()
+//        functions.httpsCallable("getGuardianInfo").call(["email": uemail]) { result, error in
+//            if let error = error as NSError? {
+//                print("trace 1")
+//                completion(value: nil, error: error)
+//            } else {
+//                if let data = result?.data as? NSDictionary {
+//                    db.loadResultData(result: data)
+//                }
+//            }
+//            withAnimation {
+//                db.currentPage = .homePage
+//            }
+//        }
+//    }
     func signInUser(userEmail: String, userPassword: String) {
         
         signInProcessing = true
@@ -89,19 +89,7 @@ struct SignInView: View {
                 if let user = user {
                     let uid = user.uid
                     let uemail = user.email
-                    loadUserData(uid: uid, uemail: uemail!)
-//                  let uid = user.uid
-//                  let uemail = user.email
-//                  let photoURL = user.photoURL
-
-//                    print("email = \(String(describing: uemail))")
-//                    print("uid = \(uid)")
-//                    print ("loadData start")
-                    
-                    
-                }
-                withAnimation {
-                    db.currentPage = .loadingPage
+                    db.loadUserData(uid: uid, uemail: uemail!)
                 }
             }
             

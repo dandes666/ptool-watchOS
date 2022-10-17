@@ -11,10 +11,10 @@ import UserNotifications
 
 struct MotherView: View {
     
-    @EnvironmentObject var viewRouter: ViewRouter
-    
+//    @EnvironmentObject var viewRouter: ViewRouter
+    @EnvironmentObject var db: AppManager
     var body: some View {
-        switch viewRouter.currentPage {
+        switch db.currentPage {
 //        case .signUpPage:
 //            SignUpView()
         case .signInPage:
@@ -27,51 +27,10 @@ struct MotherView: View {
             LoadingView()
         }
     }
-    func userNotificationCenter(_ center: UNUserNotificationCenter,
-                didReceive response: UNNotificationResponse,
-                withCompletionHandler completionHandler:
-                   @escaping () -> Void) {
-       // Get the meeting ID from the original notification.
-        print("trace reponse de notification")
-       let userInfo = response.notification.request.content.userInfo
-            
-       if response.notification.request.content.categoryIdentifier ==
-                  "MEETING_INVITATION" {
-          // Retrieve the meeting details.
-          let meetingID = userInfo["MEETING_ID"] as! String
-          let userID = userInfo["USER_ID"] as! String
-                
-          switch response.actionIdentifier {
-          case "ACCEPT_ACTION":
-//             sharedMeetingManager.acceptMeeting(user: userID, meetingID: meetingID)
-             break
-                    
-          case "DECLINE_ACTION":
-//             sharedMeetingManager.declineMeeting(user: userID, meetingID: meetingID)
-             break
-                    
-          case UNNotificationDefaultActionIdentifier,
-               UNNotificationDismissActionIdentifier:
-             // Queue meeting-related notifications for later
-             //  if the user does not act.
-//             sharedMeetingManager.queueMeetingForDelivery(user: userID, meetingID: meetingID)
-             break
-                    
-          default:
-             break
-          }
-       }
-       else {
-          // Handle other notification types...
-       }
-            
-       // Always call the completion handler when done.
-       completionHandler()
-    }
 }
 
 struct MotherView_Previews: PreviewProvider {
     static var previews: some View {
-        MotherView().environmentObject(ViewRouter())
+        MotherView().environmentObject(AppManager())
     }
 }

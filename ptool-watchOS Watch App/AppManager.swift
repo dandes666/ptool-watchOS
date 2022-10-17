@@ -11,23 +11,40 @@ import Combine
 import UserNotifications
 import WatchKit
 import SwiftUI
+import Firebase
+import FirebaseFunctions
+import FirebaseCore
+import FirebaseStorage
 
 class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
-    
+    let objectWillChange = PassthroughSubject<Void, Never>()
     private let locationManager = CLLocationManager()
-    @Published var currentPage: Page = .welcomePage
+    
+//    private var firebaseAuth
+    private var signInProcessing = false
+    @Published var audioRecorder = AudioRecorder()
+    @Published var currentPage: Page {
+        willSet { objectWillChange.send() }
+    }
     @Published var locationStatus: CLAuthorizationStatus?
     @Published var lastLocation: CLLocation?
 //    @Published var db = DataController()
     
-    @Published var userInfo = User(isEmpty: true)
-    @Published var officeArray: [Office] = []
-    @Published var reportArray: [Report] = []
+//    @Published var userInfo = User(isEmpty: true)
+    @Published var userInfo: User {
+        willSet { objectWillChange.send() }
+    }
+    @Published var officeArray: [Office] {
+        willSet { objectWillChange.send() }
+    }
+    @Published var reportArray: [Report] {
+        willSet { objectWillChange.send() }
+    }
     @Published var alertReportArray: [Report] = []
     @Published var alertDeleveryNote: [DeliveryNote] = []
     @Published var deliveryNoteArray: [DeliveryNote] = []
     
-    let objectWillChange = PassthroughSubject<Void, Never>()
+    
     @Published var status: CLAuthorizationStatus? {
         willSet { objectWillChange.send() }
     }
@@ -35,13 +52,52 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         willSet { objectWillChange.send() }
     }
     @Published var guardianActive: Bool {
-        willSet { objectWillChange.send() }
+        willSet {
+            objectWillChange.send()
+            if newValue {
+                if self.isPoximityReportActive {
+//                    self.setReportNotificationAlert()
+                }
+                if self.isPoximityDeleveryNoteActive {
+//                    self.setDeliveryNotetNotificationAlert()
+                }
+            } else {
+                if self.isPoximityReportActive {
+//                    self.removeReportNotificationAlert()
+                }
+                if self.isPoximityDeleveryNoteActive {
+//                    self.removeDeliveryNoteNotificationAlert()
+                }
+            }
+        }
     }
     @Published var isPoximityReportActive: Bool {
-        willSet { objectWillChange.send() }
+        willSet {
+            objectWillChange.send()
+            if newValue {
+                if self.guardianActive {
+//                    self.setReportNotificationAlert()
+                }
+            } else {
+                if self.guardianActive {
+//                    self.removeReportNotificationAlert()
+                }
+            }
+        }
     }
     @Published var isPoximityDeleveryNoteActive: Bool {
-        willSet { objectWillChange.send() }
+        willSet {
+            objectWillChange.send()
+            if newValue {
+                if self.guardianActive {
+//                    self.setDeliveryNotetNotificationAlert()
+                }
+            } else {
+                if self.guardianActive {
+//                    self.removeDeliveryNoteNotificationAlert()
+                }
+            }
+        }
     }
     var statusString: String {
         guard let status = locationStatus else {
@@ -62,6 +118,11 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         self.guardianActive = true
         self.isPoximityReportActive = true
         self.isPoximityDeleveryNoteActive = true
+        self.currentPage = .welcomePage
+        self.officeArray = []
+        self.reportArray = []
+        self.userInfo = User(isEmpty: true)
+
         super.init()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -70,13 +131,7 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
-//        UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.sound,.badge]) { (success, error) in
-//            if success{
-//                print("All set")
-//            } else if let error = error {
-//                print(error.localizedDescription)
-//            }
-//        }
+
     }
     
     func getReportById(reportId: String) -> Report? {
@@ -86,98 +141,110 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         } else {
            return nil
         }
-        
-//        var r: Report?
-//
-//        ForEach(reportArray, id: \.self) { rep in
-//            if (rep.reportId == reportId) {
-//                r = rep
-//            }
-//        }
-//        return r
+
     }
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        locationStatus = status
-        //        print(#function, statusString)
+    func getCurrentRouteName() -> String {
+        return officeArray[userInfo.officeIdx].routeArray[userInfo.routeIdx].name
     }
-    func addAlert(report: Report?, note: DeliveryNote?) {
-        print("Trace -> addAlert")
-        if let r = report {
-            r.userAdvicedAt = Date()
-            alertReportArray += [r]
-            sendReportProximityNotification(report: r)
-        }
-        if let n = note {
-            n.userAdvicedAt = Date()
-            deliveryNoteArray += [n]
-        }
+    func getCurrentOfficeName() -> String {
+        return officeArray[userInfo.officeIdx].name
     }
-    func cleanAlert() {
-        
-    }
-    func verifPoximity () {
-        if guardianActive == true {
-            if let location = lastLocation {
-                //  Verifier Les report
-                if self.isPoximityReportActive {
-//                    print("verifProximity Report")
-                    for i in 0 ..< reportArray.count {
-                        let r = reportArray[i]
-                        if (r.proximityAlert == true && r.userAdvicedAt == nil) {
-//                            if let gps = r.gps {
-                                if let securedist = r.securedistance {
-                                    if r.gps.distance(from: location) < securedist {
-                                        addAlert(report: r, note: nil)
-                                    } else {
-//                                        print("Report id: \(r.reportId) sd: \(securedist) dist: \(gps.distance(from: location))")
-                                    }
-                                } else {
-                                    //                            mettre une distance par default si pas de securdist
-                                    if r.gps.distance(from: location) < 30 {
-                                        addAlert(report: r, note: nil)
-                                    } else {
-//                                        print("Report id: \(r.reportId) dist: \(gps.distance(from: location))")
-                                    }
-                                }
-//                            }
-                        }
-                    }
+
+    
+    
+    // FireBase
+    func signInUser(userEmail: String, userPassword: String) -> String? {
+        var signInErrorMessage = ""
+        self.signInProcessing = true
+//        self.firebaseAuth = Auth.auth()
+        Auth.auth().signIn(withEmail: userEmail, password: userPassword) { authResult, error in
+            
+            guard error == nil else {
+                self.signInProcessing = false
+                signInErrorMessage = error!.localizedDescription
+                print(signInErrorMessage)
+                return
+            }
+            switch authResult {
+            case .none:
+                print("Could not sign in user.")
+                self.signInProcessing = false
+            case .some(_):
+                print("User signed in")
+
+                self.signInProcessing = false
+
+                let user = Auth.auth().currentUser
+                if let user = user {
+                    let uid = user.uid
+                    let uemail = user.email
+                    self.loadUserData(uid: uid, uemail: uemail!)
                 }
-                //  Verifier Les Notes
-                if self.isPoximityDeleveryNoteActive {
-                    for i in 0 ..< deliveryNoteArray.count {
-                        let nt = deliveryNoteArray[i]
-                        if let gps = nt.gps {
-                            if gps.distance(from: location) < 30 {
-                                addAlert(report: nil, note: nt)
-                            } else {
-                                //                            print("Note id: \(nt.deliveryNoteId) dist: \(nt.gps.distance(from: location))")
-                            }
-                        }
-                    }
+            }
+        }
+        
+        return signInErrorMessage
+    }
+    func loadUserData(uid: String, uemail: String) {
+        print("trace result loadUserData")
+        self.currentPage = .loadingPage
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        lazy var functions = Functions.functions()
+        functions.httpsCallable("getGuardianInfo").call(["email": uemail]) { result, error in
+            if let error = error as NSError? {
+                print(error.localizedDescription)
+            } else {
+                if let data = result?.data as? NSDictionary {
+                    self.loadResultData(result: data)
                 }
-//                print("verif Proximity FINISH")
+            }
+            withAnimation {
+                self.currentPage = .homePage
             }
         }
     }
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
-        guard let location = locations.last else { return }
-        lastLocation = location
-        self.reportArray.sort {
-            $0.gps.distance(from: location) < $1.gps.distance(from: location)
+    func setRouteSelection(officeId:String, routeId: String) {
+        print("set RouteId = \(routeId) officeId = \(officeId)")
+        let decoder = JSONDecoder()
+        self.currentPage = .loadingPage
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        lazy var functions = Functions.functions()
+        let user = Auth.auth().currentUser
+        if let user = user {
+//            let uid = user.uid
+            let uemail = user.email
+            
+            functions.httpsCallable("setMyGuardianInfo").call(["email": uemail, "officeId": officeId, "routeId": routeId]) { result, error in
+                if let error = error as NSError? {
+                    print(error.localizedDescription)
+                } else {
+                    if let data = result?.data as? NSDictionary {
+                        
+                        if let officeIdx = self.officeArray.firstIndex(where: {$0.officeId == officeId}) {
+                            if let routeIdx = self.officeArray[officeIdx].routeArray.firstIndex(where: {$0.routeId == routeId}) {
+                                self.userInfo.officeIdx = officeIdx
+                                self.userInfo.routeIdx = routeIdx
+                                self.userInfo.routeSelected = routeId
+                                self.userInfo.officeSelected = officeId
+                            }
+                        }
+                        self.loadResultData(result: data)
+                    }
+                }
+                withAnimation {
+                    self.currentPage = .homePage
+                }
+            }
+        } else {
+            print("erreur not login")
         }
-//        self.deliveryNoteArray.sort {
-//            $0.gps.distance(from: location) < $1.gps.distance(from: location)
-//        }
-//        print("trace receive new location lat:\(location.coordinate.latitude) lng:\(location.coordinate.longitude)")
-        verifPoximity()
     }
-    
     func loadResultData(result: NSDictionary) {
 //        print(result)
+        print("trace loadResultData")
         if let u = result["userInfo"] as? NSDictionary {
-            
+            print("Trace loadResultData-userInfo")
             if let userId = u["userId"] as? String {
                 self.userInfo.userId = userId
             }
@@ -204,6 +271,7 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
             }
         }
         if let u = result["officeInfo"] as? NSArray {
+            print("Trace loadResultData-officeInfo")
             self.officeArray = []
             for off in u {
                 if let office = off as? NSDictionary {
@@ -254,6 +322,7 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
 //            self.loadOfficeArray(officeArray: offArray)
         }
         if let u = result["reportList"] as? NSArray {
+            print("Trace loadResultData-reportList")
             self.reportArray = []
             for rep in u {
                 if let report = rep as? NSDictionary {
@@ -342,16 +411,256 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
 //                        print(o.string())
                     }
                 }
-                
+                    
+            }
+            if let location = lastLocation {
+                self.reportArray.sort {
+                    $0.gps.distance(from: location) < $1.gps.distance(from: location)
+                }
             }
 //            self.loadOfficeArray(officeArray: offArray)
         }
-//        print(self.officeArray[0].name)
-        verifPoximity()
+        
+        self.objectWillChange.send()
+        if self.guardianActive {
+            verifPoximity()
+//            if self.isPoximityReportActive {
+//                self.setReportNotificationAlert()
+//            }
+//            if self.isPoximityDeleveryNoteActive {
+//                self.setDeliveryNotetNotificationAlert()
+//            }
+        }
     }
     
-    func sendReportProximityNotification(report: Report) {
+    func saveMemoToFirestore(rec: Recording) {
+        let storage = Storage.storage()
+        // Create a root reference
+        let storageRef = storage.reference()
+        
+        // File located on disk
+//        let localFile = URL(string: "path/to/image")!
+
+        // Create a reference to the file you want to upload
+//        let riversRef = storageRef.child("images/rivers.jpg")
+        let riversRef = storageRef.child("memo/\(userInfo.userId)/rivers.jpg")
+        
+        // Upload the file to the path "images/rivers.jpg"
+//        let uploadTask = riversRef.putFile(from: localFile, metadata: nil) { metadata, error in
+        let uploadTask = riversRef.putFile(from: rec.fileURL, metadata: nil) { metadata, error in
+          guard let metadata = metadata else {
+            // Uh-oh, an error occurred!
+              print()
+            return
+          }
+          // Metadata contains file metadata such as size, content-type.
+          let size = metadata.size
+          // You can also access to download URL after upload.
+          riversRef.downloadURL { (url, error) in
+            guard let downloadURL = url else {
+              // Uh-oh, an error occurred!
+              return
+            }
+          }
+        }
+    }
+    
+    // Location
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        locationStatus = status
+        //        print(#function, statusString)
+    }
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        guard let location = locations.last else { return }
+        lastLocation = location
+        self.reportArray.sort {
+            $0.gps.distance(from: location) < $1.gps.distance(from: location)
+        }
+        self.deliveryNoteArray.sort {
+            $0.gps.distance(from: location) < $1.gps.distance(from: location)
+        }
+        objectWillChange.send()
+
+        verifPoximity()
+    }
+    func addAlert(report: Report?, note: DeliveryNote?) {
+        print("Trace -> addAlert")
+        if let r = report {
+            r.userAdvicedAt = Date().addingTimeInterval(28800)
+//            alertReportArray += [r]
+            sendReportProximityNotification(report: r, delay: 0)
+        }
+        if let n = note {
+            n.userAdvicedAt = Date()
+//            deliveryNoteArray += [n]
+        }
+    }
+    func verifPoximity () {
+        // valeur pour test
+        //        Secure dist: 20.0 lat: 46.826 lng: -71.169
+        //        Secure dist: 6.8 lat: 46.82512163489645 lng: -71.16894056998049
+        //        Secure dist: 13.0 lat: 46.82816193830126 lng: -71.16197669042873
+        //        Secure dist: 3.2 lat: 46.82620878600794 lng: -71.16670529914882
+        //        Secure dist: 18.4 lat: 46.82690902216371 lng: -71.1694296386404
+        //        Secure dist: 15.1 lat: 46.82685785514702 lng: -71.16165753519076
+        //        Secure dist: 45.0 lat: 46.82824054444012 lng: -71.16184553366843
+        
+        // duree avec un rappel en seconde
+        let dureeRappelNotification: Double = 60
+        var cptNof: Double = 0
+        // duree avant nouvelle notification en sec 60s X 60m X 8hrs = 28800 seconde
+//        let dureeNextDayNotification: Double = 28800
+        
+        if guardianActive == true {
+            if let location = lastLocation {
+                //  Verifier Les report
+                if self.isPoximityReportActive {
+                    for i in 0 ..< reportArray.count {
+                        let r = reportArray[i]
+                        // place a remettre le userAdvicedAt a nil
+                        if let advDate = r.userAdvicedAt {
+//                            print("Trace now: \(Date())  userAdvicedAt prochain : \(advDate)")
+                            if Date() > advDate {
+                                r.userAdvicedAt = nil
+                            }
+                        }
+                        if (r.proximityAlert == true && r.userAdvicedAt == nil) {
+//                            if let gps = r.gps {
+                                if let securedist = r.securedistance {
+                                    if r.gps.distance(from: location) < securedist {
+//                                        addAlert(report: r, note: nil)
+                                        r.userAdvicedAt = Date().addingTimeInterval(dureeRappelNotification)
+                                        sendReportProximityNotification(report: r, delay: cptNof * 5)
+                                        cptNof += 1
+                                    }
+                                } else {
+                                    //                            mettre une distance par default si pas de securdist
+                                    if r.gps.distance(from: location) < 30 {
+//                                        addAlert(report: r, note: nil)
+                                        r.userAdvicedAt = Date().addingTimeInterval(dureeRappelNotification)
+                                        sendReportProximityNotification(report: r, delay: cptNof * 5)
+                                        cptNof += 1
+                                    }
+                                }
+//                            }
+                        }
+                    }
+                }
+                //  Verifier Les Notes
+                if self.isPoximityDeleveryNoteActive {
+                    for i in 0 ..< deliveryNoteArray.count {
+                        let nt = deliveryNoteArray[i]
+//                        if let gps = nt.gps {
+                            if nt.gps.distance(from: location) < 30 {
+                                addAlert(report: nil, note: nt)
+                            } else {
+                                //                            print("Note id: \(nt.deliveryNoteId) dist: \(nt.gps.distance(from: location))")
+                            }
+//                        }
+                    }
+                }
+//                print("verif Proximity FINISH")
+            }
+        }
+    }
+    func getCleanDistanceDislpay(loc1: CLLocation, loc2 :CLLocation) -> String {
+        var dist = loc1.distance(from: loc2) * 10
+
+        if (dist > 1000) {
+            dist = dist / 1000
+            return "\(Double(round(10 * dist) / 10)) Km"
+        } else {
+            return "\(Double(round(10 * dist) / 10)) M"
+        }
+    }
+    
+    // NOTIFICATION
+    func resetAlertNotificationStatus() -> Void {
+        for report in self.reportArray {
+            report.userAdvicedAt = nil
+        }
+        for deliveryNote in self.deliveryNoteArray {
+            deliveryNote.userAdvicedAt = nil
+        }
+        return
+    }
+    func sendReportProximityNotification(report: Report, delay: Double) {
         print("trace sendReportProximityNotification")
+        let content = UNMutableNotificationContent()
+        var request: UNNotificationRequest
+        content.title = report.getReportNotificationTitle()
+
+        content.body = report.getReportNotificationSubTitle()
+
+        content.sound = .defaultCritical
+//                content.sound = UNNotificationSound.
+        content.categoryIdentifier = "Proximity-Alert"
+        content.userInfo = [
+            "reportDictionaryFormat": report.getDictionaryFormat(),
+            "notificationType" : "reportProximityAlert"
+        ]
+
+        let show = UNNotificationAction(identifier: "Voir les details", title: "Detail", options: .foreground)
+        let cancel = UNNotificationAction(identifier: "cancel", title: "Ne plus aviser aujourd'hui", options: .foreground)
+        let category = UNNotificationCategory(identifier: "Proximity-Alert", actions: [show, cancel], intentIdentifiers: [], options: [])
+        UNUserNotificationCenter.current().setNotificationCategories([category])
+        if delay > 0 {
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: delay, repeats: false)
+            request = UNNotificationRequest(identifier: "Proximity-Alert", content: content, trigger: trigger)
+        } else {
+            request = UNNotificationRequest(identifier: "Proximity-Alert", content: content, trigger: nil)
+        }
+        
+        UNUserNotificationCenter.current().add(request) { (error) in
+            if let error = error{
+                print(error.localizedDescription)
+            }else{
+                print("notification envoyer delay = \(delay) reportid -> \(report.reportId)")
+            }
+        }
+    }
+    func getReportNotificationRequest(report: Report) -> UNLocationNotificationTrigger {
+        // distance assigner par default
+        var secureDistance: Double = 20
+
+        let center = CLLocationCoordinate2D(latitude: report.gps.coordinate.latitude, longitude: report.gps.coordinate.longitude)
+        if let securedistance = report.securedistance {
+            secureDistance = securedistance
+        }
+        let region = CLCircularRegion(center: center, radius: secureDistance, identifier: report.reportId)
+        print("Secure dist: \(secureDistance) lat: \(report.gps.coordinate.latitude) lng: \(report.gps.coordinate.longitude)")
+        region.notifyOnEntry = true
+        region.notifyOnExit = false
+        return UNLocationNotificationTrigger(region: region, repeats: true)
+
+    }
+    func removeReportNotificationAlert () {
+        print("trace removeReportNotificationAlert")
+        if self.reportArray.count > 0 {
+            UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: self.reportArray.map { $0.reportId })
+        }
+    }
+    func removeDeliveryNoteNotificationAlert() {
+        print("trace removeDeliveryNoteNotificationAlert")
+        if self.deliveryNoteArray.count > 0 {
+            UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: self.deliveryNoteArray.map { $0.deliveryNoteId })
+        }
+    }
+    func setReportNotificationAlert() {
+        print("trace setReportNotificationAlert")
+        for report in reportArray {
+            self.addReportNotificationAlert(report: report)
+        }
+    }
+    func setDeliveryNotetNotificationAlert() {
+        print("trace setDeliveryNotetNotificationAlert")
+//        for deliveryNote in deliveryNoteArray {
+//            self.addDeliveryNoteNotificationAlert(report: report)
+//        }
+    }
+    func addReportNotificationAlert(report: Report) {
+        print("trace addReportNotificationAlert")
         let content = UNMutableNotificationContent()
         content.title = "Alerte de proximité"
 
@@ -359,21 +668,15 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
 
         content.sound = .defaultCritical
 //                content.sound = UNNotificationSound.
-        content.categoryIdentifier = "reportProximityAlert"
+        content.categoryIdentifier = "Proximity-Alert"
         content.userInfo = [
-//            "notifData": [
-//                "reportId": report.reportId,
-//                "name": report.getName(),
-//                "desc": report.getDesc(),
-//                "type": report.getType(),
-//                "status": report.getStatus()
-//            ],
             "reportDictionaryFormat": report.getDictionaryFormat(),
             "notificationType" : "reportProximityAlert"
         ]
         let category = UNNotificationCategory(identifier: "reportProximityAlert", actions: [], intentIdentifiers: [], options: [])
         UNUserNotificationCenter.current().setNotificationCategories([category])
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+//        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+        let trigger = self.getReportNotificationRequest(report: report)
         let request = UNNotificationRequest(identifier: "reportProximityAlert", content: content, trigger: trigger)
         UNUserNotificationCenter.current().add(request) { (error) in
             if let error = error{
@@ -383,9 +686,32 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
             }
         }
     }
-    
-    func setRouteSelection(officeId:String, routeId: String) {
-        print("set RouteId = \(routeId) officeId = \(officeId)")
+    func addDeliveryNoteNotificationAlert(report: Report) {
+        print("trace addDeliveryNoteNotificationAlert")
+        let content = UNMutableNotificationContent()
+        content.title = report.getReportNotificationTitle()
+
+        content.body = report.getReportNotificationSubTitle()
+
+        content.sound = .defaultCritical
+//                content.sound = UNNotificationSound.
+        content.categoryIdentifier = "Proximity-Alert"
+        content.userInfo = [
+            "reportDictionaryFormat": report.getDictionaryFormat(),
+            "notificationType" : "reportProximityAlert"
+        ]
+        let category = UNNotificationCategory(identifier: "reportProximityAlert", actions: [], intentIdentifiers: [], options: [])
+        UNUserNotificationCenter.current().setNotificationCategories([category])
+//        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+        let trigger = self.getReportNotificationRequest(report: report)
+        let request = UNNotificationRequest(identifier: "reportProximityAlert", content: content, trigger: trigger)
+        UNUserNotificationCenter.current().add(request) { (error) in
+            if let error = error{
+                print(error.localizedDescription)
+            }else{
+                print("notification envoyer")
+            }
+        }
     }
 }
 

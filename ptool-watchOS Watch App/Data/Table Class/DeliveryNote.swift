@@ -12,11 +12,11 @@ class DeliveryNote: NSObject {
 //    DeliveryNote
     var deliveryNoteId: String
     var desc: String
-    var gps: CLLocation?
+    var gps: CLLocation
     var pocList: [ReportPocInfo] = []
     var userAdvicedAt: Date? = nil
     
-    init(adviceId: String, desc: String?, gps: CLLocation?, pocList: [ReportPocInfo]) {
+    init(adviceId: String, desc: String?, gps: CLLocation, pocList: [ReportPocInfo]) {
         self.deliveryNoteId = adviceId
         self.pocList = pocList
         if let d = desc {
@@ -24,9 +24,7 @@ class DeliveryNote: NSObject {
         } else {
             self.desc = ""
         }
-        if let gp = gps {
-            self.gps = gp
-        }
+        self.gps = gps
     }
     init(dictionaryFormat: NSDictionary) {
         if let deliveryNoteId = dictionaryFormat["deliveryNoteId"] as? String {
@@ -43,10 +41,10 @@ class DeliveryNote: NSObject {
             if let lat = gps["lat"] as? Double {
                 if let long = gps["long"] as? Double {
                     self.gps = CLLocation(latitude: lat, longitude: long)
-                }
-            }
+                } else { self.gps = CLLocation(latitude: 46.826, longitude: -71.169) }
+            } else { self.gps = CLLocation(latitude: 46.826, longitude: -71.169) }
         } else {
-            self.gps = nil
+            self.gps = CLLocation(latitude: 46.826, longitude: -71.169)
         }
         if let pocList = dictionaryFormat["pocList"] as? NSArray {
             self.pocList = pocList.map { (re) -> ReportPocInfo in
@@ -73,18 +71,18 @@ class DeliveryNote: NSObject {
         ]
     }
     func getGpsLat() -> Double {
-        if let gps = self.gps {
-            return gps.coordinate.latitude
-        } else {
-            return 0
-        }
+//        if let gps = self.gps {
+        return gps.coordinate.latitude
+//        } else {
+//            return 0
+//        }
     }
     func getGpsLong() -> Double {
-        if let gps = self.gps {
-            return gps.coordinate.longitude
-        } else {
-            return 0
-        }
+//        if let gps = self.gps {
+        return gps.coordinate.longitude
+//        } else {
+//            return 0
+//        }
     }
 }
 

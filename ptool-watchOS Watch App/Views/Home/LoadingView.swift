@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LoadingView: View {
-    @EnvironmentObject var viewRouter: ViewRouter
+//    @EnvironmentObject var db: AppManager
     @State private var isLoading = false
 
     var body: some View {
@@ -18,31 +18,20 @@ struct LoadingView: View {
 //                    .navigationTitle("Chargement...")
                 Image("Logo")
                     .resizable()
-                    .frame(width: 80, height: 80, alignment: .center)
-                Image("LoadingLoopIcon")
+                    .frame(width: 110, height: 110, alignment: .center)
+                Image("LoadingLoopIcon2")
+//                Image("Radar")
                     .resizable()
-                    .frame(width: 120, height: 120, alignment: .center)
+                    .frame(width: 130, height: 130, alignment: .center)
                     .rotationEffect(Angle(degrees: isLoading ? 360 : 0))
+//                    .animation(Animation.easeIn(duration: 1), value: self.isLoading)
                     .animation(Animation.default.repeatForever(autoreverses: false), value: self.isLoading)
 //                        .animation(Animation.default.repeatForever(autoreverses: false))
                     .onAppear() {
                         self.isLoading = true
                     }
                     .navigationTitle("Chargement...")
-//                Circle()
-//                            .trim(from: 0, to: 0.7)
-//                            .stroke(Color.green, lineWidth: 5)
-//                            .frame(width: 100, height: 100)
-//                            .rotationEffect(Angle(degrees: isLoading ? 360 : 0))
-//                            .animation(Animation.default.repeatForever(autoreverses: false))
-//                            .onAppear() {
-//                                self.isLoading = true
-//                            }
-//                Text("Chargement...")
-                //            Image("Logo")
-                //                .resizable()
-                //                .frame(width: 60, height: 60, alignment: .center)
-                //                .navigationTitle("Chargement...")
+
             }
 
         }

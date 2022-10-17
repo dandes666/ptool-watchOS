@@ -12,6 +12,7 @@ struct GuardianActiveView: View {
 //        .onChange(of:)
     var body: some View {
 //        Text("Verification de proximite")
+        Spacer()
         Toggle(isOn: $db.guardianActive) {
             Text("Alerte de proximité")
                 .lineLimit(2)
@@ -21,6 +22,10 @@ struct GuardianActiveView: View {
                 .padding()
             Toggle("Notes", isOn: $db.isPoximityDeleveryNoteActive)
                 .padding()
+        }
+        Spacer()
+        Button("Reiniatiliser les alertes") {
+            db.resetAlertNotificationStatus()
         }
 //        PtoolLogoView(imageWidth: 40, imageHeight: 40)
     }

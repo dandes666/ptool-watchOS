@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "information 1.png",
+      "filename" : "ptool RADAR front-25x25 1.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "information.png",
+      "filename" : "ptool RADAR front-25x25.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "information 2.png",
+      "filename" : "ptool RADAR front-25x25 2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

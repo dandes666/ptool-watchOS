@@ -13,10 +13,38 @@ struct ConfigView: View {
     var body: some View {
         NavigationView {
             ScrollView {
-//                GuardianActiveView()
-//                    .padding(20)
-                NavigationLink(destination: GuardianActiveView()) {
+                Text("Bureau")
+                    .padding(EdgeInsets.init(top: 2, leading: 0, bottom: 0, trailing: 0))
+                NavigationLink(destination: OfficeSelectView()) {
                     VStack() {
+                        Text("\(db.officeArray[db.userInfo.officeIdx].name)")
+                        Text("\(db.officeArray[db.userInfo.officeIdx].address)")
+                            .font(.system(size: 11))
+                    }
+                }
+//                Spacer()
+                Text("Route")
+                    .padding(EdgeInsets.init(top: 15, leading: 0, bottom: 0, trailing: 0))
+                NavigationLink(destination: RouteSelectView(routeArray: db.officeArray[db.userInfo.officeIdx].routeArray)) {
+                    VStack() {
+                        Text("\(db.officeArray[db.userInfo.officeIdx].routeArray[db.userInfo.routeIdx].name)")
+                    }
+                }
+//                Spacer()
+                Text("Utilisateur")
+                    .padding(EdgeInsets.init(top: 15, leading: 0, bottom: 0, trailing: 0))
+                NavigationLink(destination: UserEditIView(user: db.userInfo)) {
+                    VStack() {
+                        Text("\(db.userInfo.fName) \(db.userInfo.lName)")
+                        Text("\(db.userInfo.empId)")
+                            .font(.system(size: 16))
+                    }
+                }
+//                Spacer()
+                Text("Application")
+                    .padding(EdgeInsets.init(top: 15, leading: 0, bottom: 0, trailing: 0))
+                NavigationLink(destination: GuardianActiveView()) {
+                    VStack {
                         Text("Alert de Proximite")
                             .font(.system(size: 16))
                         HStack {
@@ -33,33 +61,11 @@ struct ConfigView: View {
                         }
                     }
                 }
-                Text("Utilisateur")
-
-                NavigationLink(destination: UserEditIView(user: db.userInfo)) {
-                    VStack() {
-                        Text("\(db.userInfo.fName) \(db.userInfo.lName)")
-                        Text("\(db.userInfo.empId)")
-                            .font(.system(size: 16))
-                    }
-                }
-                .buttonStyle(.bordered)
+//                .padding(2)
+//                .buttonStyle(.bordered)
+                
 //                .padding()
-                Spacer()
-                Text("Bureau")
-                NavigationLink(destination: OfficeSelectView()) {
-                    VStack() {
-                        Text("\(db.officeArray[db.userInfo.officeIdx].name)")
-                        Text("\(db.officeArray[db.userInfo.officeIdx].address)")
-                            .font(.system(size: 11))
-                    }
-                }
-                Spacer()
-                Text("Route")
-                NavigationLink(destination: RouteSelectView(routeArray: db.officeArray[db.userInfo.officeIdx].routeArray)) {
-                    VStack() {
-                        Text("\(db.officeArray[db.userInfo.officeIdx].routeArray[db.userInfo.routeIdx].name)")
-                    }
-                }
+//                Spacer()
             }
 //            NavigationLink
 //            .navigationTitle("Config")

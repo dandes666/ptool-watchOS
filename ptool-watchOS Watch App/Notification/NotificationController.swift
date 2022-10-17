@@ -22,13 +22,13 @@ class NotificationController: WKUserNotificationHostingController<NotificationVi
     
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
-        print("trace notification controller visible")
+//        print("trace notification controller visible")
         super.willActivate()
     }
     
     override func didDeactivate() {
         // This method is called when watch view controller is no longer visible
-        print("trace notification controller invisible")
+//        print("trace notification controller invisible")
         super.didDeactivate()
     }
     
@@ -40,14 +40,12 @@ class NotificationController: WKUserNotificationHostingController<NotificationVi
 
         title = alert?["title"] as? String
         message = alert?["body"] as? String
-        print("trace 1")
         if let notificationType = notificationData?["notificationType"] as? String {
             self.nType = notificationType
             
             
             switch notificationType {
             case "reportProximityAlert":
-                print("trace 2")
                 if let r = notificationData?["reportDictionaryFormat"] as? NSDictionary{
                     report = Report(dictionaryFormat: r)
                 }

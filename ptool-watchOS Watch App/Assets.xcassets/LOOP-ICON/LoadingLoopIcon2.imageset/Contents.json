@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "information 1.png",
+      "filename" : "ptoolLoopIcon2 1.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "information.png",
+      "filename" : "ptoolLoopIcon2.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "information 2.png",
+      "filename" : "ptoolLoopIcon2 2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

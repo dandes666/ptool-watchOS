@@ -225,6 +225,42 @@ class Report: NSObject, Identifiable {
             return "non défini"
         }
     }
+    func getReportNotificationTitle() -> String {
+        if let t = self.type {
+            switch t {
+            case "dog":
+                return "Risque de Chien"
+            case "ice":
+                return "Risque de glace"
+            case "brokenstep":
+                return "Escalier endomagé"
+            default:
+                return "Zone Dangereuse"
+            }
+        } else {
+            return "Alerte de proximité"
+        }
+    }
+    func getReportNotificationSubTitle() -> String {
+        if pocList.count > 0 {
+            return pocList[0].getAddress()
+        } else {
+            if let t = self.type {
+                switch t {
+                case "dog":
+                    return "Risque de Chien"
+                case "ice":
+                    return "Risque de glace"
+                case "brokenstep":
+                    return "Escalier endomagé"
+                default:
+                    return "Zone Dangereuse"
+                }
+            } else {
+                return "non défini"
+            }
+        }
+    }
     func getReportImageName () -> String {
         if let t = self.type {
             switch t {

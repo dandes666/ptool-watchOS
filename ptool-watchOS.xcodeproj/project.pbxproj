@@ -48,13 +48,16 @@
 		8081632728E94BD900A765F2 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8081632628E94BD900A765F2 /* NotificationView.swift */; };
 		8081632A28E968CE00A765F2 /* NotificationReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8081632928E968CE00A765F2 /* NotificationReportView.swift */; };
 		808225EF28D6BC2600EE53E2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808225EE28D6BC2600EE53E2 /* User.swift */; };
-		8082260028D6E00900EE53E2 /* ViewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808225FF28D6E00800EE53E2 /* ViewRouter.swift */; };
 		8082260628D6E01600EE53E2 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8082260228D6E01600EE53E2 /* HomeView.swift */; };
 		8082260728D6E01600EE53E2 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8082260328D6E01600EE53E2 /* SignInView.swift */; };
 		8082260828D6E01600EE53E2 /* MotherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8082260428D6E01600EE53E2 /* MotherView.swift */; };
 		8082260928D6E01600EE53E2 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8082260528D6E01600EE53E2 /* SignUpView.swift */; };
 		80863B0828EA24560014D27A /* NotificationReportBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80863B0728EA24560014D27A /* NotificationReportBannerView.swift */; };
 		80863B0A28EA25290014D27A /* NotificationReportTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80863B0928EA25290014D27A /* NotificationReportTitleView.swift */; };
+		809FEFAE28F8EA4F00130B66 /* AudioRecorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809FEFAD28F8EA4F00130B66 /* AudioRecorderView.swift */; };
+		809FEFB028FA10C500130B66 /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809FEFAF28FA10C500130B66 /* AudioRecorder.swift */; };
+		809FEFB228FAF5F900130B66 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809FEFB128FAF5F900130B66 /* Extensions.swift */; };
+		809FEFB428FB1F3F00130B66 /* RecordingDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809FEFB328FB1F3F00130B66 /* RecordingDataModel.swift */; };
 		80AF57B628DE0922002AF88D /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AF57B528DE0922002AF88D /* LoadingView.swift */; };
 		80B9581B28EA82AA00097827 /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B9581A28EA82AA00097827 /* AppManager.swift */; };
 		80B9581D28EBD16000097827 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B9581C28EBD16000097827 /* LocationManager.swift */; };
@@ -141,13 +144,17 @@
 		8081632628E94BD900A765F2 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		8081632928E968CE00A765F2 /* NotificationReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationReportView.swift; sourceTree = "<group>"; };
 		808225EE28D6BC2600EE53E2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		808225FF28D6E00800EE53E2 /* ViewRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewRouter.swift; sourceTree = "<group>"; };
 		8082260228D6E01600EE53E2 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		8082260328D6E01600EE53E2 /* SignInView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		8082260428D6E01600EE53E2 /* MotherView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotherView.swift; sourceTree = "<group>"; };
 		8082260528D6E01600EE53E2 /* SignUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		80863B0728EA24560014D27A /* NotificationReportBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationReportBannerView.swift; sourceTree = "<group>"; };
 		80863B0928EA25290014D27A /* NotificationReportTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationReportTitleView.swift; sourceTree = "<group>"; };
+		809FEFAB28F4CC0A00130B66 /* INFO.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = INFO.md; sourceTree = "<group>"; };
+		809FEFAD28F8EA4F00130B66 /* AudioRecorderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorderView.swift; sourceTree = "<group>"; };
+		809FEFAF28FA10C500130B66 /* AudioRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
+		809FEFB128FAF5F900130B66 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		809FEFB328FB1F3F00130B66 /* RecordingDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingDataModel.swift; sourceTree = "<group>"; };
 		80AF57B528DE0922002AF88D /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		80B9581A28EA82AA00097827 /* AppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
 		80B9581C28EBD16000097827 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
@@ -208,15 +215,17 @@
 		800C78DC28D1885200432CA2 /* ptool-watchOS Watch App */ = {
 			isa = PBXGroup;
 			children = (
+				809FEFAB28F4CC0A00130B66 /* INFO.md */,
 				801E69BE28E8812000919E9F /* PushNotificationPayload.apns */,
 				802F536D28E2405800E79AF1 /* ptool-watchOS-Watch-App-Info.plist */,
 				801E698F28E7497C00919E9F /* GoogleService-Info.plist */,
 				800C78DD28D1885200432CA2 /* ptool_watchOSApp.swift */,
 				80B9581A28EA82AA00097827 /* AppManager.swift */,
 				80B9581C28EBD16000097827 /* LocationManager.swift */,
+				809FEFB128FAF5F900130B66 /* Extensions.swift */,
 				800C78E128D1885300432CA2 /* Assets.xcassets */,
 				8081632328E94B3600A765F2 /* Notification */,
-				802F537028E2752A00E79AF1 /* tool */,
+				802F537028E2752A00E79AF1 /* AudioRecord */,
 				80E143B828D810AA009DF8D6 /* Data */,
 				8082260128D6E01600EE53E2 /* Views */,
 				80B9581928EA724800097827 /* Router */,
@@ -303,23 +312,26 @@
 		802F527828E1E13700E79AF1 /* Table Class */ = {
 			isa = PBXGroup;
 			children = (
-				808225EE28D6BC2600EE53E2 /* User.swift */,
+				801E699928E7759A00919E9F /* DeliveryNote.swift */,
 				802F527928E1E17600E79AF1 /* Office.swift */,
+				809FEFB328FB1F3F00130B66 /* RecordingDataModel.swift */,
+				802F527B28E1E1E300E79AF1 /* Report.swift */,
 				802F528428E1F53300E79AF1 /* ReportImage.swift */,
 				802F528628E1F58000E79AF1 /* ReportNote.swift */,
 				802F528828E1F5F300E79AF1 /* ReportPocInfo.swift */,
-				802F527B28E1E1E300E79AF1 /* Report.swift */,
-				801E699928E7759A00919E9F /* DeliveryNote.swift */,
 				801E69BC28E8081200919E9F /* RouteClass.swift */,
+				808225EE28D6BC2600EE53E2 /* User.swift */,
 			);
 			path = "Table Class";
 			sourceTree = "<group>";
 		};
-		802F537028E2752A00E79AF1 /* tool */ = {
+		802F537028E2752A00E79AF1 /* AudioRecord */ = {
 			isa = PBXGroup;
 			children = (
+				809FEFB728FC34C200130B66 /* Views */,
+				809FEFAF28FA10C500130B66 /* AudioRecorder.swift */,
 			);
-			path = tool;
+			path = AudioRecord;
 			sourceTree = "<group>";
 		};
 		8073D16E28F2308800916AC5 /* Setting office-Route */ = {
@@ -335,19 +347,9 @@
 		8081632328E94B3600A765F2 /* Notification */ = {
 			isa = PBXGroup;
 			children = (
+				809FEFB828FC34E500130B66 /* Views */,
 				8081632428E94B9100A765F2 /* NotificationController.swift */,
 				80F0AC3028F32E4C00731752 /* NotificationDelegate.swift */,
-			);
-			path = Notification;
-			sourceTree = "<group>";
-		};
-		8081632828E9688000A765F2 /* Notification */ = {
-			isa = PBXGroup;
-			children = (
-				8081632628E94BD900A765F2 /* NotificationView.swift */,
-				8081632928E968CE00A765F2 /* NotificationReportView.swift */,
-				80863B0728EA24560014D27A /* NotificationReportBannerView.swift */,
-				80863B0928EA25290014D27A /* NotificationReportTitleView.swift */,
 			);
 			path = Notification;
 			sourceTree = "<group>";
@@ -356,7 +358,6 @@
 			isa = PBXGroup;
 			children = (
 				8073D16E28F2308800916AC5 /* Setting office-Route */,
-				8081632828E9688000A765F2 /* Notification */,
 				801E69A028E7994E00919E9F /* Home */,
 				801E699B28E7763300919E9F /* DeliveryNoteViews */,
 				801E698A28E69E4D00919E9F /* ReportViews */,
@@ -366,10 +367,28 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		809FEFB728FC34C200130B66 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				809FEFAD28F8EA4F00130B66 /* AudioRecorderView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		809FEFB828FC34E500130B66 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8081632628E94BD900A765F2 /* NotificationView.swift */,
+				8081632928E968CE00A765F2 /* NotificationReportView.swift */,
+				80863B0728EA24560014D27A /* NotificationReportBannerView.swift */,
+				80863B0928EA25290014D27A /* NotificationReportTitleView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		80B9581928EA724800097827 /* Router */ = {
 			isa = PBXGroup;
 			children = (
-				808225FF28D6E00800EE53E2 /* ViewRouter.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -556,6 +575,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				801E699428E7636D00919E9F /* RouteSelectView.swift in Sources */,
+				809FEFAE28F8EA4F00130B66 /* AudioRecorderView.swift in Sources */,
+				809FEFB028FA10C500130B66 /* AudioRecorder.swift in Sources */,
 				8081632A28E968CE00A765F2 /* NotificationReportView.swift in Sources */,
 				8081632528E94B9100A765F2 /* NotificationController.swift in Sources */,
 				8082260628D6E01600EE53E2 /* HomeView.swift in Sources */,
@@ -564,13 +585,13 @@
 				802F528528E1F53300E79AF1 /* ReportImage.swift in Sources */,
 				801E69BD28E8081200919E9F /* RouteClass.swift in Sources */,
 				80AF57B628DE0922002AF88D /* LoadingView.swift in Sources */,
+				809FEFB428FB1F3F00130B66 /* RecordingDataModel.swift in Sources */,
 				80F0AC3128F32E4C00731752 /* NotificationDelegate.swift in Sources */,
 				801E699628E7638400919E9F /* OfficeSelectView.swift in Sources */,
 				805F274928E66349001AB184 /* ReportListView.swift in Sources */,
 				802F528928E1F5F300E79AF1 /* ReportPocInfo.swift in Sources */,
 				801E699228E7552E00919E9F /* UserEditIView.swift in Sources */,
 				8081632728E94BD900A765F2 /* NotificationView.swift in Sources */,
-				8082260028D6E00900EE53E2 /* ViewRouter.swift in Sources */,
 				801A234628ED1CD000999CF3 /* MainMenuView.swift in Sources */,
 				8082260928D6E01600EE53E2 /* SignUpView.swift in Sources */,
 				808225EF28D6BC2600EE53E2 /* User.swift in Sources */,
@@ -588,6 +609,7 @@
 				801E698928E699CF00919E9F /* ConfigView.swift in Sources */,
 				801E699F28E776BC00919E9F /* DeliveryNoteDetailView.swift in Sources */,
 				801E698C28E69E7F00919E9F /* ReportDetailView.swift in Sources */,
+				809FEFB228FAF5F900130B66 /* Extensions.swift in Sources */,
 				801E69A228E799C300919E9F /* WelcomeView.swift in Sources */,
 				80863B0A28EA25290014D27A /* NotificationReportTitleView.swift in Sources */,
 				801E698728E6988600919E9F /* PtoolLogoView.swift in Sources */,
@@ -757,9 +779,11 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "ptool-watchOS-Watch-App-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "ptool-watchOS";
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "faut ton gps";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = test;
+				INFOPLIST_KEY_CFBundleDisplayName = "GUARDIAN pour PTOOL";
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = media;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Vous devez autoriser la localisation pour le bon fonctionnement de l'application";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Vous devez autoriser la localisation pour le bon fonctionnement de l'application";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "L'acces au microphone vous permet d'envoyer des message vocal";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKWatchOnly = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -767,6 +791,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				NEW_SETTING = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "ptool.ptool-watchOS.watchkitapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -791,9 +816,11 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "ptool-watchOS-Watch-App-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "ptool-watchOS";
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "faut ton gps";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = test;
+				INFOPLIST_KEY_CFBundleDisplayName = "GUARDIAN pour PTOOL";
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = media;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Vous devez autoriser la localisation pour le bon fonctionnement de l'application";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Vous devez autoriser la localisation pour le bon fonctionnement de l'application";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "L'acces au microphone vous permet d'envoyer des message vocal";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKWatchOnly = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -801,6 +828,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				NEW_SETTING = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "ptool.ptool-watchOS.watchkitapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;

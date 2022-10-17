@@ -16,7 +16,12 @@ struct ReportListView: View {
             ScrollView {
                 ForEach(db.reportArray) { r in
                     NavigationLink(destination: ReportDetailView(report: r)) {
-                        ReportItemView(report: r)
+                        VStack {
+                            ReportItemView(report: r)
+                            if let location = db.lastLocation {
+                                Text(db.getCleanDistanceDislpay(loc1: r.gps, loc2: location))
+                            }
+                        }
                     }
                 }
             }

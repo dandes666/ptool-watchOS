@@ -3,10 +3,9 @@
         "alert": {
             "body": "Danger de Chien",
             "title": "Alerte De Proximité",
-            "subtitle": "Optional subtitle",
-            
+            "subtitle": "Optional subtitle"
         },
-        "category": "reportProximityAlert",
+        "category": "Proximity-Alert",
         "thread-id": "5280"
     },
     "notificationType": "reportProximityAlert",

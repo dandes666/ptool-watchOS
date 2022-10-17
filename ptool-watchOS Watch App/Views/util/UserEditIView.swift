@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct UserEditIView: View {
-    @EnvironmentObject var viewRouter: ViewRouter
+//    @EnvironmentObject var viewRouter: ViewRouter
     @EnvironmentObject var db: AppManager
     let user: User
     var body: some View {
@@ -25,7 +25,7 @@ struct UserEditIView: View {
     func signOutUser() {
         print("sign out")
         
-        viewRouter.currentPage = .signInPage
+        db.currentPage = .signInPage
 //        db.logout()
         
     }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct WelcomeView: View {
-    @EnvironmentObject var viewRouter: ViewRouter
+    @EnvironmentObject var db: AppManager
     var body: some View {
         PtoolLogoView(imageWidth: 60, imageHeight: 60)
             .padding(20)
@@ -27,7 +27,7 @@ struct WelcomeView: View {
     }
     func goLogin() {
         withAnimation {
-            viewRouter.currentPage = .signInPage
+            db.currentPage = .signInPage
         }
     }
     

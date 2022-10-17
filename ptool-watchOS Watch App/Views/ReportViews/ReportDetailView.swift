@@ -54,11 +54,10 @@ struct ReportDetailView: View {
                     .frame(width: 160, height: 160)
                     .clipShape(RoundedRectangle(cornerRadius: 5))
                 }
-                Button("test")
-                {
-                    //                db.sendReportProximityNotification(report: report)
-                    print(report.getDictionaryFormat())
-                }
+//                Button("test")
+//                {
+//                    print(report.getDictionaryFormat())
+//                }
             }
         }
     }

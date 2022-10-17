@@ -9,7 +9,7 @@ import SwiftUI
 import Firebase
 struct SignUpView: View {
     
-    @EnvironmentObject var viewRouter: ViewRouter
+    @EnvironmentObject var db: AppManager
     
     @State var email = ""
     @State var password = ""
@@ -33,7 +33,7 @@ struct SignUpView: View {
             HStack {
                 Text("Already have an account?")
                 Button(action: {
-                    viewRouter.currentPage = .signInPage
+                    db.currentPage = .signInPage
                 }) {
                     Text("Log In")
                 }

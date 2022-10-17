@@ -10,18 +10,11 @@ import Firebase
 import UserNotifications
 @main
 struct ptool_watchOS_Watch_AppApp: App {
-    
-    @StateObject var viewRouter = ViewRouter()
-    @StateObject private var appManager = AppManager()
-//    @StateObject var am2 = AppManager()
-//    @StateObject private var dataController = DataController()
-//    let var ref: DatabaseReference!
+
+//    @StateObject private var appManager = AppManager()
     
     private var delegate: NotificationDelegate = NotificationDelegate()
-//        .environmentObject(appManager)
-//    private var delegate: NotificationDelegate
-//    delegate = NotificationDelegate()
-//        .environmentObject(appManager)
+
     init() {
 //        self.delegate = NotificationDelegate(db: self.appManager)
         let center = UNUserNotificationCenter.current()
@@ -39,14 +32,10 @@ struct ptool_watchOS_Watch_AppApp: App {
       }
     var body: some Scene {
         WindowGroup {
-//            NotificationDelegate().environmentObject(appManager)
-            MotherView().environmentObject(viewRouter)
-//                .environmentObject(appManager)
-                .environmentObject(delegate.db)
-//            ContentView()
+            MotherView().environmentObject(delegate.db)
         }
         #if os(watchOS)
-        WKNotificationScene(controller: NotificationController.self, category: "reportProximityAlert")
+        WKNotificationScene(controller: NotificationController.self, category: "Proximity-Alert")
         #endif
     }
 }
