@@ -18,7 +18,7 @@ struct UserEditIView: View {
             Text("\(user.empId)")
         }.padding(4)
         Button(action: signOutUser) {
-            Text("Deconnection")
+            Text(NSLocalizedString("Deconnexion", comment: ""))
         }
         
     }

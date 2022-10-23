@@ -24,7 +24,7 @@ struct MotherView: View {
         case .welcomePage:
             WelcomeView()
         case .loadingPage:
-            LoadingView()
+            LoadingView(title: NSLocalizedString("Chargement", comment: ""))
         }
     }
 }

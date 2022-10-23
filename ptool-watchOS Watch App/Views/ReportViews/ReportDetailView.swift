@@ -48,7 +48,7 @@ struct ReportDetailView: View {
                     AsyncImage(url: URL(string: ri.url)) { image in
                         image.resizable()
                     } placeholder: {
-                        LoadingView()
+                        LoadingView(title: NSLocalizedString("Chargement", comment: ""))
                         Color.red
                     }
                     .frame(width: 160, height: 160)

@@ -10,7 +10,7 @@ import SwiftUI
 struct LoadingView: View {
 //    @EnvironmentObject var db: AppManager
     @State private var isLoading = false
-
+    var title: String
     var body: some View {
         NavigationView {
             ZStack {
@@ -22,7 +22,7 @@ struct LoadingView: View {
                 Image("LoadingLoopIcon2")
 //                Image("Radar")
                     .resizable()
-                    .frame(width: 130, height: 130, alignment: .center)
+                    .frame(width: 135, height: 135, alignment: .center)
                     .rotationEffect(Angle(degrees: isLoading ? 360 : 0))
 //                    .animation(Animation.easeIn(duration: 1), value: self.isLoading)
                     .animation(Animation.default.repeatForever(autoreverses: false), value: self.isLoading)
@@ -30,7 +30,7 @@ struct LoadingView: View {
                     .onAppear() {
                         self.isLoading = true
                     }
-                    .navigationTitle("Chargement...")
+                    .navigationTitle("\(title)...")
 
             }
 
@@ -41,6 +41,6 @@ struct LoadingView: View {
 
 struct LoadingView_Previews: PreviewProvider {
     static var previews: some View {
-        LoadingView()
+        LoadingView(title: "Loading")
     }
 }

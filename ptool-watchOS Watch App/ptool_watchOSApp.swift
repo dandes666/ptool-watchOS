@@ -11,7 +11,7 @@ import UserNotifications
 @main
 struct ptool_watchOS_Watch_AppApp: App {
 
-//    @StateObject private var appManager = AppManager()
+    @StateObject var router = Router()
     
     private var delegate: NotificationDelegate = NotificationDelegate()
 

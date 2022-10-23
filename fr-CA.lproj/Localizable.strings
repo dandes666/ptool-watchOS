@@ -1,0 +1,60 @@
+/* 
+  appLocalizable.strings
+  ptool-watchOS
+
+  Created by Dave Thibeault on 2022-10-18.
+  
+*/
+"Guardian" = "Gardien";
+"welcome" = "Bienvenue";
+"enter" = "Entrer";
+"prodBy" = "Produit par";
+"PTOOL-LOGO" = "PTOOL-LOGO";
+"Enregistrement en cours..." = "Enregistrement en cours...";
+"Appuyer sur le bouton pour enregistrer un message vocal" = "Appuyer sur le bouton pour enregistrer un message vocal";
+"Memo vocal" = "Mémo vocal";
+"Creer le" = "Créer le";
+"Envoyer a mon superviseur" = "Envoyer à mon superviseur";
+"Envoyer au comite mixte" = "Envoyer au comité mixte";
+"Me rappeler a mon retour au bureau" = "Me rappeler à mon retour au bureau";
+"routes" = "route(s)";
+"Connection" = "Connection";
+"Email" = "Couriel";
+"Password" = "Mot de passe";
+"Chargement" = "Chargement";
+"Retour" = "Retour";
+"Aucune note de livraison pour cette route" = "Aucune note de livraison pour cette route";
+"Aucun signalement pour cette route" = "Aucun signalement pour cette route";
+// configView
+"Bureau" = "Bureau";
+"Route" = "Route";
+"Utilisateur" = "Utilisateur";
+"Application" = "Application";
+"Alert de Proximite" = "Alert de Proximité";
+"Signalement" = "Signalement";
+"Notes" = "Notes";
+"Annuler" = "Annuler";
+// userEditView
+"Deconnexion" = "Déconnexion";
+"Attention" = "Attention";
+"Corriger" = "Corriger";
+"Reiniatiliser les alertes" = "Réinitialiser les alertes";
+// appManager
+"notDetermined" = "Localisation non déterminé";
+"authorizedWhenInUse" = "Localisation autorisée seulement lorsque l'application est active";
+"authorizedAlways" = "Localisation autorisée en tout temp";
+"restricted" = "Localisation limitée";
+"denied" ="Localisation non autorisée sur cet appareil";
+"default" = "Localisation non disponible sur cet appareil";
+// Report
+"dog" = "Risque de Chien";
+"ice" = "Risque de glace";
+"brokenstep" = "Escalier endomagé";
+"defaultType" = "Zone Dangereuse";
+"not defined" = "Non défini";
+// RouteSelectConfirmView
+"Voulez-vous charger les information de la route" = "Voulez-vous charger les information de la route";
+"je confirme" = "Je confirme";
+// image
+"image-logo-complete" = "Logo-complete-fr";
+"image-logo-error" = "Logo-error-fr";

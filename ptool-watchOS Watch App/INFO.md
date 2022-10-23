@@ -1,3 +1,4 @@
 #  Note de developement
 
-je vais faire un test
+alerte du bureau
+faire une alerte lors de l'arriver au bureau et en quittant le bureau'

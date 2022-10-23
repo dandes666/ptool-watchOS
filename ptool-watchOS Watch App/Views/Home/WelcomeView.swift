@@ -13,13 +13,13 @@ struct WelcomeView: View {
         PtoolLogoView(imageWidth: 60, imageHeight: 60)
             .padding(20)
         Button(action: goLogin){
-            Text("Connection")
+            Text(NSLocalizedString("enter", comment: ""))
         }
-        Text("Produit par")
+        Text(NSLocalizedString("prodBy", comment: ""))
             .font(.system(size: 10))
             .padding(10)
         HStack {
-            Image("PTOOL-LOGO")
+            Image(NSLocalizedString("PTOOL-LOGO", comment: ""))
                 .resizable()
                 .frame(width: 30, height: 30, alignment: .center)
             Text("PTOOL")

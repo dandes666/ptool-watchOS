@@ -8,8 +8,9 @@
 import Foundation
 import CoreLocation
 
-class DeliveryNote: NSObject {
+class DeliveryNote: NSObject, Identifiable {
 //    DeliveryNote
+    let id = UUID()
     var deliveryNoteId: String
     var desc: String
     var gps: CLLocation

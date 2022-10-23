@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct DeliveryNoteDetailView: View {
+    var dn : DeliveryNote
     var body: some View {
         Text("DeliveryNoteDetailView")
     }
@@ -15,6 +16,6 @@ struct DeliveryNoteDetailView: View {
 
 struct DeliveryNoteDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        DeliveryNoteDetailView()
+        DeliveryNoteDetailView(dn: DeliveryNote(adviceId: "123123", desc: "description de la note de livraison", gps: CLLocation(latitude: 46.826, longitude: -71.169), pocList: []))
     }
 }

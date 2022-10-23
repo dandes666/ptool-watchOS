@@ -10,5 +10,6 @@ struct Recording {
     let id = UUID()
     let fileURL: URL
     let createdAt: Date
-    let fileName: String?
+    var fileName: String?
+    var dowloadURL: String?
 }

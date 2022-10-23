@@ -1,0 +1,60 @@
+/* 
+  appLocalizable.strings
+  ptool-watchOS
+
+  Created by Dave Thibeault on 2022-10-18.
+  
+*/
+"Guardian" = "Guardian";
+"welcome" = "Welcome";
+"enter" = "Enter";
+"prodBy" = "Produced by";
+"PTOOL-LOGO" = "PTOOL-LOGO";
+"Enregistrement en cours..." = "Record in progress...";
+"Appuyer sur le bouton pour enregistrer un message vocal" = "Press the button to record a voice message";
+"Memo vocal" = "Voice memo";
+"Creer le" = "Create at";
+"Envoyer a mon superviseur" = "Send to my supervisor";
+"Envoyer au comite mixte" = "Send to joint committee";
+"Me rappeler a mon retour au bureau" = "Remind me when I get back to the office";
+"routes" = "route(s)";
+"Connection" = "Login";
+"Email" = "Email";
+"Password" = "Password";
+"Chargement" = "Loading";
+"Retour" = "Back";
+"Aucune note de livraison pour cette route" = "No delivery note for this route";
+"Aucun signalement pour cette route" = "No reports for this route";
+// configView
+"Bureau" = "Office";
+"Route" = "Route";
+"Utilisateur" = "User";
+"Application" = "Application";
+"Alert de Proximite" = "Proximity Alert";
+"Signalement" = "Reporting";
+"Notes" = "Notes";
+"Annuler" = "Cancel";
+// userEditView
+"Deconnexion" = "Logout";
+"Attention" = "Warning";
+"Corriger" = "Correct";
+"Reiniatiliser les alertes" = "Reset alerts";
+// appManager
+"notDetermined" = "Location not determined";
+"authorizedWhenInUse" = "Location authorized only when application is active";
+"authorizedAlways" = "Location authorized at all times";
+"restricted" = "Restricted location";
+"denied" ="Locating not allowed on this device";
+"default" = "Location not available on this device";
+// Report
+"dog" = "Dog Risk";
+"ice" = "Ice hazard";
+"brokenstep" = "Damaged stairs";
+"defaultType" = "Dangerous Area";
+"not defined" = "not defined";
+// RouteSelectConfirmView
+"Voulez-vous charger les information de la route" = "Do you want to load route information";
+"je confirme" = "I confirm";
+// image
+"image-logo-complete" = "Logo-complete-en";
+"image-logo-error" = "Logo-error-en";

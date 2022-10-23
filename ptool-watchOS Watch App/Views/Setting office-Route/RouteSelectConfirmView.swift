@@ -12,12 +12,12 @@ struct RouteSelectConfirmView: View {
     var route: Route
     var body: some View {
         VStack {
-            Text("Voulez-vous charger les information de la route")
+            Text(NSLocalizedString("Voulez-vous charger les information de la route", comment: ""))
             Text(route.name)
-            Button("Confirm")
+            Button(NSLocalizedString("je confirme", comment: ""))
             {
                 db.setRouteSelection(officeId: route.officeId, routeId: route.routeId)
-            }
+            }.padding(.top, 15)
         }
     }
 }

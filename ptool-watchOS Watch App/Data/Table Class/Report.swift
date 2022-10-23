@@ -36,7 +36,8 @@ import CoreLocation
 //}
 class Report: NSObject, Identifiable {
     var reportId: String
-    var id: String
+//    var id: String
+    let id = UUID()
     var name: String?
     var desc: String?
     var type: String?
@@ -51,7 +52,6 @@ class Report: NSObject, Identifiable {
     
     init(reportId: String) {
         self.reportId = reportId
-        self.id = reportId
         self.name = nil
         self.desc = nil
         self.type = nil
@@ -65,7 +65,6 @@ class Report: NSObject, Identifiable {
     }
     init(reportId: String, name: String?, desc: String?, type: String?, status: Int?, gps: CLLocation, proximityAlert: Bool?, imageList: [ReportImage]?, note: [ReportNote]?, pocList: [ReportPocInfo]?, securedistance: Double?) {
         self.reportId = reportId
-        self.id = reportId
         if let n = name {
             self.name = n
         } else {
@@ -126,10 +125,8 @@ class Report: NSObject, Identifiable {
     init(dictionaryFormat: NSDictionary) {
         if let reportId = dictionaryFormat["reportId"] as? String {
             self.reportId = reportId
-            self.id = reportId
         } else {
             self.reportId = ""
-            self.id = ""
         }
         if let name = dictionaryFormat["name"] as? String {
             self.name = name
@@ -213,32 +210,32 @@ class Report: NSObject, Identifiable {
         if let t = self.type {
             switch t {
             case "dog":
-                return "Risque de Chien"
+                return NSLocalizedString("dog", comment: "")
             case "ice":
-                return "Risque de glace"
+                return NSLocalizedString("ice", comment: "")
             case "brokenstep":
-                return "Escalier endomagé"
+                return NSLocalizedString("brokenstep", comment: "")
             default:
-                return "Zone Dangereuse"
+                return NSLocalizedString("defaultType", comment: "")
             }
         } else {
-            return "non défini"
+            return NSLocalizedString("not defined", comment: "")
         }
     }
     func getReportNotificationTitle() -> String {
         if let t = self.type {
             switch t {
             case "dog":
-                return "Risque de Chien"
+                return NSLocalizedString("dog", comment: "")
             case "ice":
-                return "Risque de glace"
+                return NSLocalizedString("ice", comment: "")
             case "brokenstep":
-                return "Escalier endomagé"
+                return NSLocalizedString("brokenstep", comment: "")
             default:
-                return "Zone Dangereuse"
+                return NSLocalizedString("defaultType", comment: "")
             }
         } else {
-            return "Alerte de proximité"
+            return NSLocalizedString("Alert de Proximite", comment: "")
         }
     }
     func getReportNotificationSubTitle() -> String {
@@ -248,16 +245,16 @@ class Report: NSObject, Identifiable {
             if let t = self.type {
                 switch t {
                 case "dog":
-                    return "Risque de Chien"
+                    return NSLocalizedString("dog", comment: "")
                 case "ice":
-                    return "Risque de glace"
+                    return NSLocalizedString("ice", comment: "")
                 case "brokenstep":
-                    return "Escalier endomagé"
+                    return NSLocalizedString("brokenstep", comment: "")
                 default:
-                    return "Zone Dangereuse"
+                    return NSLocalizedString("defaultType", comment: "")
                 }
             } else {
-                return "non défini"
+                return NSLocalizedString("not defined", comment: "")
             }
         }
     }

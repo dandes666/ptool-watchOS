@@ -14,23 +14,38 @@ struct ReportListView: View {
 //        var reportArray: [Report] = db.reportArray
         NavigationView() {
             ScrollView {
-                ForEach(db.reportArray) { r in
-                    NavigationLink(destination: ReportDetailView(report: r)) {
-                        VStack {
-                            ReportItemView(report: r)
-                            if let location = db.lastLocation {
-                                Text(db.getCleanDistanceDislpay(loc1: r.gps, loc2: location))
+                if db.reportArray.count > 0 {
+                    ForEach(db.reportArray) { r in
+                        NavigationLink(destination: ReportDetailView(report: r)) {
+                            VStack {
+                                ReportItemView(report: r)
+                                if let location = db.lastLocation {
+                                    Text(db.getCleanDistanceDislpay(loc1: r.gps, loc2: location))
+                                }
                             }
                         }
                     }
+                } else {
+                    HStack {
+                        Text("\(NSLocalizedString("Aucun signalement pour cette route", comment: "")) (")
+                            .fontWeight(Font.Weight.bold)
+                            .foregroundColor(Color.red)
+                        + Text(db.getCurrentRouteName())
+                            .fontWeight(Font.Weight.black)
+                        + Text(")")
+                            .fontWeight(Font.Weight.bold)
+                            .foregroundColor(Color.red)
+                    }
+                        .lineLimit(5)
                 }
             }
-        }
+        }.navigationTitle("Retour")
     }
 }
 
 struct ReportListView_Previews: PreviewProvider {
     static var previews: some View {
-        ReportListView()
+        let db = AppManager()
+        ReportListView().environmentObject(db)
     }
 }

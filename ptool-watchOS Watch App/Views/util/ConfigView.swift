@@ -13,7 +13,7 @@ struct ConfigView: View {
     var body: some View {
         NavigationView {
             ScrollView {
-                Text("Bureau")
+                Text(NSLocalizedString("Bureau", comment: ""))
                     .padding(EdgeInsets.init(top: 2, leading: 0, bottom: 0, trailing: 0))
                 NavigationLink(destination: OfficeSelectView()) {
                     VStack() {
@@ -23,7 +23,7 @@ struct ConfigView: View {
                     }
                 }
 //                Spacer()
-                Text("Route")
+                Text(NSLocalizedString("Route", comment: ""))
                     .padding(EdgeInsets.init(top: 15, leading: 0, bottom: 0, trailing: 0))
                 NavigationLink(destination: RouteSelectView(routeArray: db.officeArray[db.userInfo.officeIdx].routeArray)) {
                     VStack() {
@@ -31,7 +31,7 @@ struct ConfigView: View {
                     }
                 }
 //                Spacer()
-                Text("Utilisateur")
+                Text(NSLocalizedString("Utilisateur", comment: ""))
                     .padding(EdgeInsets.init(top: 15, leading: 0, bottom: 0, trailing: 0))
                 NavigationLink(destination: UserEditIView(user: db.userInfo)) {
                     VStack() {
@@ -41,20 +41,20 @@ struct ConfigView: View {
                     }
                 }
 //                Spacer()
-                Text("Application")
+                Text(NSLocalizedString("Application", comment: ""))
                     .padding(EdgeInsets.init(top: 15, leading: 0, bottom: 0, trailing: 0))
                 NavigationLink(destination: GuardianActiveView()) {
                     VStack {
-                        Text("Alert de Proximite")
+                        Text(NSLocalizedString("Alert de Proximite", comment: ""))
                             .font(.system(size: 16))
                         HStack {
                             if db.isPoximityReportActive == true {
-                                Text("Signalement")
+                                Text(NSLocalizedString("Signalement", comment: ""))
                                     .foregroundColor(Color.red)
                                     .font(.system(size: 12))
                             }
                             if db.isPoximityDeleveryNoteActive {
-                                Text("Notes")
+                                Text(NSLocalizedString("Notes", comment: ""))
                                     .foregroundColor(Color.red)
                                     .font(.system(size: 12))
                             }
@@ -69,7 +69,7 @@ struct ConfigView: View {
             }
 //            NavigationLink
 //            .navigationTitle("Config")
-        }.navigationTitle("Annuler")
+        }.navigationTitle(NSLocalizedString("Annuler", comment: ""))
     }
 }
 

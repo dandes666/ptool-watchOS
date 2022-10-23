@@ -15,29 +15,48 @@ struct SignInView: View {
     
     @State var email = "dave.thibeault@me.com"
     @State var password = "chr1st1naT"
+//    @State var email = ""
+//    @State var password = ""
     
     @State var signInProcessing = false
     @State var signInErrorMessage = ""
 //    lazy var functions = Functions.functions()
     
     var body: some View {
-        VStack() {
-//            LogoView()
-//            Spacer()
-            Image("Logo")
-                .resizable()
-                .frame(width: 40, height: 40, alignment: .topLeading)
-            SignInCredentialFields(email: $email, password: $password)
-            Button(action: {
-                signInUser(userEmail: email, userPassword: password)
-            }) {
-                Text("Log In")
-                    .bold()
-                    .frame(width: 360, height: 50)
-                    .cornerRadius(10)
+        ScrollView {
+            VStack() {
+                //            LogoView()
+                //            Spacer()
+                Image("Logo")
+                    .resizable()
+                    .frame(width: 40, height: 40, alignment: .topLeading)
+                SignInCredentialFields(email: $email, password: $password)
+                if signInErrorMessage != "" {
+                    Text(signInErrorMessage)
+                        .font(Font.caption)
+                        .foregroundColor(Color.red)
+                }
+                Button(action: {
+                    signInUser(userEmail: email, userPassword: password)
+                }) {
+                    Text(NSLocalizedString("Connection", comment: ""))
+                        .bold()
+//                        .frame(width: 360, height: 50)
+                        .cornerRadius(10)
+                }
+                .foregroundColor(getConnectionTextColor())
+                .padding(.top, 10)
+                .disabled(email == "" || password == "")
             }
-        }
             .padding()
+        }
+    }
+    func getConnectionTextColor() -> Color {
+        if self.email == "" || self.password == "" {
+            return Color.red
+        } else {
+            return Color.green
+        }
     }
     func completion(value: AnyObject?, error: NSError) {
         print("completion")
@@ -112,12 +131,12 @@ struct SignInCredentialFields: View {
     
     var body: some View {
         Group {
-            TextField("Email", text: $email)
+            TextField(NSLocalizedString("Email", comment: ""), text: $email)
 //                .padding()
 //                .background(.thinMaterial)
                 .cornerRadius(10)
                 .textInputAutocapitalization(.never)
-            SecureField("Password", text: $password)
+            SecureField(NSLocalizedString("Password", comment: ""), text: $password)
 //                .padding()
 //                .background(.thinMaterial)
                 .cornerRadius(10)

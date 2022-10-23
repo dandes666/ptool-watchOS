@@ -17,7 +17,7 @@ struct PtoolLogoView: View {
                 .resizable()
                 .frame(width: imageWidth, height: imageHeight, alignment: .center)
                 
-            Text("Guardian")
+            Text(NSLocalizedString("Guardian", comment: ""))
         }
     }
 }

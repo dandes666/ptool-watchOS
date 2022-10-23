@@ -21,7 +21,7 @@ struct OfficeSelectView: View {
                             Spacer()
                             VStack {
                                 Text(off.name)
-                                Text("\(off.routeArray.count) route")
+                                Text("\(off.routeArray.count) \(NSLocalizedString("routes", comment: ""))")
                             }
                             Spacer()
                             Image("next")

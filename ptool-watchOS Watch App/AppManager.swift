@@ -16,6 +16,7 @@ import FirebaseFunctions
 import FirebaseCore
 import FirebaseStorage
 
+
 class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     let objectWillChange = PassthroughSubject<Void, Never>()
     private let locationManager = CLLocationManager()
@@ -26,7 +27,12 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var currentPage: Page {
         willSet { objectWillChange.send() }
     }
-    @Published var locationStatus: CLAuthorizationStatus?
+    @Published var locationStatus: CLAuthorizationStatus? {
+        willSet { objectWillChange.send() }
+    }
+    @Published var isLocationOk: Bool = false {
+        willSet { objectWillChange.send() }
+    }
     @Published var lastLocation: CLLocation?
 //    @Published var db = DataController()
     
@@ -40,10 +46,20 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var reportArray: [Report] {
         willSet { objectWillChange.send() }
     }
+    @Published var memoArray: [Memo] = []  {
+        willSet { objectWillChange.send() }
+    }
+    
     @Published var alertReportArray: [Report] = []
     @Published var alertDeleveryNote: [DeliveryNote] = []
     @Published var deliveryNoteArray: [DeliveryNote] = []
     
+    @Published var currentTaskStatus: TaskStatus = .none {
+        willSet { objectWillChange.send() }
+    }
+    @Published var currentTaskProgress: Double = 0 {
+        willSet { objectWillChange.send() }
+    }
     
     @Published var status: CLAuthorizationStatus? {
         willSet { objectWillChange.send() }
@@ -133,7 +149,19 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         locationManager.startUpdatingLocation()
 
     }
-    
+    func requestLocation() {
+        locationManager.requestAlwaysAuthorization()
+    }
+    func getLocationStatusDesc() -> String {
+        switch self.locationStatus {
+            case .notDetermined: return NSLocalizedString("notDetermined", comment: "")
+            case .authorizedWhenInUse: return NSLocalizedString("authorizedWhenInUse", comment: "")
+            case .authorizedAlways: return NSLocalizedString("authorizedAlways", comment: "")
+            case .restricted: return NSLocalizedString("restricted", comment: "")
+            case .denied: return  NSLocalizedString("denied", comment: "")
+            default: return  NSLocalizedString("default", comment: "")
+        }
+    }
     func getReportById(reportId: String) -> Report? {
         if let report = reportArray.first(where: {$0.reportId == reportId}) {
             return report
@@ -150,8 +178,7 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         return officeArray[userInfo.officeIdx].name
     }
 
-    
-    
+
     // FireBase
     func signInUser(userEmail: String, userPassword: String) -> String? {
         var signInErrorMessage = ""
@@ -279,13 +306,30 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
                         if (officeId == self.userInfo.officeSelected) {
                             self.userInfo.officeIdx = self.officeArray.count
                         }
-                        let o = Office(officeId: officeId)
+                        
+                        var add = ""
+                        var ona = ""
+                        var ofGps = CLLocation(latitude: 46.820, longitude: -71.169)
                         if let address = office["address"] as? String {
-                            o.address = address
+                            add = address
                         }
                         if let oName = office["name"] as? String {
-                            o.name = oName
+                            ona = oName
                         }
+                        if let oGps = office["gps"] as? NSDictionary {
+                            if let lat = oGps["_latitude"] {
+                                if let lng = oGps["_longitude"] {
+                                    if let latitude = CLLocationDegrees(String(describing: lat)) {
+                                        if let longitude = CLLocationDegrees(String(describing: lng)) {
+                                            ofGps = CLLocation(latitude: latitude, longitude: longitude)
+                                        }
+                                    }
+                                    
+                                }
+                                
+                            }
+                        }
+                        let o = Office(officeId: officeId, name: ona, address: add, gps: ofGps, routeArray: [])
                         if let rArray = office["routeInfo"] as? NSArray {
                             for rou in rArray {
                                 if let route = rou as? NSDictionary {
@@ -432,8 +476,118 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
 //            }
         }
     }
-    
-    func saveMemoToFirestore(rec: Recording) {
+    func createMemoOfficeNotification(rec: Recording) {
+//        let memo = Memo(officeId: <#T##String#>, fileURL: <#T##URL#>)
+    }
+    func sendMemoTo(downloadURL: URL, to: String) {
+        print("trace sendMemoTo")
+        self.currentTaskStatus = .inProgress
+        self.objectWillChange.send()
+//        self.currentPage = .loadingPage
+//        let decoder = JSONDecoder()
+//        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        lazy var functions = Functions.functions()
+        let params: [String: Any] = [
+            "to": to,
+            "url": "\(downloadURL)",
+            "empId": self.userInfo.empId,
+            "fName": self.userInfo.fName,
+            "lName": self.userInfo.lName,
+            "empType": self.userInfo.userType,
+            "officeId": self.userInfo.officeSelected,
+            "routeId": self.userInfo.routeSelected
+        ]
+        print(params)
+        functions.httpsCallable("sendMemoTo").call(params) { result, error in
+            if let error = error as NSError? {
+                print("trace B")
+                print(error.localizedDescription)
+                self.currentTaskStatus = .error
+                self.objectWillChange.send()
+            } else {
+                print("trace Success")
+                self.currentTaskStatus = .success
+                self.objectWillChange.send()
+            }
+        }
+    }
+    func saveMemoToFirestore(rec: Recording, to: String) {
+        // Local file you want to upload
+//        let localFile = URL(string: "path/to/image")!
+        
+        let storage = Storage.storage()
+        let storageRef = storage.reference()
+        let memoRef = storageRef.child("memo/\(userInfo.userId)/\(Date().toString(dateFormat: "dd-MM-YY_'at'_HH:mm:ss")).m4a")
+        // Create the file metadata
+        let metadata = StorageMetadata()
+        metadata.contentType = "audio/m4a"
+
+        // Upload file and metadata to the object 'images/mountains.jpg'
+        let uploadTask = memoRef.putFile(from: rec.fileURL, metadata: metadata)
+        
+        // Listen for state changes, errors, and completion of the upload.
+        uploadTask.observe(.resume) { snapshot in
+          // Upload resumed, also fires when the upload starts
+            self.currentTaskStatus = .inProgress
+            print("trace resume -> \(snapshot.description)")
+        }
+
+        uploadTask.observe(.pause) { snapshot in
+          // Upload paused
+            self.currentTaskStatus = .pause
+        }
+
+        uploadTask.observe(.progress) { snapshot in
+          // Upload reported progress
+            self.currentTaskProgress = 100.0 * Double(snapshot.progress!.completedUnitCount)
+            / Double(snapshot.progress!.totalUnitCount)
+        }
+
+        uploadTask.observe(.success) { snapshot in
+            memoRef.downloadURL { (url, error) in
+                if let downloadURL = url {
+                    self.sendMemoTo(downloadURL: downloadURL, to: to)
+//                    self.currentTaskStatus = .success
+                    return
+                } else {
+                    // Uh-oh, an error occurred!
+                    self.currentTaskStatus = .error
+                    return
+                }
+            }
+            
+            
+        }
+
+        uploadTask.observe(.failure) { snapshot in
+            if let error = snapshot.error as? NSError {
+                print(error.localizedDescription)
+                self.currentTaskStatus = .error
+                switch (StorageErrorCode(rawValue: error.code)!) {
+                case .objectNotFound:
+                  // File doesn't exist
+                  break
+                case .unauthorized:
+                  // User doesn't have permission to access file
+                  break
+                case .cancelled:
+                  // User canceled the upload
+                  break
+
+                /* ... */
+
+                case .unknown:
+                  // Unknown error occurred, inspect the server response
+                  break
+                default:
+                  // A separate error occurred. This is a good place to retry the upload.
+                  break
+                }
+            }
+        }
+            
+    }
+    func saveMemoToFirestore_back(rec: Recording) {
         let storage = Storage.storage()
         // Create a root reference
         let storageRef = storage.reference()
@@ -443,31 +597,50 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
 
         // Create a reference to the file you want to upload
 //        let riversRef = storageRef.child("images/rivers.jpg")
-        let riversRef = storageRef.child("memo/\(userInfo.userId)/rivers.jpg")
+        let riversRef = storageRef.child("memo/\(userInfo.userId)/\(Date().toString(dateFormat: "dd-MM-YY_'at'_HH:mm:ss")).m4a")
         
         // Upload the file to the path "images/rivers.jpg"
 //        let uploadTask = riversRef.putFile(from: localFile, metadata: nil) { metadata, error in
         let uploadTask = riversRef.putFile(from: rec.fileURL, metadata: nil) { metadata, error in
-          guard let metadata = metadata else {
-            // Uh-oh, an error occurred!
-              print()
-            return
-          }
-          // Metadata contains file metadata such as size, content-type.
-          let size = metadata.size
-          // You can also access to download URL after upload.
-          riversRef.downloadURL { (url, error) in
-            guard let downloadURL = url else {
-              // Uh-oh, an error occurred!
-              return
+            print("trace storage 1")
+            if let err = error {
+                print(err.localizedDescription)
             }
-          }
-        }
+            guard let metadata = metadata else {
+                // Uh-oh, an error occurred!
+//                print(error?.localizedDescription)
+                return
+            }
+            // Metadata contains file metadata such as size, content-type.
+//            let size = metadata.size
+//            print("size = \(size)")
+            // You can also access to download URL after upload.
+            riversRef.downloadURL { (url, error) in
+                if let downloadURL = url {
+                    //                  rec.dowloadURL = downloadURL
+                    print(downloadURL)
+                    return
+                } else {
+                    // Uh-oh, an error occurred!
+                    return
+                }
+            }
+              
+            }
+        print("------ trace -----------")
+        print(uploadTask)
+        print("------ trace -----------")
     }
     
     // Location
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         locationStatus = status
+        if status == .authorizedAlways || status == .authorizedWhenInUse {
+//        if status == .authorizedAlways {
+            self.isLocationOk = true
+        } else {
+            self.isLocationOk = false
+        }
         //        print(#function, statusString)
     }
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -565,7 +738,7 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         }
     }
     func getCleanDistanceDislpay(loc1: CLLocation, loc2 :CLLocation) -> String {
-        var dist = loc1.distance(from: loc2) * 10
+        var dist = loc1.distance(from: loc2)
 
         if (dist > 1000) {
             dist = dist / 1000
@@ -721,4 +894,16 @@ enum Page {
     case signInPage
     case loadingPage
     case homePage
+}
+enum TaskStatus {
+    case none
+    case inProgress
+    case error
+    case done
+    case pause
+    case success
+}
+enum memoDest {
+    case comitemixte
+    case supervisor
 }
