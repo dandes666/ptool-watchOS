@@ -33,6 +33,8 @@ class NotificationController: WKUserNotificationHostingController<NotificationVi
     }
     
     override func didReceive(_ notification: UNNotification) {
+//        print("trace NotificationController didReceive")
+//        notificationActions = [UINotificationAction(identifier: "ok", title:"Ok",options:[])]
         let notificationData =
             notification.request.content.userInfo as? [String: Any]
         let aps = notificationData?["aps"] as? [String: Any]

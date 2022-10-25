@@ -11,12 +11,11 @@ import UserNotifications
 @main
 struct ptool_watchOS_Watch_AppApp: App {
 
-    @StateObject var router = Router()
+//    @StateObject var router = Router()
     
     private var delegate: NotificationDelegate = NotificationDelegate()
 
     init() {
-//        self.delegate = NotificationDelegate(db: self.appManager)
         let center = UNUserNotificationCenter.current()
         center.delegate = delegate
         center.requestAuthorization(options: [.alert,.sound,.badge]) { (success, error) in
@@ -28,11 +27,12 @@ struct ptool_watchOS_Watch_AppApp: App {
         }
             // Provisional authorization granted.
         FirebaseApp.configure()
-//        ref = Database.database().reference()
       }
     var body: some Scene {
         WindowGroup {
-            MotherView().environmentObject(delegate.db)
+            MotherView()
+                .environmentObject(delegate.db)
+                .environmentObject(delegate.router)
         }
         #if os(watchOS)
         WKNotificationScene(controller: NotificationController.self, category: "Proximity-Alert")

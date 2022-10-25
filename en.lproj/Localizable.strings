@@ -32,6 +32,7 @@
 "Application" = "Application";
 "Alert de Proximite" = "Proximity Alert";
 "Signalement" = "Reporting";
+"Signalements" = "Reports";
 "Notes" = "Notes";
 "Annuler" = "Cancel";
 // userEditView
@@ -58,3 +59,11 @@
 // image
 "image-logo-complete" = "Logo-complete-en";
 "image-logo-error" = "Logo-error-en";
+
+// navigation title
+"nt-home" = "Home";
+"config" = "Configuration";
+"memo" = "Memo";
+
+// Notification
+"show" = "Show Report";

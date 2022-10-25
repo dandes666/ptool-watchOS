@@ -10,36 +10,36 @@ import SwiftUI
 struct ReportListView: View {
     @EnvironmentObject var db: AppManager
     var body: some View {
-//        var r: Report
-//        var reportArray: [Report] = db.reportArray
-        NavigationView() {
-            ScrollView {
-                if db.reportArray.count > 0 {
-                    ForEach(db.reportArray) { r in
-                        NavigationLink(destination: ReportDetailView(report: r)) {
-                            VStack {
-                                ReportItemView(report: r)
-                                if let location = db.lastLocation {
-                                    Text(db.getCleanDistanceDislpay(loc1: r.gps, loc2: location))
-                                }
+        ScrollView {
+            if db.reportArray.count > 0 {
+                ForEach(db.reportArray) { r in
+                    NavigationLink(value: r) {
+                        VStack {
+                            ReportItemView(report: r)
+                            if let location = db.lastLocation {
+                                Text(db.getCleanDistanceDislpay(loc1: r.gps, loc2: location))
                             }
                         }
                     }
-                } else {
-                    HStack {
-                        Text("\(NSLocalizedString("Aucun signalement pour cette route", comment: "")) (")
-                            .fontWeight(Font.Weight.bold)
-                            .foregroundColor(Color.red)
-                        + Text(db.getCurrentRouteName())
-                            .fontWeight(Font.Weight.black)
-                        + Text(")")
-                            .fontWeight(Font.Weight.bold)
-                            .foregroundColor(Color.red)
-                    }
-                        .lineLimit(5)
                 }
+            } else {
+                HStack {
+                    Text("\(NSLocalizedString("Aucun signalement pour cette route", comment: "")) (")
+                        .fontWeight(Font.Weight.bold)
+                        .foregroundColor(Color.red)
+                    + Text(db.getCurrentRouteName())
+                        .fontWeight(Font.Weight.black)
+                    + Text(")")
+                        .fontWeight(Font.Weight.bold)
+                        .foregroundColor(Color.red)
+                }
+                    .lineLimit(5)
             }
-        }.navigationTitle("Retour")
+        }
+        .navigationDestination(for: Report.self) { r in
+            ReportDetailView(report: r)
+        }
+        .navigationBarTitle(NSLocalizedString("nt-home", comment: ""))
     }
 }
 

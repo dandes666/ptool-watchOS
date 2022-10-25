@@ -9,61 +9,62 @@ import Foundation
 import UserNotifications
 class NotificationDelegate: NSObject, UNUserNotificationCenterDelegate {
     var db = AppManager()
+    var router = Router()
+    
 //    var db: AppManager
 //    init(db: AppManager) {
 //        self.db = db
 //        super.init()
 //    }
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        print("trace receive delegate")
-//        print(db.userInfo.lName)
-       
-//        let userInfo = response.notification.request.content.userInfo
-        let notificationData =
-        response.notification.request.content.userInfo as? [String: Any]
-//        if let rep = response as? NSDictionary {
-            if response.notification.request.content.categoryIdentifier == "Proximity-Alert" {
-                print("trace receive delegate Proximity-Alert")
-                if let notificationType = notificationData?["notificationType"] as? String {
-                    switch notificationType {
-                    case "reportProximityAlert":
-                        if let reportData = notificationData?["reportDictionaryFormat"] as? NSDictionary {
-                            let reportId = reportData["reportId"] as! String
-                            print("reportId = \(reportId)")
-                            switch response.actionIdentifier {
-                            case "show":
-                                //             sharedMeetingManager.acceptMeeting(user: userID, meetingID: meetingID)
-                                print("action -> show")
-                                break
-                                
-                            case "cancel":
-                                //             sharedMeetingManager.declineMeeting(user: userID, meetingID: meetingID)
-                                print("action -> cancel")
-                                break
-                                
-                            case UNNotificationDefaultActionIdentifier,
-                            UNNotificationDismissActionIdentifier:
-                                // Queue meeting-related notifications for later
-                                //  if the user does not act.
-                                //             sharedMeetingManager.queueMeetingForDelivery(user: userID, meetingID: meetingID)
-                                print("trace1 actionIdentifier: \(response.actionIdentifier)")
-                                break
-                                
-                            default:
-                                print("trace2 actionIdentifier: \(response.actionIdentifier)")
-                                break
+//        print("trace NotificationDelegate didReceive")
+
+        let notificationData = response.notification.request.content.userInfo as? [String: Any]
+        if response.notification.request.content.categoryIdentifier == "Proximity-Alert" {
+//            print("trace receive delegate Proximity-Alert")
+            if let notificationType = notificationData?["notificationType"] as? String {
+                switch notificationType {
+                case "reportProximityAlert":
+                    if let reportData = notificationData?["reportDictionaryFormat"] as? NSDictionary {
+                        let reportId = reportData["reportId"] as! String
+//                        print("reportId = \(reportId)")
+//                        print("trace actionIdentifier: \(response.actionIdentifier)")
+                        switch response.actionIdentifier {
+                        case "showReport":
+                            //             sharedMeetingManager.acceptMeeting(user: userID, meetingID: meetingID)
+//                            print("action -> show")
+                            if let report = db.getReportById(reportId: reportId) {
+                                router.reset()
+                                router.path.append(MasterRoute.reportList)
+                                router.path.append(report)
                             }
+                            break
+                        case UNNotificationDismissActionIdentifier:
+//                            print("action -> dismiss")
+                            break
+                        case UNNotificationDefaultActionIdentifier,
+                        UNNotificationDismissActionIdentifier:
+                            // Queue meeting-related notifications for later
+                            //  if the user does not act.
+                            //             sharedMeetingManager.queueMeetingForDelivery(user: userID, meetingID: meetingID)
+//                            print("trace1 actionIdentifier: \(response.actionIdentifier)")
+                            break
+                            
+                        default:
+//                            print("trace2 actionIdentifier: \(response.actionIdentifier)")
+                            break
                         }
-                    default:
-                        print("Erreur mauvais type = \(notificationType)")
                     }
+                default:
+                    print("Erreur mauvais type = \(notificationType)")
                 }
             }
-            else {
-                // Handle other notification types...
-            }
-//        }
-            
+        }
+        else {
+            print("trace 2")
+            // Handle other notification types...
+        }
+
        // Always call the completion handler when done.
        completionHandler()
     }

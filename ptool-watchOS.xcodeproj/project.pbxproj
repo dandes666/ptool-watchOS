@@ -44,6 +44,7 @@
 		802F528728E1F58000E79AF1 /* ReportNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802F528628E1F58000E79AF1 /* ReportNote.swift */; };
 		802F528928E1F5F300E79AF1 /* ReportPocInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802F528828E1F5F300E79AF1 /* ReportPocInfo.swift */; };
 		8048D7102905D41600D4870D /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8048D70F2905D41600D4870D /* Router.swift */; };
+		8048D7122905DEA500D4870D /* Enumeration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8048D7112905DEA500D4870D /* Enumeration.swift */; };
 		805F274928E66349001AB184 /* ReportListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805F274828E66349001AB184 /* ReportListView.swift */; };
 		8073D17028F230FF00916AC5 /* RouteSelectConfirmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8073D16F28F230FF00916AC5 /* RouteSelectConfirmView.swift */; };
 		8081632528E94B9100A765F2 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8081632428E94B9100A765F2 /* NotificationController.swift */; };
@@ -149,6 +150,7 @@
 		802F528828E1F5F300E79AF1 /* ReportPocInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportPocInfo.swift; sourceTree = "<group>"; };
 		802F536D28E2405800E79AF1 /* ptool-watchOS-Watch-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "ptool-watchOS-Watch-App-Info.plist"; sourceTree = SOURCE_ROOT; };
 		8048D70F2905D41600D4870D /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		8048D7112905DEA500D4870D /* Enumeration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enumeration.swift; sourceTree = "<group>"; };
 		805F274828E66349001AB184 /* ReportListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportListView.swift; sourceTree = "<group>"; };
 		8073D16F28F230FF00916AC5 /* RouteSelectConfirmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteSelectConfirmView.swift; sourceTree = "<group>"; };
 		8081632428E94B9100A765F2 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
@@ -243,6 +245,7 @@
 				80B9581A28EA82AA00097827 /* AppManager.swift */,
 				80B9581C28EBD16000097827 /* LocationManager.swift */,
 				809FEFB128FAF5F900130B66 /* Extensions.swift */,
+				8048D7112905DEA500D4870D /* Enumeration.swift */,
 				800C78E128D1885300432CA2 /* Assets.xcassets */,
 				8081632328E94B3600A765F2 /* Notification */,
 				802F537028E2752A00E79AF1 /* AudioRecord */,
@@ -652,6 +655,7 @@
 				801E698C28E69E7F00919E9F /* ReportDetailView.swift in Sources */,
 				809FEFB228FAF5F900130B66 /* Extensions.swift in Sources */,
 				8048D7102905D41600D4870D /* Router.swift in Sources */,
+				8048D7122905DEA500D4870D /* Enumeration.swift in Sources */,
 				809FEFBA28FE0B2900130B66 /* RecordingView.swift in Sources */,
 				801E69A228E799C300919E9F /* WelcomeView.swift in Sources */,
 				808D713C29023F6600227AB0 /* Memo.swift in Sources */,

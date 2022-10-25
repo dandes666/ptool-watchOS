@@ -9,7 +9,7 @@ import SwiftUI
 import AVFoundation
 struct AudioRecorderView: View {
     
-    @ObservedObject var audioRecorder: AudioRecorder
+//    @ObservedObject var audioRecorder: AudioRecorder
     @EnvironmentObject var db: AppManager
 //    let ar = AVAudioRecorder()
 
@@ -22,84 +22,82 @@ struct AudioRecorderView: View {
     
     
     var body: some View {
-        
-        NavigationView {
-            VStack{
-//                List {
-//                    ForEach(audioRecorder.recordings, id: \.createdAt) { recording in
-//                        RecordingRow(audioURL: recording.fileURL)
-//                    }
+
+        VStack{
+            if db.audioRecorder.isRecording {
+                Text(NSLocalizedString("Enregistrement en cours...", comment: ""))
+            } else if let cRecording = db.audioRecorder.currentRecording {
+                NavigationLink(value: cRecording) {
+                    HStack {
+                        RecordingView(rec: cRecording)
+                        Spacer()
+                        Image("next")
+                            .resizable()
+                            .frame(width: 20, height: 20, alignment: .leading)
+                    }
+                }
+                .navigationDestination(for: Recording.self) { rec in
+                    RecordingShareMenuView(rec: rec)
+                }
+                
+//                .onDisappear() {
+//                    print("trace onDisappear 1")
 //                }
-                if audioRecorder.isRecording {
-                    Text(NSLocalizedString("Enregistrement en cours...", comment: ""))
-                } else if let cRecording = audioRecorder.currentRecording {
-                    NavigationLink(destination: RecordingShareMenuView(rec: cRecording, audioRecorder: audioRecorder)) {
-                        HStack {
-                            RecordingView(rec: cRecording)
-                            Spacer()
-                            Image("next")
-                                .resizable()
-                                .frame(width: 20, height: 20, alignment: .leading)
-                        }
+            } else {
+                Text(NSLocalizedString("Appuyer sur le bouton pour enregistrer un message vocal", comment: ""))
+                    .lineLimit(4)
+                
+            }
+            Spacer()
+                .navigationTitle(NSLocalizedString("nt-home", comment: ""))
+            HStack {
+                if db.audioRecorder.currentRecording != nil {
+                    Button(action: {db.audioRecorder.removeCurrentRecording()}) {
+                        Image(systemName: "trash.circle.fill")
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 80, height: 80)
+                            .clipped()
+                            .foregroundColor(.red)
                     }
-                    .onDisappear() {
-                        print("trace onDisappear 1")
+                    .frame(width: 80, height: 80)
+                } else if db.audioRecorder.isRecording == false {
+                    Button(action: {db.audioRecorder.startRecording()}) {
+                        Image(systemName: "record.circle.fill")
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 80, height: 80)
+                            .clipped()
+                            .foregroundColor(.red)
                     }
+                    .frame(width: 80, height: 80)
                 } else {
-                    Text(NSLocalizedString("Appuyer sur le bouton pour enregistrer un message vocal", comment: ""))
-                        .lineLimit(4)
-                    
+                    Button(action: {db.audioRecorder.stopRecording()}) {
+                        Image(systemName: "stop.circle.fill")
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 80, height: 80)
+                            .clipped()
+                            .foregroundColor(.yellow)
+//                                .padding(.bottom, 40)
+                    }.frame(width: 80, height: 80)
                 }
                 Spacer()
-                HStack {
-                    if audioRecorder.currentRecording != nil {
-                        Button(action: {self.audioRecorder.removeCurrentRecording()}) {
-                            Image(systemName: "trash.circle.fill")
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .frame(width: 80, height: 80)
-                                .clipped()
-                                .foregroundColor(.red)
-                        }
-                        .frame(width: 80, height: 80)
-                    } else if audioRecorder.isRecording == false {
-                        Button(action: {self.audioRecorder.startRecording()}) {
-                            Image(systemName: "record.circle.fill")
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .frame(width: 80, height: 80)
-                                .clipped()
-                                .foregroundColor(.red)
-                        }
-                        .frame(width: 80, height: 80)
-                    } else {
-                        Button(action: {self.audioRecorder.stopRecording()}) {
-                            Image(systemName: "stop.circle.fill")
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .frame(width: 80, height: 80)
-                                .clipped()
-                                .foregroundColor(.yellow)
-//                                .padding(.bottom, 40)
-                        }.frame(width: 80, height: 80)
-                    }
-                    Spacer()
-                    if audioRecorder.currentRecording != nil && !audioRecorder.isRecording {
-                        Button(action: {self.audioRecorder.playBack()}) {
-                            Image(systemName: "play.circle.fill")
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .frame(width: 80, height: 80)
-                                .clipped()
-                                .foregroundColor(.green)
-                            //                                .padding(.bottom, 40)
-                        }.frame(width: 80, height: 80)
-                    }
+                if db.audioRecorder.currentRecording != nil && !db.audioRecorder.isRecording {
+                    Button(action: {db.audioRecorder.playBack()}) {
+                        Image(systemName: "play.circle.fill")
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 80, height: 80)
+                            .clipped()
+                            .foregroundColor(.green)
+                        //                                .padding(.bottom, 40)
+                    }.frame(width: 80, height: 80)
                 }
-
             }
+
         }
-//        .navigationTitle("Recorder")
+        
     }
 }
 //struct RecordingRow: View {
@@ -147,6 +145,6 @@ struct AudioRecorderView: View {
 //}
 struct AudioRecorderView_Previews: PreviewProvider {
     static var previews: some View {
-        AudioRecorderView(audioRecorder: AudioRecorder())
+        AudioRecorderView()
     }
 }

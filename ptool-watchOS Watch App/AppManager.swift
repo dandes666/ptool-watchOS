@@ -115,6 +115,16 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
             }
         }
     }
+    
+    @Published var errorTitle: String? {
+        willSet { objectWillChange.send() }
+    }
+    @Published var errorMessage: String? {
+        willSet { objectWillChange.send() }
+    }
+    @Published var completeTitle: String? {
+        willSet { objectWillChange.send() }
+    }
     var statusString: String {
         guard let status = locationStatus else {
             return "unknown"
@@ -587,50 +597,6 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         }
             
     }
-    func saveMemoToFirestore_back(rec: Recording) {
-        let storage = Storage.storage()
-        // Create a root reference
-        let storageRef = storage.reference()
-        
-        // File located on disk
-//        let localFile = URL(string: "path/to/image")!
-
-        // Create a reference to the file you want to upload
-//        let riversRef = storageRef.child("images/rivers.jpg")
-        let riversRef = storageRef.child("memo/\(userInfo.userId)/\(Date().toString(dateFormat: "dd-MM-YY_'at'_HH:mm:ss")).m4a")
-        
-        // Upload the file to the path "images/rivers.jpg"
-//        let uploadTask = riversRef.putFile(from: localFile, metadata: nil) { metadata, error in
-        let uploadTask = riversRef.putFile(from: rec.fileURL, metadata: nil) { metadata, error in
-            print("trace storage 1")
-            if let err = error {
-                print(err.localizedDescription)
-            }
-            guard let metadata = metadata else {
-                // Uh-oh, an error occurred!
-//                print(error?.localizedDescription)
-                return
-            }
-            // Metadata contains file metadata such as size, content-type.
-//            let size = metadata.size
-//            print("size = \(size)")
-            // You can also access to download URL after upload.
-            riversRef.downloadURL { (url, error) in
-                if let downloadURL = url {
-                    //                  rec.dowloadURL = downloadURL
-                    print(downloadURL)
-                    return
-                } else {
-                    // Uh-oh, an error occurred!
-                    return
-                }
-            }
-              
-            }
-        print("------ trace -----------")
-        print(uploadTask)
-        print("------ trace -----------")
-    }
     
     // Location
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
@@ -747,7 +713,17 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
             return "\(Double(round(10 * dist) / 10)) M"
         }
     }
-    
+    func getCleanDistanceDislpayMax100(loc1: CLLocation, loc2 :CLLocation) -> String {
+        var dist = loc1.distance(from: loc2)
+        if dist > 100000 {
+            return "> 100 Km"
+        } else if (dist > 1000) {
+            dist = dist / 1000
+            return "\(Double(round(10 * dist) / 10)) Km"
+        } else {
+            return "\(Double(round(10 * dist) / 10)) M"
+        }
+    }
     // NOTIFICATION
     func resetAlertNotificationStatus() -> Void {
         for report in self.reportArray {
@@ -774,9 +750,9 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
             "notificationType" : "reportProximityAlert"
         ]
 
-        let show = UNNotificationAction(identifier: "Voir les details", title: "Detail", options: .foreground)
-        let cancel = UNNotificationAction(identifier: "cancel", title: "Ne plus aviser aujourd'hui", options: .foreground)
-        let category = UNNotificationCategory(identifier: "Proximity-Alert", actions: [show, cancel], intentIdentifiers: [], options: [])
+        let show = UNNotificationAction(identifier: "showReport", title: NSLocalizedString("show", comment: ""), options: .foreground)
+//        let cancel = UNNotificationAction(identifier: "cancel", title: "Ne plus aviser aujourd'hui", options: .foreground)
+        let category = UNNotificationCategory(identifier: "Proximity-Alert", actions: [show], intentIdentifiers: [], options: [])
         UNUserNotificationCenter.current().setNotificationCategories([category])
         if delay > 0 {
             let trigger = UNTimeIntervalNotificationTrigger(timeInterval: delay, repeats: false)
@@ -888,22 +864,4 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     }
 }
 
-enum Page {
-//    case signUpPage
-    case welcomePage
-    case signInPage
-    case loadingPage
-    case homePage
-}
-enum TaskStatus {
-    case none
-    case inProgress
-    case error
-    case done
-    case pause
-    case success
-}
-enum memoDest {
-    case comitemixte
-    case supervisor
-}
+

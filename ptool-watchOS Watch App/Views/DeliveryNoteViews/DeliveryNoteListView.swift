@@ -10,35 +10,37 @@ import SwiftUI
 struct DeliveryNoteListView: View {
     @EnvironmentObject var db: AppManager
     var body: some View {
-        NavigationView() {
-            ScrollView {
-                if db.deliveryNoteArray.count > 0 {
-                    ForEach(db.deliveryNoteArray) { d in
-                        NavigationLink(destination: DeliveryNoteDetailView(dn: d)) {
-                            VStack {
-                                DeliveryNoteItemView(dn: d)
-                                if let location = db.lastLocation {
-                                    Text(db.getCleanDistanceDislpay(loc1: d.gps, loc2: location))
-                                }
+        ScrollView {
+            if db.deliveryNoteArray.count > 0 {
+                ForEach(db.deliveryNoteArray) { d in
+                    NavigationLink(value: d) {
+                        VStack {
+                            DeliveryNoteItemView(dn: d)
+                            if let location = db.lastLocation {
+                                Text(db.getCleanDistanceDislpay(loc1: d.gps, loc2: location))
                             }
                         }
                     }
-                } else {
-                    HStack {
-                        Text("\(NSLocalizedString("Aucune note de livraison pour cette route", comment: "")) (")
-                            .fontWeight(Font.Weight.bold)
-                            .foregroundColor(Color.red)
-                        + Text(db.getCurrentRouteName())
-                            .fontWeight(Font.Weight.black)
-                        + Text(")")
-                            .fontWeight(Font.Weight.bold)
-                            .foregroundColor(Color.red)
-                    }
-                        .lineLimit(5)
-                        .padding(.top, 20)
                 }
+            } else {
+                HStack {
+                    Text("\(NSLocalizedString("Aucune note de livraison pour cette route", comment: "")) (")
+                        .fontWeight(Font.Weight.bold)
+                        .foregroundColor(Color.red)
+                    + Text(db.getCurrentRouteName())
+                        .fontWeight(Font.Weight.black)
+                    + Text(")")
+                        .fontWeight(Font.Weight.bold)
+                        .foregroundColor(Color.red)
+                }
+                    .lineLimit(5)
+                    .padding(.top, 20)
             }
-        }.navigationTitle(NSLocalizedString("Retour", comment: ""))
+        }
+        .navigationDestination(for: DeliveryNote.self) { dn in
+            DeliveryNoteDetailView(dn: dn)
+        }
+        .navigationTitle(NSLocalizedString("home", comment: ""))
     }
 }
 

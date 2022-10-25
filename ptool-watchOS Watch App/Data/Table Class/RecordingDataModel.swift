@@ -6,7 +6,7 @@
 //
 
 import Foundation
-struct Recording {
+struct Recording: Hashable {
     let id = UUID()
     let fileURL: URL
     let createdAt: Date

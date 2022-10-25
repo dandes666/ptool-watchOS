@@ -12,28 +12,29 @@ struct LoadingView: View {
     @State private var isLoading = false
     var title: String
     var body: some View {
-        NavigationView {
+        VStack {
+            Text("\(title)...")
+                .font(.title3)
             ZStack {
-//                PtoolLogoView(imageWidth: 50, imageHeight: 50)
-//                    .navigationTitle("Chargement...")
+                //                PtoolLogoView(imageWidth: 50, imageHeight: 50)
+                //                    .navigationTitle("Chargement...")
                 Image("Logo")
                     .resizable()
                     .frame(width: 110, height: 110, alignment: .center)
                 Image("LoadingLoopIcon2")
-//                Image("Radar")
+                //                Image("Radar")
                     .resizable()
                     .frame(width: 135, height: 135, alignment: .center)
                     .rotationEffect(Angle(degrees: isLoading ? 360 : 0))
-//                    .animation(Animation.easeIn(duration: 1), value: self.isLoading)
+                //                    .animation(Animation.easeIn(duration: 1), value: self.isLoading)
                     .animation(Animation.default.repeatForever(autoreverses: false), value: self.isLoading)
-//                        .animation(Animation.default.repeatForever(autoreverses: false))
+                //                        .animation(Animation.default.repeatForever(autoreverses: false))
                     .onAppear() {
                         self.isLoading = true
                     }
-                    .navigationTitle("\(title)...")
-
+//                    .navigationTitle("\(title)...")
+                
             }
-
         }
     }
 

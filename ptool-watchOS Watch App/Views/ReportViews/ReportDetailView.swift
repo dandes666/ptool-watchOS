@@ -60,6 +60,8 @@ struct ReportDetailView: View {
 //                }
             }
         }
+        .navigationBarTitle(NSLocalizedString("Signalements", comment: ""))
+//        .navigationTitle("Config")
     }
 }
 
