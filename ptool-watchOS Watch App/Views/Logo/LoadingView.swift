@@ -26,8 +26,9 @@ struct LoadingView: View {
                     .resizable()
                     .frame(width: 135, height: 135, alignment: .center)
                     .rotationEffect(Angle(degrees: isLoading ? 360 : 0))
+//                    .animation(.easeIn(duration: <#T##Double#>), value: <#T##Equatable#>)
                 //                    .animation(Animation.easeIn(duration: 1), value: self.isLoading)
-                    .animation(Animation.default.repeatForever(autoreverses: false), value: self.isLoading)
+                    .animation(.linear(duration: 1).repeatForever(autoreverses: false), value: self.isLoading)
                 //                        .animation(Animation.default.repeatForever(autoreverses: false))
                     .onAppear() {
                         self.isLoading = true

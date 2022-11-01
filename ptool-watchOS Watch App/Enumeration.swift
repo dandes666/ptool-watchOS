@@ -11,9 +11,14 @@ enum MasterRoute: Hashable {
     case reportList
     case deliveryNoteList
     case config
-    case memo
+    case tool
     case complete
     case error
+}
+enum ToolRoute: Hashable {
+    case memoList
+    case fullbox
+    case memo
 }
 enum ConfigRoute: Hashable {
     case officeSelect
@@ -36,7 +41,22 @@ enum TaskStatus {
     case pause
     case success
 }
-enum memoDest {
+enum MemoDest {
     case comitemixte
     case supervisor
+}
+enum MemoType {
+    case officeReminder
+    case messToSupervisor
+    case messToComiteMixte
+}
+enum AudioPlayerStatus {
+    case stop
+    case play
+    case pause
+}
+enum AudioPlayerMode {
+    case standard
+    case buttonPlayOnly
+    case buttonAndDetail
 }

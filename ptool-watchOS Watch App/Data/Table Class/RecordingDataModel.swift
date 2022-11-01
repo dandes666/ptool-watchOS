@@ -9,6 +9,8 @@ import Foundation
 struct Recording: Hashable {
     let id = UUID()
     let fileURL: URL
+    // createFrom est la date de debut de l'enregistrement
+    let createdFrom: Date
     let createdAt: Date
     var fileName: String?
     var dowloadURL: String?

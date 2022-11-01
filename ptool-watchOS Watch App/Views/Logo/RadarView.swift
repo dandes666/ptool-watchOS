@@ -17,7 +17,9 @@ struct RadarView: View {
                 .resizable()
                 .frame(width: width, height: width, alignment: .center)
                 .rotationEffect(Angle(degrees: isLoading ? 360 : 0))
-                .animation(Animation.default.repeatForever(autoreverses: false), value: self.isLoading)
+//                .animation(.easeInOut(duration: 1), value: self.isLoading)
+//                .animation(Animation.default.repeatForever(autoreverses: false), value: self.isLoading)
+                .animation(.linear(duration: 1).repeatForever(autoreverses: false), value: self.isLoading)
                 .onAppear() {
                     self.isLoading = true
                 }

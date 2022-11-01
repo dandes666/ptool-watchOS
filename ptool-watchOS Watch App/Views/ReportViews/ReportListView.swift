@@ -10,9 +10,10 @@ import SwiftUI
 struct ReportListView: View {
     @EnvironmentObject var db: AppManager
     var body: some View {
+        let rArray = db.getProximityRepportArray()
         ScrollView {
-            if db.reportArray.count > 0 {
-                ForEach(db.reportArray) { r in
+            if rArray.count > 0 {
+                ForEach(rArray) { r in
                     NavigationLink(value: r) {
                         VStack {
                             ReportItemView(report: r)

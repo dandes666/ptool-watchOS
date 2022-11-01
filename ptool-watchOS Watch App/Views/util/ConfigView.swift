@@ -85,6 +85,8 @@ struct ConfigView: View {
 
 struct ConfigView_Previews: PreviewProvider {
     static var previews: some View {
-        ConfigView()
+        NavigationStack {
+            ConfigView().environmentObject(AppManager())
+        }
     }
 }

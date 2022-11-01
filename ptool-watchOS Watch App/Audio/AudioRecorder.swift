@@ -10,17 +10,18 @@ import SwiftUI
 import Combine
 import AVFoundation
 import AVFAudio
+import AVKit
 
 class AudioRecorder: NSObject,ObservableObject {
     let objectWillChange = PassthroughSubject<AudioRecorder, Never>()
     var audioRecorder: AVAudioRecorder!
     var recordings = [Recording]()
-    var currentRecording: Recording? {
+    @Published var currentRecording: Recording? {
         didSet {
             objectWillChange.send(self)
         }
     }
-    var isRecording = false {
+    @Published var isRecording = false {
         didSet {
             objectWillChange.send(self)
         }
@@ -40,13 +41,15 @@ class AudioRecorder: NSObject,ObservableObject {
             objectWillChange.send(self)
         }
     }
-    var canRecord: Bool = false
-
+    @Published var canRecord: Bool = false
     
-    override init() {
-        super.init()
-        fetchRecordings()
-    }
+    private var startRecordingAt: Date?
+//    @Published var audioRecorderStatus
+    
+//    override init() {
+//        super.init()
+//        fetchRecordings()
+//    }
 
     func startRecording() {
         AVAudioSession.sharedInstance().requestRecordPermission { granted in
@@ -77,6 +80,7 @@ class AudioRecorder: NSObject,ObservableObject {
             }
             
             let documentPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+//            self.recordUrl = documentPath.appendingPathComponent("memo-\(Date().toString(dateFormat: "dd-MM-YY_'at'_HH:mm:ss")).m4a")
 //            self.recordDocumentPath = documentPath
             //        let audioFilename = documentPath.appendingPathComponent("\(Utils.dateFormatter(Date(), "dd-MM-YY_'at'_HH:mm:ss"))")
 //            print("trace --> \(documentPath)")
@@ -94,6 +98,7 @@ class AudioRecorder: NSObject,ObservableObject {
                 audioRecorder = try AVAudioRecorder(url: self.recordUrl!, settings: settings)
                 audioRecorder.record()
                 isRecording = true
+                startRecordingAt = Date()
             } catch {
                 print("Could not start recording")
             }
@@ -102,10 +107,11 @@ class AudioRecorder: NSObject,ObservableObject {
     func stopRecording() {
         if self.canRecord {
             audioRecorder.stop()
+//            audioRecorder.
             isRecording = false
             if let url = self.recordUrl {
                 print(url)
-                self.currentRecording = Recording(fileURL: url, createdAt: Date(), fileName: nil, dowloadURL: nil)
+                self.currentRecording = Recording(fileURL: url, createdFrom: startRecordingAt ?? Date(), createdAt: Date(), fileName: nil, dowloadURL: nil)
             }
 //            fetchRecordings()
         } else {print("pas de permission")}
@@ -123,64 +129,20 @@ class AudioRecorder: NSObject,ObservableObject {
             print("Could not remove recording")
         }
     }
-    func playBack() {
-        print("trace playBack")
-        if let url = self.currentRecording?.fileURL {
-            print("trace Start playBack url :")
-            print(url)
-            var player: AVAudioPlayer!
-            print("trace playSound")
-            let startAccess = url.startAccessingSecurityScopedResource()
-            print("trace startAccess = \(startAccess)")
-            do {
-                // Set up the AVAudioSession configuration
-                try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
-        //        try AVAudioSession.sharedInstance().setCategory(.soloAmbient, mode: .default)
-        //        print("trace apres cat =")
-        //        print(AVAudioSession.sharedInstance().category)
-                print("trace playBack apres setCategory")
-                try AVAudioSession.sharedInstance().setActive(true)
-                print("trace playBack set active")
-                // Keep an instance of AVAudioPlayer at the UIViewController level
-        //        player.delegate = self
-                let data = try! Data(contentsOf: url)
-                print("trace playBack apres Data")
-                print(data.count)
-//                if let data = Dat
-//                player = try! AVAudioPlayer(contentsOf: url)
-//                let documentPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-//                let audioFilename = documentPath.appendingPathComponent("memo.m4a")
-//                let testurl = try URL(string: url)
-                player = try! AVAudioPlayer(contentsOf: url)
-//                player = try! AVAudioPlayer(data: data, fileTypeHint: AVFileType.m4a.rawValue)
-
-                print("trace playBack before play")
-                player.prepareToPlay()
-                player.volume = 10
-                player.play()
-            } catch let error {
-                print("trace playBack erreur playSound")
-                print(error.localizedDescription)
-                  
-            }
-            url.stopAccessingSecurityScopedResource()
-            print("trace playBack stopAccess")
-        }
-    }
-    func fetchRecordings() {
-        recordings.removeAll()
-        
-        let fileManager = FileManager.default
-        let documentDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        let directoryContents = try! fileManager.contentsOfDirectory(at: documentDirectory, includingPropertiesForKeys: nil)
-        for audio in directoryContents {
-            let recording = Recording(fileURL: audio, createdAt: getCreationDate(for: audio), fileName: "test", dowloadURL: nil)
-            recordings.append(recording)
-        }
-        recordings.sort(by: { $0.createdAt.compare($1.createdAt) == .orderedAscending})
-                
-        objectWillChange.send(self)
-    }
+//    func fetchRecordings() {
+//        recordings.removeAll()
+//
+//        let fileManager = FileManager.default
+//        let documentDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+//        let directoryContents = try! fileManager.contentsOfDirectory(at: documentDirectory, includingPropertiesForKeys: nil)
+//        for audio in directoryContents {
+//            let recording = Recording(fileURL: audio, createdAt: getCreationDate(for: audio), fileName: "test", dowloadURL: nil)
+//            recordings.append(recording)
+//        }
+//        recordings.sort(by: { $0.createdAt.compare($1.createdAt) == .orderedAscending})
+//
+//        objectWillChange.send(self)
+//    }
     func getCreationDate(for file: URL) -> Date {
         if let attributes = try? FileManager.default.attributesOfItem(atPath: file.path) as [FileAttributeKey: Any],
             let creationDate = attributes[FileAttributeKey.creationDate] as? Date {

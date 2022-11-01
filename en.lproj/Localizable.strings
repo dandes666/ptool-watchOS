@@ -8,9 +8,13 @@
 "Guardian" = "Guardian";
 "welcome" = "Welcome";
 "enter" = "Enter";
+"Error" = "Error";
+"duration" = "Duration";
 "prodBy" = "Produced by";
 "PTOOL-LOGO" = "PTOOL-LOGO";
 "Enregistrement en cours..." = "Record in progress...";
+"Envoi de memo reussi" = "Memo sent successfully";
+"try again later" = "Try again later";
 "Appuyer sur le bouton pour enregistrer un message vocal" = "Press the button to record a voice message";
 "Memo vocal" = "Voice memo";
 "Creer le" = "Create at";
@@ -60,10 +64,13 @@
 "image-logo-complete" = "Logo-complete-en";
 "image-logo-error" = "Logo-error-en";
 
-// navigation title
+// navigation
 "nt-home" = "Home";
 "config" = "Configuration";
 "memo" = "Memo";
+"memocreate" = "Create new memo";
+"memolist" = "List of memo";
+"fullbox" = "Full box";
 
 // Notification
 "show" = "Show Report";

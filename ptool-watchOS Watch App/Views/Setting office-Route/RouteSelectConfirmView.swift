@@ -9,6 +9,7 @@ import SwiftUI
 
 struct RouteSelectConfirmView: View {
     @EnvironmentObject var db: AppManager
+    @EnvironmentObject var router: Router
     var route: Route
     var body: some View {
         VStack {
@@ -17,6 +18,7 @@ struct RouteSelectConfirmView: View {
             Button(NSLocalizedString("je confirme", comment: ""))
             {
                 db.setRouteSelection(officeId: route.officeId, routeId: route.routeId)
+                router.reset()
             }.padding(.top, 15)
         }
     }

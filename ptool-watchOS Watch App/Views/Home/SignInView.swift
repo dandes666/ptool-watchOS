@@ -10,6 +10,8 @@ import Firebase
 import FirebaseFunctions
 
 struct SignInView: View {
+    @Environment(\.managedObjectContext) var moc
+    @FetchRequest(sortDescriptors: []) var memoVocals: FetchedResults<MemoVocal>
     
     @EnvironmentObject var db: AppManager
     
@@ -27,9 +29,9 @@ struct SignInView: View {
             VStack() {
                 //            LogoView()
                 //            Spacer()
-                Image("Logo")
-                    .resizable()
-                    .frame(width: 40, height: 40, alignment: .topLeading)
+//                Image("Logo")
+//                    .resizable()
+//                    .frame(width: 40, height: 40, alignment: .topLeading)
                 SignInCredentialFields(email: $email, password: $password)
                 if signInErrorMessage != "" {
                     Text(signInErrorMessage)
@@ -39,10 +41,17 @@ struct SignInView: View {
                 Button(action: {
                     signInUser(userEmail: email, userPassword: password)
                 }) {
-                    Text(NSLocalizedString("Connection", comment: ""))
-                        .bold()
-//                        .frame(width: 360, height: 50)
-                        .cornerRadius(10)
+                    HStack {
+                        Image("Logo")
+                            .resizable()
+                            .frame(width: 30, height: 30, alignment: .topLeading)
+                        Spacer()
+                        Text(NSLocalizedString("Connection", comment: ""))
+                            .bold()
+                        //                        .frame(width: 360, height: 50)
+//                            .cornerRadius(10)
+                        Spacer()
+                    }
                 }
                 .foregroundColor(getConnectionTextColor())
                 .padding(.top, 10)
@@ -64,25 +73,7 @@ struct SignInView: View {
         
         print(type(of: value))
     }
-//    func loadUserData(uid: String, uemail: String) {
-//        print("trace result loadUserData")
-//        let decoder = JSONDecoder()
-//        decoder.keyDecodingStrategy = .convertFromSnakeCase
-//        lazy var functions = Functions.functions()
-//        functions.httpsCallable("getGuardianInfo").call(["email": uemail]) { result, error in
-//            if let error = error as NSError? {
-//                print("trace 1")
-//                completion(value: nil, error: error)
-//            } else {
-//                if let data = result?.data as? NSDictionary {
-//                    db.loadResultData(result: data)
-//                }
-//            }
-//            withAnimation {
-//                db.currentPage = .homePage
-//            }
-//        }
-//    }
+
     func signInUser(userEmail: String, userPassword: String) {
         
         signInProcessing = true
@@ -109,13 +100,36 @@ struct SignInView: View {
                     let uid = user.uid
                     let uemail = user.email
                     db.loadUserData(uid: uid, uemail: uemail!)
+                    for m in memoVocals {
+//                        print(m.userId)
+                        if let muid = m.userId {
+                            print(muid)
+                            if (muid == uid) {
+                                print(muid)
+                                if let memoId = m.id {
+                                    db.memoArray += [Memo(id: memoId, type: getMemoTypeFromString(mString: m.type ?? ""), officeId: m.officeId ?? "", routeId: m.routeId ?? "", fileURL: m.url ?? URL(filePath: ""), downloadURL: m.downloadURL, createdAt: m.createdAt ?? Date(), createdFrom: m.createdFrom ?? Date(), adviseAt: m.adviseAt, active: m.active)]
+                                    print("trace load memo --------------------------")
+//                                    db.memoArray += [Memo(id: memoId, officeId: m.officeId ?? "", fileURL: m.url ?? URL(filePath: ""), createAt: m.createdAt ?? Date(), active: m.active)]
+                                }
+                            }
+                        }
+                        
+                    }
                 }
             }
             
         }
         
     }
-
+    func getMemoTypeFromString(mString: String) -> MemoType {
+        switch mString {
+        case "OFFICE-REMINDER":
+            return .officeReminder
+        default:
+            return .officeReminder
+        }
+    }
+    
 }
 
 struct SignInView_Previews: PreviewProvider {

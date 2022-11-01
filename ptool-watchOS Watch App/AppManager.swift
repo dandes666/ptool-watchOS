@@ -23,7 +23,9 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     
 //    private var firebaseAuth
     private var signInProcessing = false
-    @Published var audioRecorder = AudioRecorder()
+    @Published var audioRecorder = AudioRecorder() {
+        willSet { objectWillChange.send() }
+    }
     @Published var currentPage: Page {
         willSet { objectWillChange.send() }
     }
@@ -55,6 +57,15 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var deliveryNoteArray: [DeliveryNote] = []
     
     @Published var currentTaskStatus: TaskStatus = .none {
+        willSet {
+            if currentTaskStatus != .error {
+                self.currentTaskMessage = nil
+            }
+            objectWillChange.send()
+            
+        }
+    }
+    @Published var currentTaskMessage: String? {
         willSet { objectWillChange.send() }
     }
     @Published var currentTaskProgress: Double = 0 {
@@ -187,7 +198,16 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     func getCurrentOfficeName() -> String {
         return officeArray[userInfo.officeIdx].name
     }
-
+    func getFullBoxArray() -> [Report] {
+        return self.reportArray.filter { r in
+            return r.type == "fullbox"
+          }
+    }
+    func getProximityRepportArray() -> [Report] {
+        return self.reportArray.filter { r in
+            return r.type != "fullbox"
+          }
+    }
 
     // FireBase
     func signInUser(userEmail: String, userPassword: String) -> String? {
@@ -477,7 +497,7 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         
         self.objectWillChange.send()
         if self.guardianActive {
-            verifPoximity()
+            verifProximity()
 //            if self.isPoximityReportActive {
 //                self.setReportNotificationAlert()
 //            }
@@ -513,6 +533,7 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
                 print("trace B")
                 print(error.localizedDescription)
                 self.currentTaskStatus = .error
+                self.currentTaskMessage = error.localizedDescription
                 self.objectWillChange.send()
             } else {
                 print("trace Success")
@@ -562,6 +583,11 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
                 } else {
                     // Uh-oh, an error occurred!
                     self.currentTaskStatus = .error
+                    if let error = error as NSError? {
+                        self.currentTaskMessage = error.localizedDescription
+                    } else {
+                        self.currentTaskMessage = NSLocalizedString("try again later", comment: "")
+                    }
                     return
                 }
             }
@@ -573,6 +599,7 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
             if let error = snapshot.error as? NSError {
                 print(error.localizedDescription)
                 self.currentTaskStatus = .error
+                self.currentTaskMessage = error.localizedDescription
                 switch (StorageErrorCode(rawValue: error.code)!) {
                 case .objectNotFound:
                   // File doesn't exist
@@ -621,7 +648,7 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         }
         objectWillChange.send()
 
-        verifPoximity()
+        verifProximity()
     }
     func addAlert(report: Report?, note: DeliveryNote?) {
         print("Trace -> addAlert")
@@ -635,7 +662,7 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
 //            deliveryNoteArray += [n]
         }
     }
-    func verifPoximity () {
+    func verifProximity () {
         // valeur pour test
         //        Secure dist: 20.0 lat: 46.826 lng: -71.169
         //        Secure dist: 6.8 lat: 46.82512163489645 lng: -71.16894056998049
@@ -650,9 +677,17 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         var cptNof: Double = 0
         // duree avant nouvelle notification en sec 60s X 60m X 8hrs = 28800 seconde
 //        let dureeNextDayNotification: Double = 28800
-        
+       
         if guardianActive == true {
             if let location = lastLocation {
+                // Verifier les memo
+//                ForEach(self.officeArray) { office in
+//                    if let gps = office.gps {
+//                        if gps.distance(from: location) < 30 {
+//                            print("alert verifProximity")
+//                        }
+//                    }
+//                 }
                 //  Verifier Les report
                 if self.isPoximityReportActive {
                     for i in 0 ..< reportArray.count {

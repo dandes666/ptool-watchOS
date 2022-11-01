@@ -22,14 +22,6 @@ class Office: NSObject, Identifiable {
         self.gps = gps
         self.routeArray = routeArray
     }
-//    init(officeId: String, name: String, address: String, routeArray: [Route]) {
-//        self.officeId = officeId
-//        self.name = name
-//        self.address = address
-//        self.routeArray = routeArray
-//    }
-//    func addRoute(route: Route) {
-//        self.routeArray += route
-//    }
+    
 
 }

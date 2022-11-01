@@ -12,7 +12,8 @@ import UserNotifications
 struct ptool_watchOS_Watch_AppApp: App {
 
 //    @StateObject var router = Router()
-    
+    @StateObject private var dataController = DataController()
+    @StateObject private var audioManager = AudioManager()
     private var delegate: NotificationDelegate = NotificationDelegate()
 
     init() {
@@ -33,6 +34,9 @@ struct ptool_watchOS_Watch_AppApp: App {
             MotherView()
                 .environmentObject(delegate.db)
                 .environmentObject(delegate.router)
+                .environmentObject(delegate.db.audioRecorder)
+                .environment(\.managedObjectContext, dataController.container.viewContext)
+                .environmentObject(audioManager)
         }
         #if os(watchOS)
         WKNotificationScene(controller: NotificationController.self, category: "Proximity-Alert")

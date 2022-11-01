@@ -10,23 +10,16 @@ import AVFoundation
 struct AudioRecorderView: View {
     
 //    @ObservedObject var audioRecorder: AudioRecorder
+    @EnvironmentObject var audioRecorder: AudioRecorder
     @EnvironmentObject var db: AppManager
-//    let ar = AVAudioRecorder()
 
-    enum Flavor: String, CaseIterable, Identifiable {
-        case chocolate, vanilla, strawberry
-        var id: Self { self }
-    }
-
-    @State private var selectedFlavor: Flavor = .chocolate
-    
     
     var body: some View {
 
         VStack{
-            if db.audioRecorder.isRecording {
+            if audioRecorder.isRecording {
                 Text(NSLocalizedString("Enregistrement en cours...", comment: ""))
-            } else if let cRecording = db.audioRecorder.currentRecording {
+            } else if let cRecording = audioRecorder.currentRecording {
                 NavigationLink(value: cRecording) {
                     HStack {
                         RecordingView(rec: cRecording)
@@ -51,8 +44,8 @@ struct AudioRecorderView: View {
             Spacer()
                 .navigationTitle(NSLocalizedString("nt-home", comment: ""))
             HStack {
-                if db.audioRecorder.currentRecording != nil {
-                    Button(action: {db.audioRecorder.removeCurrentRecording()}) {
+                if audioRecorder.currentRecording != nil {
+                    Button(action: {audioRecorder.removeCurrentRecording()}) {
                         Image(systemName: "trash.circle.fill")
                             .resizable()
                             .aspectRatio(contentMode: .fill)
@@ -61,8 +54,8 @@ struct AudioRecorderView: View {
                             .foregroundColor(.red)
                     }
                     .frame(width: 80, height: 80)
-                } else if db.audioRecorder.isRecording == false {
-                    Button(action: {db.audioRecorder.startRecording()}) {
+                } else if audioRecorder.isRecording == false {
+                    Button(action: {audioRecorder.startRecording()}) {
                         Image(systemName: "record.circle.fill")
                             .resizable()
                             .aspectRatio(contentMode: .fill)
@@ -72,7 +65,7 @@ struct AudioRecorderView: View {
                     }
                     .frame(width: 80, height: 80)
                 } else {
-                    Button(action: {db.audioRecorder.stopRecording()}) {
+                    Button(action: {audioRecorder.stopRecording()}) {
                         Image(systemName: "stop.circle.fill")
                             .resizable()
                             .aspectRatio(contentMode: .fill)
@@ -83,16 +76,18 @@ struct AudioRecorderView: View {
                     }.frame(width: 80, height: 80)
                 }
                 Spacer()
-                if db.audioRecorder.currentRecording != nil && !db.audioRecorder.isRecording {
-                    Button(action: {db.audioRecorder.playBack()}) {
-                        Image(systemName: "play.circle.fill")
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 80, height: 80)
-                            .clipped()
-                            .foregroundColor(.green)
-                        //                                .padding(.bottom, 40)
-                    }.frame(width: 80, height: 80)
+                if audioRecorder.currentRecording != nil && !audioRecorder.isRecording {
+//                    Button(action: {audioRecorder.playBack()}) {
+//                        Image(systemName: "play.circle.fill")
+//                            .resizable()
+//                            .aspectRatio(contentMode: .fill)
+//                            .frame(width: 80, height: 80)
+//                            .clipped()
+//                            .foregroundColor(.green)
+//                    }.frame(width: 80, height: 80)
+                    if let url = audioRecorder.currentRecording?.fileURL {
+                        AudioPlayerView(url: url, mode: .buttonPlayOnly, playLooping: false, autoStart: false)
+                    }
                 }
             }
 

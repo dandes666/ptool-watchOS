@@ -11,20 +11,24 @@ struct ErrorView: View {
     let width: Double
     let height: Double
     let title: String
-    let desc: String
+    let desc: String?
     var body: some View {
-        VStack {
-            Text(title)
-                .font(Font.title3)
-            Spacer()
-            Image(NSLocalizedString("image-logo-error", comment: ""))
-                .resizable()
-                .frame(width: width, height: height, alignment: .center)
-            Spacer()
-            Text(desc)
-                .font(Font.caption)
-                .foregroundColor(Color.red)
-                .lineLimit(nil)
+        ScrollView {
+            VStack {
+                Text(title)
+                    .font(Font.title3)
+                Spacer()
+                Image(NSLocalizedString("image-logo-error", comment: ""))
+                    .resizable()
+                    .frame(width: width, height: height, alignment: .center)
+                Spacer()
+                if let d = desc {
+                    Text(d)
+                        .font(Font.caption)
+                        .foregroundColor(Color.red)
+                        .lineLimit(nil)
+                }
+            }
         }
     }
 }
