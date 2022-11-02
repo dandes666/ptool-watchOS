@@ -10,13 +10,9 @@ import Firebase
 import UserNotifications
 
 struct MotherView: View {
-    
-//    @EnvironmentObject var viewRouter: ViewRouter
     @EnvironmentObject var db: AppManager
     var body: some View {
         switch db.currentPage {
-//        case .signUpPage:
-//            SignUpView()
         case .signInPage:
             SignInView()
         case .homePage:

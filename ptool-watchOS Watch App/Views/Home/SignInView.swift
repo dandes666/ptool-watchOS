@@ -90,7 +90,7 @@ struct SignInView: View {
                 print("Could not sign in user.")
                 signInProcessing = false
             case .some(_):
-                print("User signed in")
+//                print("User signed in")
 
                 signInProcessing = false
                 
@@ -107,9 +107,7 @@ struct SignInView: View {
                             if (muid == uid) {
                                 print(muid)
                                 if let memoId = m.id {
-                                    db.memoArray += [Memo(id: memoId, type: getMemoTypeFromString(mString: m.type ?? ""), officeId: m.officeId ?? "", routeId: m.routeId ?? "", fileURL: m.url ?? URL(filePath: ""), downloadURL: m.downloadURL, createdAt: m.createdAt ?? Date(), createdFrom: m.createdFrom ?? Date(), adviseAt: m.adviseAt, active: m.active)]
-                                    print("trace load memo --------------------------")
-//                                    db.memoArray += [Memo(id: memoId, officeId: m.officeId ?? "", fileURL: m.url ?? URL(filePath: ""), createAt: m.createdAt ?? Date(), active: m.active)]
+                                    db.memoArray += [Memo(id: memoId, type: db.getMemoTypeFromString(mString: m.type ?? ""), officeId: m.officeId ?? "", routeId: m.routeId ?? "", fileURL: m.url ?? URL(filePath: ""), downloadURL: m.downloadURL, createdAt: m.createdAt ?? Date(), createdFrom: m.createdFrom ?? Date(), adviseAt: m.adviseAt, active: m.active)]
                                 }
                             }
                         }
@@ -121,14 +119,7 @@ struct SignInView: View {
         }
         
     }
-    func getMemoTypeFromString(mString: String) -> MemoType {
-        switch mString {
-        case "OFFICE-REMINDER":
-            return .officeReminder
-        default:
-            return .officeReminder
-        }
-    }
+    
     
 }
 

@@ -74,3 +74,14 @@
 
 // Notification
 "show" = "Show Report";
+
+// memo type
+"officeReminder" = "Office reminder";
+"messToSupervisor" = "Memo sent to supervisor";
+"messToComiteMixte" = "Memo sent to the joint committee";
+
+// memoVocal type
+"OFFICE-REMINDER" = "Call back to office";
+"SUPERVISOR-SENT" = "Memo sent to supervisor";
+"COMITEMIXTE-SENT" = "Memo sent to the joint committee";
+"MEMO-ONLY" = "Memo";

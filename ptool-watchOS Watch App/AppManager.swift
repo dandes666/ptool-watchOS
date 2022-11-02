@@ -56,21 +56,10 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var alertDeleveryNote: [DeliveryNote] = []
     @Published var deliveryNoteArray: [DeliveryNote] = []
     
-    @Published var currentTaskStatus: TaskStatus = .none {
-        willSet {
-            if currentTaskStatus != .error {
-                self.currentTaskMessage = nil
-            }
-            objectWillChange.send()
-            
-        }
-    }
-    @Published var currentTaskMessage: String? {
+    @Published var currentTask: AppTask = AppTask(status: nil) {
         willSet { objectWillChange.send() }
     }
-    @Published var currentTaskProgress: Double = 0 {
-        willSet { objectWillChange.send() }
-    }
+
     
     @Published var status: CLAuthorizationStatus? {
         willSet { objectWillChange.send() }
@@ -261,6 +250,38 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
             }
         }
     }
+    func getTodayColor() -> Color {
+        return getDateColor(date: Date())
+    }
+    func getDateColor(date: Date) -> Color {
+        return Color.blue
+    }
+    func getMemoTypeString(memoType: MemoType) -> String {
+        switch memoType {
+        case .officeReminder:
+            return "OFFICE-REMINDER"
+        case .messToSupervisor:
+            return "SUPERVISOR-SENT"
+        case .messToComiteMixte:
+            return "COMITEMIXTE-SENT"
+        case .memoOnly:
+            return "MEMO-ONLY"
+        }
+    }
+    func getMemoTypeFromString(mString: String) -> MemoType {
+        switch mString {
+        case "OFFICE-REMINDER":
+            return .officeReminder
+        case "SUPERVISOR-SENT":
+            return .messToSupervisor
+        case "COMITEMIXTE-SENT":
+            return .messToComiteMixte
+        case "MEMO-ONLY":
+            return .memoOnly
+        default:
+            return .memoOnly
+        }
+    }
     func setRouteSelection(officeId:String, routeId: String) {
         print("set RouteId = \(routeId) officeId = \(officeId)")
         let decoder = JSONDecoder()
@@ -299,7 +320,7 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     }
     func loadResultData(result: NSDictionary) {
 //        print(result)
-        print("trace loadResultData")
+//        print("trace loadResultData")
         if let u = result["userInfo"] as? NSDictionary {
             print("Trace loadResultData-userInfo")
             if let userId = u["userId"] as? String {
@@ -509,13 +530,10 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     func createMemoOfficeNotification(rec: Recording) {
 //        let memo = Memo(officeId: <#T##String#>, fileURL: <#T##URL#>)
     }
-    func sendMemoTo(downloadURL: URL, to: String) {
+    func sendMemoTo(downloadURL: URL, to: String, completion: @escaping (URL?, NSError?) -> Void) {
         print("trace sendMemoTo")
-        self.currentTaskStatus = .inProgress
+        self.currentTask.status = .inProgress
         self.objectWillChange.send()
-//        self.currentPage = .loadingPage
-//        let decoder = JSONDecoder()
-//        decoder.keyDecodingStrategy = .convertFromSnakeCase
         lazy var functions = Functions.functions()
         let params: [String: Any] = [
             "to": to,
@@ -530,19 +548,19 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         print(params)
         functions.httpsCallable("sendMemoTo").call(params) { result, error in
             if let error = error as NSError? {
-                print("trace B")
                 print(error.localizedDescription)
-                self.currentTaskStatus = .error
-                self.currentTaskMessage = error.localizedDescription
+                self.currentTask.status = .error
+                self.currentTask.message = error.localizedDescription
                 self.objectWillChange.send()
             } else {
                 print("trace Success")
-                self.currentTaskStatus = .success
+                completion(downloadURL, nil)
+                self.currentTask.status = .success
                 self.objectWillChange.send()
             }
         }
     }
-    func saveMemoToFirestore(rec: Recording, to: String) {
+    func saveMemoToFirestore(rec: Recording, to: String, completion: @escaping (URL?, NSError?) -> Void) {
         // Local file you want to upload
 //        let localFile = URL(string: "path/to/image")!
         
@@ -559,37 +577,42 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         // Listen for state changes, errors, and completion of the upload.
         uploadTask.observe(.resume) { snapshot in
           // Upload resumed, also fires when the upload starts
-            self.currentTaskStatus = .inProgress
+            self.currentTask.status = .inProgress
             print("trace resume -> \(snapshot.description)")
         }
 
         uploadTask.observe(.pause) { snapshot in
           // Upload paused
-            self.currentTaskStatus = .pause
+            self.currentTask.status = .pause
         }
 
         uploadTask.observe(.progress) { snapshot in
           // Upload reported progress
-            self.currentTaskProgress = 100.0 * Double(snapshot.progress!.completedUnitCount)
+            self.currentTask.progress = Double(snapshot.progress!.completedUnitCount)
             / Double(snapshot.progress!.totalUnitCount)
         }
 
         uploadTask.observe(.success) { snapshot in
             memoRef.downloadURL { (url, error) in
-                if let downloadURL = url {
-                    self.sendMemoTo(downloadURL: downloadURL, to: to)
-//                    self.currentTaskStatus = .success
-                    return
-                } else {
-                    // Uh-oh, an error occurred!
-                    self.currentTaskStatus = .error
-                    if let error = error as NSError? {
-                        self.currentTaskMessage = error.localizedDescription
-                    } else {
-                        self.currentTaskMessage = NSLocalizedString("try again later", comment: "")
-                    }
+                if let err = error as? NSError {
+                    completion(nil, err)
                     return
                 }
+                if let downloadURL = url {
+                    self.sendMemoTo(downloadURL: downloadURL, to: to, completion: completion)
+                    return
+                }
+//                } else {
+//                    // Uh-oh, an error occurred!
+//                    self.currentTask.status = .error
+////                    if let error = error as NSError? {
+////                        self.currentTask.message = error.localizedDescription
+////                    } else {
+////                        self.currentTask.message = NSLocalizedString("try again later", comment: "")
+////                    }
+//                    completion(nil, error)
+//                    return
+//                }
             }
             
             
@@ -598,8 +621,8 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         uploadTask.observe(.failure) { snapshot in
             if let error = snapshot.error as? NSError {
                 print(error.localizedDescription)
-                self.currentTaskStatus = .error
-                self.currentTaskMessage = error.localizedDescription
+                self.currentTask.status = .error
+                self.currentTask.message = error.localizedDescription
                 switch (StorageErrorCode(rawValue: error.code)!) {
                 case .objectNotFound:
                   // File doesn't exist

@@ -74,3 +74,14 @@
 
 // Notification
 "show" = "Voir le Signalement";
+
+// memo type
+"officeReminder" = "Rappel du bureau";
+"messToSupervisor" = "Mémo envoyé au superviseur";
+"messToComiteMixte" = "Mémo envoyé au comité mixte";
+
+// memoVocal type
+"OFFICE-REMINDER" = "Rappel au bureau";
+"SUPERVISOR-SENT" = "Mémo envoyé au superviseur";
+"COMITEMIXTE-SENT" = "Mémo envoyé au comité mixte";
+"MEMO-ONLY" = "Mémo";

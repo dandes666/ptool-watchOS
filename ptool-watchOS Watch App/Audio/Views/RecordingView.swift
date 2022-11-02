@@ -12,13 +12,23 @@ struct RecordingView: View {
     var body: some View {
         VStack {
             Text(NSLocalizedString("Memo vocal", comment: ""))
-                .font(Font.title3)
+                .font(Font.subheadline)
                 .foregroundColor(Color.purple)
             Text(rec.createdAt.toString(dateFormat: "YY-MM-dd hh:mm"))
                 .font(Font.caption2)
-            Text("\(NSLocalizedString("duration", comment: "")) : \(DateComponentsFormatter.positional.string(from: rec.createdAt.timeIntervalSince(rec.createdFrom)) ?? "0:00")")
+//            Text("\(NSLocalizedString("duration", comment: "")) : \(DateComponentsFormatter.positional.string(from: rec.createdAt.timeIntervalSince(rec.createdFrom)) ?? "0:00")")
                 .font(Font.caption2)
+            HStack{
+                Text("\(NSLocalizedString("duration", comment: "")) : ")
+                    .font(Font.caption2)
+                    .foregroundColor(.gray)
+                Text("\(DateComponentsFormatter.positional.string(from: rec.createdAt.timeIntervalSince(rec.createdFrom)) ?? "0:00")")
+                    .font(Font.caption2)
+                    .foregroundColor(.yellow)
+            }
+            
         }
+//        .padding(.leading, 10)
     }
 }
 

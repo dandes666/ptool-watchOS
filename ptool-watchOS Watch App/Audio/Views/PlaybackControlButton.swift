@@ -14,6 +14,7 @@ struct PlaybackControlButton: View {
     var action: () -> Void
     var progress: CGFloat? = nil
     var progressColor: Color = .white
+    @State private var isShow = true
     
     var body: some View {
         ZStack {
@@ -28,7 +29,7 @@ struct PlaybackControlButton: View {
                     .stroke(style: StrokeStyle(lineWidth: 7.0, lineCap: .round, lineJoin: .round))
                     .foregroundColor(progressColor)
                     .rotationEffect(Angle(degrees: 270.0))
-                    .animation(.linear)
+                    .animation(.linear, value: isShow)
                     .padding()
 //                    .withAnimation(.linear, {})
             }

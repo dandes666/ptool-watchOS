@@ -49,6 +49,7 @@ enum MemoType {
     case officeReminder
     case messToSupervisor
     case messToComiteMixte
+    case memoOnly
 }
 enum AudioPlayerStatus {
     case stop

@@ -12,29 +12,57 @@ struct ErrorView: View {
     let height: Double
     let title: String
     let desc: String?
+    @State private var isLoading: Bool = false
     var body: some View {
-        ScrollView {
+//        GeometryReader { (geometry: GeometryProxy) in
+            
             VStack {
                 Text(title)
-                    .font(Font.title3)
+                    .font(Font.subheadline)
+                    .scaleEffect(isLoading ? 1 : 0.3, anchor: .top)
+                    .animation(.linear(duration: 1), value: self.isLoading)
                 Spacer()
+                //                GeometryReader { (geometry: GeometryProxy) in
                 Image(NSLocalizedString("image-logo-error", comment: ""))
                     .resizable()
-                    .frame(width: width, height: height, alignment: .center)
-                Spacer()
+//                    .frame(width: getBestSquareSize(geo: geometry) * 0.5, height: getBestSquareSize(geo: geometry) * 0.5, alignment: .center)
+                    .frame(width: 70, height: 70, alignment: .center)
+                    .scaleEffect(isLoading ? 1 : 0.3)
+                    .animation(.linear(duration: 1), value: self.isLoading)
+                //                }
+                
                 if let d = desc {
-                    Text(d)
-                        .font(Font.caption)
-                        .foregroundColor(Color.red)
-                        .lineLimit(nil)
+                    Spacer()
+                    ScrollView {
+                        Text(d)
+                            .font(Font.caption2)
+                            .foregroundColor(Color.red)
+                            .lineLimit(nil)
+                            .scaleEffect(isLoading ? 1 : 0.3, anchor: .bottom)
+                            .animation(.linear(duration: 1), value: self.isLoading)
+                    }
                 }
             }
+//            .frame(width: getBestSquareSize(geo: geometry), height: getBestSquareSize(geo: geometry), alignment: .center)
+//            .position(x: geometry.size.width * 0.5,y: geometry.size.height * 0.5)
+//        }
+
+        .onAppear {
+            WKInterfaceDevice.current().play(.failure)
+            self.isLoading = true
+        }
+    }
+    func getBestSquareSize(geo: GeometryProxy) -> Double {
+        if geo.size.width < geo.size.height {
+            return geo.size.width
+        } else {
+            return geo.size.height
         }
     }
 }
 
 struct ErrorView_Previews: PreviewProvider {
     static var previews: some View {
-        ErrorView(width: 110, height: 110, title: "Transfert", desc: "Erreur de communication")
+        ErrorView(width: 90, height: 90, title: "Transfert", desc: "Erreur de communication pasidf  asdlkjasdkjlkjkjsd [ askjd paksjdkj asd[kj a sdjlkjpa[  jsadpfkjasdkjf [kljasdfklj pasdkj asdpfkj aspkldjf")
     }
 }

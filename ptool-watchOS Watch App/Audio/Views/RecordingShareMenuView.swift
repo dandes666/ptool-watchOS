@@ -19,61 +19,83 @@ struct RecordingShareMenuView: View {
     var body: some View {
         ScrollView{
             VStack {
-                switch db.currentTaskStatus {
+                switch db.currentTask.status {
                 case .none:
                     
+                    // MARK: create office reminder
+                    
                     Button(NSLocalizedString("Me rappeler a mon retour au bureau", comment: "")) {
-                        print("Me rappeler a mon retour au bureau")
-                        db.createMemoOfficeNotification(rec: rec)
-                        let memoVocal = MemoVocal(context: moc)
                         
-                        memoVocal.id = rec.id
-                        memoVocal.active = true
-                        memoVocal.url = rec.fileURL
-                        memoVocal.officeId = db.userInfo.officeSelected
-                        memoVocal.routeId = db.userInfo.routeSelected
-                        memoVocal.userId = db.userInfo.userId
-                        memoVocal.adviseAt = nil
-                        memoVocal.downloadURL = nil
-                        memoVocal.createdAt = rec.createdAt
-                        memoVocal.createdFrom = rec.createdFrom
-                        memoVocal.type = "OFFICE-REMINDER"
-                        try? moc.save()
-                        db.memoArray += [Memo(id: rec.id, type: MemoType.officeReminder,officeId: db.userInfo.officeSelected, routeId: db.userInfo.routeSelected, fileURL: rec.fileURL, downloadURL: nil, createdAt: rec.createdAt, createdFrom: rec.createdFrom, adviseAt: nil, active: true)]
-                        audioRecorder.currentRecording = nil
-                        router.reset()
-                        router.path.append(MasterRoute.tool)
-                        router.path.append(ToolRoute.memoList)
-                        print(rec.fileURL)
+                        db.currentTask.message = NSLocalizedString("Me rappeler a mon retour au bureau", comment: "")
+                        saveNewMemo(type: .officeReminder, downloadURL: nil)
                     }
                     .lineLimit(3)
-                    .padding(1)
+                    .padding(.bottom, 7)
+                    
+                    // MARK: send memo to superviseur
+                    
                     Button(NSLocalizedString("Envoyer a mon superviseur", comment: "")) {
-                        print("Envoi memo au superviseur")
-                        db.saveMemoToFirestore(rec: rec, to: "3")
+
+                        db.saveMemoToFirestore(rec: rec, to: "3") { (url, error) in
+                            if let err = error {
+                                db.currentTask.status = .error
+                                db.currentTask.error = err
+                                db.currentTask.message = err.localizedDescription
+                                return
+                            } else {
+                                db.currentTask.message = NSLocalizedString("Envoyer a mon superviseur", comment: "")
+                                self.saveNewMemo(type: .messToSupervisor, downloadURL: url)
+                            }
+                        }
                     }
                     .lineLimit(3)
-                    .padding(2)
+                    .padding(.bottom, 7)
+                    
+                    // MARK: send memo to comite mixte
+                    
                     Button(NSLocalizedString("Envoyer au comite mixte", comment: "")) {
-                        print("Envoi memo au comite mixte")
-                        db.saveMemoToFirestore(rec: rec, to: "mixcomite")
+                        db.saveMemoToFirestore(rec: rec, to: "mixcomite") { (url, error) in
+                            if let err = error {
+                                db.currentTask.error = err
+                                db.currentTask.message = err.localizedDescription
+                                db.currentTask.status = .error
+                                return
+                            } else {
+                                db.currentTask.message = NSLocalizedString("Envoyer au comite mixte", comment: "")
+                                self.saveNewMemo(type: .messToComiteMixte, downloadURL: url)
+                            }
+                        }
                     }
                     .lineLimit(3)
-                    .padding(2)
+                    
+                    // MARK: send memo to Club Social
+                    
                     //                    Button("Envoyer au Club Social") {
                     //                        print("Envoi memo au Club Social")
                     //                        db.saveMemoToFirestore(rec: rec, to: "csocial")
                     //                    }
                     //                        .lineLimit(3)
                     //                        .padding(2)
+                    
+                    
                 case .error:
-//                        Text("Erreur")
-                    ErrorView(width: 100, height: 100, title: NSLocalizedString("Error", comment: ""), desc: db.currentTaskMessage)
-                case .success:
-                    CompleteView(width: 130, height: 130, title: NSLocalizedString("Envoi de memo reussi", comment: "") )
+                    
+                    // MARK: error task
+                    
+                    ErrorView(width: 100, height: 100, title: NSLocalizedString("Error", comment: ""), desc: db.currentTask.message)
                         .onDisappear() {
-                            audioRecorder.removeCurrentRecording()
+                            db.currentTask.reset()
+                        }
+                case .success:
+                    
+                    // MARK: success task
+                    
+                    CompleteView(width: 130, height: 130, title: db.currentTask.message ?? "")
+                        .onDisappear() {
                             self.router.reset()
+                            self.router.path.append(MasterRoute.tool)
+                            self.router.path.append(ToolRoute.memoList)
+                            audioRecorder.currentRecording = nil
                         }
                 case .done:
                     Text("Done")
@@ -86,13 +108,27 @@ struct RecordingShareMenuView: View {
         }
         .navigationTitle(NSLocalizedString("memo", comment: ""))
         .onDisappear() {
-            db.currentTaskStatus = .none
+            db.currentTask.status = .none
         }
         
     }
-    func goToComplete() {
-        self.router.reset()
-        self.router.path.append(MasterRoute.complete)
+    func saveNewMemo(type: MemoType, downloadURL: URL?) {
+        let memoVocal = MemoVocal(context: moc)
+        
+        memoVocal.id = rec.id
+        memoVocal.active = true
+        memoVocal.url = rec.fileURL
+        memoVocal.officeId = db.userInfo.officeSelected
+        memoVocal.routeId = db.userInfo.routeSelected
+        memoVocal.userId = db.userInfo.userId
+        memoVocal.adviseAt = nil
+        memoVocal.downloadURL = downloadURL
+        memoVocal.createdAt = rec.createdAt
+        memoVocal.createdFrom = rec.createdFrom
+        memoVocal.type = db.getMemoTypeString(memoType: type)
+        try? moc.save()
+        db.memoArray += [Memo(id: rec.id, type: MemoType.officeReminder,officeId: db.userInfo.officeSelected, routeId: db.userInfo.routeSelected, fileURL: rec.fileURL, downloadURL: downloadURL, createdAt: rec.createdAt, createdFrom: rec.createdFrom, adviseAt: nil, active: true)]
+        db.currentTask.status = .success
     }
 }
 

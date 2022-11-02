@@ -16,7 +16,7 @@ final class AudioManager: ObservableObject {
     var player: AVAudioPlayer?
     @Published private(set) var status: AudioPlayerStatus = AudioPlayerStatus.stop {
         didSet {
-            print("AudioPlayerStatus", status)
+//            print("AudioPlayerStatus", status)
             objectWillChange.send(self)
         }
     }

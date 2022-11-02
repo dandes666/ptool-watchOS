@@ -33,7 +33,7 @@ struct MainMenuView: View {
                                 }
                                 
                             }
-                            
+                            //                            .buttonStyle(.plain)
                             NavigationLink(value: MasterRoute.reportList) {
                                 ZStack {
                                     //                                Image("menu-alert")
@@ -43,7 +43,7 @@ struct MainMenuView: View {
                                         .foregroundColor(Color.red)
                                     Text("\(db.getProximityRepportArray().count)")
                                         .position(CGPoint(x: geometry.size.width * 0.2  , y: 30))
-//                                        .position(CGPoint.centered)
+                                    //                                        .position(CGPoint.centered)
                                         .font(Font.title3)
                                 }
                                 
@@ -103,7 +103,7 @@ struct MainMenuView: View {
                                     .scaledToFit()
                                     .foregroundColor(Color.gray)
                             }
-
+                            
                             NavigationLink(value: MasterRoute.tool) {
                                 Image(systemName: "square.and.arrow.down.on.square")
                                     .resizable()
@@ -113,8 +113,8 @@ struct MainMenuView: View {
                         }
                         
                     }
-                        
 
+    
                     .navigationDestination(for: MasterRoute.self) { r in
                         switch r {
                         case .tool:

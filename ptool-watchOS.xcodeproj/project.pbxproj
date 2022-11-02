@@ -45,10 +45,11 @@
 		802F528928E1F5F300E79AF1 /* ReportPocInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802F528828E1F5F300E79AF1 /* ReportPocInfo.swift */; };
 		8048D7102905D41600D4870D /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8048D70F2905D41600D4870D /* Router.swift */; };
 		8048D7122905DEA500D4870D /* Enumeration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8048D7112905DEA500D4870D /* Enumeration.swift */; };
+		805EC2E32911919B001FBDDF /* MemoHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805EC2E22911919B001FBDDF /* MemoHeaderView.swift */; };
+		805EC2E72911A61E001FBDDF /* AppTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805EC2E62911A61E001FBDDF /* AppTask.swift */; };
 		805F274928E66349001AB184 /* ReportListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805F274828E66349001AB184 /* ReportListView.swift */; };
 		8072BAAF2909E75800D38C4E /* MemoModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8072BAAD2909E75800D38C4E /* MemoModel.xcdatamodeld */; };
 		8072BAB12909E81800D38C4E /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8072BAB02909E81800D38C4E /* DataController.swift */; };
-		8072BAB3290A04BD00D38C4E /* MemoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8072BAB2290A04BD00D38C4E /* MemoListView.swift */; };
 		8073D17028F230FF00916AC5 /* RouteSelectConfirmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8073D16F28F230FF00916AC5 /* RouteSelectConfirmView.swift */; };
 		8074EE4E290D7CF400AE70FE /* toolMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8074EE4D290D7CF400AE70FE /* toolMenuView.swift */; };
 		8074EE50290D7F2F00AE70FE /* FullBoxListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8074EE4F290D7F2F00AE70FE /* FullBoxListView.swift */; };
@@ -81,6 +82,7 @@
 		809FEFBA28FE0B2900130B66 /* RecordingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809FEFB928FE0B2900130B66 /* RecordingView.swift */; };
 		809FEFBC28FE0E9A00130B66 /* RecordingShareMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809FEFBB28FE0E9A00130B66 /* RecordingShareMenuView.swift */; };
 		80AF57B628DE0922002AF88D /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AF57B528DE0922002AF88D /* LoadingView.swift */; };
+		80B7B9BB2911EC8A005DB6BD /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B7B9BA2911EC8A005DB6BD /* ActivityIndicator.swift */; };
 		80B9581B28EA82AA00097827 /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B9581A28EA82AA00097827 /* AppManager.swift */; };
 		80B9581D28EBD16000097827 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B9581C28EBD16000097827 /* LocationManager.swift */; };
 		80F0AC3128F32E4C00731752 /* NotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F0AC3028F32E4C00731752 /* NotificationDelegate.swift */; };
@@ -163,10 +165,11 @@
 		802F536D28E2405800E79AF1 /* ptool-watchOS-Watch-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "ptool-watchOS-Watch-App-Info.plist"; sourceTree = SOURCE_ROOT; };
 		8048D70F2905D41600D4870D /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		8048D7112905DEA500D4870D /* Enumeration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enumeration.swift; sourceTree = "<group>"; };
+		805EC2E22911919B001FBDDF /* MemoHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoHeaderView.swift; sourceTree = "<group>"; };
+		805EC2E62911A61E001FBDDF /* AppTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTask.swift; sourceTree = "<group>"; };
 		805F274828E66349001AB184 /* ReportListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportListView.swift; sourceTree = "<group>"; };
 		8072BAAE2909E75800D38C4E /* MemoModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MemoModel.xcdatamodel; sourceTree = "<group>"; };
 		8072BAB02909E81800D38C4E /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
-		8072BAB2290A04BD00D38C4E /* MemoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoListView.swift; sourceTree = "<group>"; };
 		8073D16F28F230FF00916AC5 /* RouteSelectConfirmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteSelectConfirmView.swift; sourceTree = "<group>"; };
 		8074EE4D290D7CF400AE70FE /* toolMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = toolMenuView.swift; sourceTree = "<group>"; };
 		8074EE4F290D7F2F00AE70FE /* FullBoxListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullBoxListView.swift; sourceTree = "<group>"; };
@@ -201,6 +204,7 @@
 		809FEFB928FE0B2900130B66 /* RecordingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingView.swift; sourceTree = "<group>"; };
 		809FEFBB28FE0E9A00130B66 /* RecordingShareMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingShareMenuView.swift; sourceTree = "<group>"; };
 		80AF57B528DE0922002AF88D /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		80B7B9BA2911EC8A005DB6BD /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		80B9581A28EA82AA00097827 /* AppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
 		80B9581C28EBD16000097827 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		80F0AC3028F32E4C00731752 /* NotificationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDelegate.swift; sourceTree = "<group>"; };
@@ -371,6 +375,7 @@
 				801E69BC28E8081200919E9F /* RouteClass.swift */,
 				808225EE28D6BC2600EE53E2 /* User.swift */,
 				808D713B29023F6600227AB0 /* Memo.swift */,
+				805EC2E62911A61E001FBDDF /* AppTask.swift */,
 			);
 			path = "Table Class";
 			sourceTree = "<group>";
@@ -426,6 +431,7 @@
 				808D713F2904F84F00227AB0 /* CompleteView.swift */,
 				808D713D2904F83800227AB0 /* ErrorView.swift */,
 				801408312905990D00D9E225 /* RadarView.swift */,
+				80B7B9BA2911EC8A005DB6BD /* ActivityIndicator.swift */,
 			);
 			path = Logo;
 			sourceTree = "<group>";
@@ -437,9 +443,9 @@
 				8074EE53290DE6E400AE70FE /* AudioPlayerView.swift */,
 				809FEFB928FE0B2900130B66 /* RecordingView.swift */,
 				809FEFBB28FE0E9A00130B66 /* RecordingShareMenuView.swift */,
-				8072BAB2290A04BD00D38C4E /* MemoListView.swift */,
 				8074EE5B29101F6D00AE70FE /* MemoVocalListView.swift */,
 				8074EE5D29101FBF00AE70FE /* MemoVocalView.swift */,
+				805EC2E22911919B001FBDDF /* MemoHeaderView.swift */,
 				8074EE51290DE59D00AE70FE /* MemoView.swift */,
 				8074EE57290E1BED00AE70FE /* MemoPlayerView.swift */,
 				8074EE60291040AF00AE70FE /* PlaybackControlButton.swift */,
@@ -668,12 +674,14 @@
 				809FEFB428FB1F3F00130B66 /* RecordingDataModel.swift in Sources */,
 				80F0AC3128F32E4C00731752 /* NotificationDelegate.swift in Sources */,
 				801E699628E7638400919E9F /* OfficeSelectView.swift in Sources */,
+				805EC2E32911919B001FBDDF /* MemoHeaderView.swift in Sources */,
 				805F274928E66349001AB184 /* ReportListView.swift in Sources */,
 				80997C0D28FF145E00EABC62 /* DeliveryNoteItemView.swift in Sources */,
 				802F528928E1F5F300E79AF1 /* ReportPocInfo.swift in Sources */,
 				801E699228E7552E00919E9F /* UserEditIView.swift in Sources */,
 				8074EE56290DF3D200AE70FE /* AudioManager.swift in Sources */,
 				8081632728E94BD900A765F2 /* NotificationView.swift in Sources */,
+				80B7B9BB2911EC8A005DB6BD /* ActivityIndicator.swift in Sources */,
 				801A234628ED1CD000999CF3 /* MainMenuView.swift in Sources */,
 				8082260928D6E01600EE53E2 /* SignUpView.swift in Sources */,
 				808225EF28D6BC2600EE53E2 /* User.swift in Sources */,
@@ -693,6 +701,7 @@
 				802F527A28E1E17600E79AF1 /* Office.swift in Sources */,
 				801E69A628E7C43800919E9F /* ReportItemView.swift in Sources */,
 				801E699D28E7766400919E9F /* DeliveryNoteListView.swift in Sources */,
+				805EC2E72911A61E001FBDDF /* AppTask.swift in Sources */,
 				8074EE58290E1BED00AE70FE /* MemoPlayerView.swift in Sources */,
 				801E698928E699CF00919E9F /* ConfigView.swift in Sources */,
 				801E699F28E776BC00919E9F /* DeliveryNoteDetailView.swift in Sources */,
@@ -701,7 +710,6 @@
 				809FEFB228FAF5F900130B66 /* Extensions.swift in Sources */,
 				8074EE61291040AF00AE70FE /* PlaybackControlButton.swift in Sources */,
 				8048D7102905D41600D4870D /* Router.swift in Sources */,
-				8072BAB3290A04BD00D38C4E /* MemoListView.swift in Sources */,
 				8048D7122905DEA500D4870D /* Enumeration.swift in Sources */,
 				809FEFBA28FE0B2900130B66 /* RecordingView.swift in Sources */,
 				801E69A228E799C300919E9F /* WelcomeView.swift in Sources */,

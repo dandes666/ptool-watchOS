@@ -12,37 +12,45 @@ struct LoadingView: View {
     @State private var isLoading = false
     var title: String
     var body: some View {
+        
         VStack {
-            Text("\(title)...")
-                .font(.title3)
+            
+            
             ZStack {
-                //                PtoolLogoView(imageWidth: 50, imageHeight: 50)
-                //                    .navigationTitle("Chargement...")
-                Image("Logo")
-                    .resizable()
-                    .frame(width: 110, height: 110, alignment: .center)
-                Image("LoadingLoopIcon2")
-                //                Image("Radar")
-                    .resizable()
-                    .frame(width: 135, height: 135, alignment: .center)
-                    .rotationEffect(Angle(degrees: isLoading ? 360 : 0))
-//                    .animation(.easeIn(duration: <#T##Double#>), value: <#T##Equatable#>)
-                //                    .animation(Animation.easeIn(duration: 1), value: self.isLoading)
-                    .animation(.linear(duration: 1).repeatForever(autoreverses: false), value: self.isLoading)
-                //                        .animation(Animation.default.repeatForever(autoreverses: false))
+                GeometryReader { (geometry: GeometryProxy) in
+                    Image("Logo")
+                        .resizable()
+//                        .frame(width: 90, height: 90, alignment: .trailing)
+                        .frame(width: getBestSquareSize(geo: geometry) * 0.61, height: getBestSquareSize(geo: geometry) * 0.61)
+                        .position(x: geometry.size.width * 0.5,y: geometry.size.height * 0.5)
+                    //                        .frame(alignment: .center)
+                    //                        .frame(width: 90, height: 90, alignment: .center)
+                }
+                ActivityIndicator()
                     .onAppear() {
                         self.isLoading = true
                     }
-//                    .navigationTitle("\(title)...")
                 
             }
+            //            }.frame(alignment: .center)
+            Text("\(title)...")
+                .font(.subheadline)
+                .lineLimit(2)
         }
     }
-
+    func getBestSquareSize(geo: GeometryProxy) -> Double {
+        if geo.size.width < geo.size.height {
+            return geo.size.width
+        } else {
+            return geo.size.height
+        }
+    }
 }
 
 struct LoadingView_Previews: PreviewProvider {
     static var previews: some View {
-        LoadingView(title: "Loading")
+//        NavigationStack {
+            LoadingView(title: "Loading asdf sdu long text")
+//        }
     }
 }
