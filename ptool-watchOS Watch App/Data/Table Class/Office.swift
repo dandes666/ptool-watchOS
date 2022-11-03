@@ -14,6 +14,7 @@ class Office: NSObject, Identifiable {
     var address: String
     var routeArray: [Route]
     var gps: CLLocation
+    var canAdviseAt: Date?
 
     init(officeId: String, name: String, address: String, gps: CLLocation, routeArray: [Route]) {
         self.officeId = officeId

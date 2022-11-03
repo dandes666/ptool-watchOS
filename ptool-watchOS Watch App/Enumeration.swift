@@ -10,6 +10,7 @@ import Foundation
 enum MasterRoute: Hashable {
     case reportList
     case deliveryNoteList
+    case officeActiveMemoList
     case config
     case tool
     case complete
@@ -59,5 +60,6 @@ enum AudioPlayerStatus {
 enum AudioPlayerMode {
     case standard
     case buttonPlayOnly
+    case buttonPLayAndTimeleft
     case buttonAndDetail
 }

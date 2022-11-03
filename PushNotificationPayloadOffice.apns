@@ -1,0 +1,31 @@
+{
+    "aps": {
+        "alert": {
+            "body": "Test Office",
+            "title": "notif office",
+            "subtitle": "Optional subtitle"
+        },
+        "category": "Proximity-Alert",
+        "thread-id": "5280"
+    },
+    "notificationType": "officeProximityAlert",
+    "officeId": "c3rHI71qQcrPRGnAT4uF",
+    "officeName": "Levis",
+    "cptMemo": 3,
+    "WatchKit Simulator Actions": [
+        {
+            "title": "Voir",
+            "identifier": "showMemo"
+        },
+        {
+            "title": "plus tard",
+            "identifier": "notifRemindLater"
+        },
+        {
+            "title": "pas aujourd'hui",
+            "identifier": "notifRemindnotToday"
+        }
+    ],
+    
+    "customKey": "Use this file to define a testing payload for your notifications. The aps dictionary specifies the category, alert text and title. The WatchKit Simulator Actions array can provide info for one or more action buttons in addition to the standard Dismiss button. Any other top level keys are custom payload. If you have multiple such JSON files in your project, you'll be able to select them when choosing to debug the notification interface of your Watch App."
+}

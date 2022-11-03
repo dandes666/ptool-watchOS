@@ -18,6 +18,11 @@ struct AudioRecorderView: View {
         VStack{
             if audioRecorder.isRecording {
                 Text(NSLocalizedString("Enregistrement en cours...", comment: ""))
+                Image(systemName: "waveform.and.mic")
+                    .resizable()
+                    .frame(width: 40, height: 40, alignment: .center)
+                    .foregroundColor(Color.green)
+                    
             } else if let cRecording = audioRecorder.currentRecording {
                 NavigationLink(value: cRecording) {
                     HStack {
@@ -76,6 +81,8 @@ struct AudioRecorderView: View {
                 if audioRecorder.currentRecording != nil {
                     if let url = audioRecorder.currentRecording?.fileURL {
                         AudioPlayerView(url: url, mode: .buttonPlayOnly, playLooping: false, autoStart: false)
+                    } else {
+                        Text("trace 1")
                     }
                 }
             }

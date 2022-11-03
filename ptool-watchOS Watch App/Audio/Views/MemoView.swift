@@ -11,12 +11,34 @@ struct MemoView: View {
     var memo: Memo?
     var memoVocal: MemoVocal?
     var body: some View {
-        HStack {
-            if let url = memo?.fileURL {
-                MemoPlayerView(url: url)
-            } else if let url = memoVocal?.url {
-                MemoPlayerView(url: url)
+        VStack {
+            MemoHeaderView(memo: memo, memoVocal: memoVocal)
+            HStack {
+                if let m = memo {
+                    if let url = m.fileURL {
+                        AudioPlayerView(url: url, mode: .buttonPLayAndTimeleft, autoStart: false)
+                            .frame(height: 90, alignment: .leading)
+                    } else if let url2 = m.downloadURL {
+                        AudioPlayerView(url: url2, mode: .buttonPLayAndTimeleft, autoStart: false)
+                            .frame(height: 90, alignment: .center)
+                    }
+                }
+                if let m = memo {
+                    if let url = m.fileURL {
+                        AudioPlayerView(url: url, mode: .buttonPLayAndTimeleft, autoStart: false)
+                            .frame(height: 90, alignment: .leading)
+                    } else if let url2 = m.downloadURL {
+                        AudioPlayerView(url: url2, mode: .buttonPLayAndTimeleft, autoStart: false)
+                            .frame(height: 90, alignment: .center)
+                    }
+                }
             }
+//            if let m1 = memoVocal {
+//                if let url3 = m1.fileURL {
+//                    AudioPlayerView(url: url3, mode: .buttonAndDetail)
+//                }
+//            }
+            
         }
     }
 }

@@ -29,7 +29,7 @@
 "Retour" = "Back";
 "Aucune note de livraison pour cette route" = "No delivery note for this route";
 "Aucun signalement pour cette route" = "No reports for this route";
-// configView
+// MARK: configView
 "Bureau" = "Office";
 "Route" = "Route";
 "Utilisateur" = "User";
@@ -39,49 +39,62 @@
 "Signalements" = "Reports";
 "Notes" = "Notes";
 "Annuler" = "Cancel";
-// userEditView
+// MARK: userEditView
 "Deconnexion" = "Logout";
 "Attention" = "Warning";
 "Corriger" = "Correct";
 "Reiniatiliser les alertes" = "Reset alerts";
-// appManager
+// MARK: appManager
 "notDetermined" = "Location not determined";
 "authorizedWhenInUse" = "Location authorized only when application is active";
 "authorizedAlways" = "Location authorized at all times";
 "restricted" = "Restricted location";
 "denied" ="Locating not allowed on this device";
 "default" = "Location not available on this device";
-// Report
+// MARK: Report
 "dog" = "Dog Risk";
 "ice" = "Ice hazard";
 "brokenstep" = "Damaged stairs";
 "defaultType" = "Dangerous Area";
 "not defined" = "not defined";
-// RouteSelectConfirmView
+// MARK: RouteSelectConfirmView
 "Voulez-vous charger les information de la route" = "Do you want to load route information";
 "je confirme" = "I confirm";
-// image
+// MARK: image
 "image-logo-complete" = "Logo-complete-en";
 "image-logo-error" = "Logo-error-en";
 
-// navigation
+// MARK: navigation
 "nt-home" = "Home";
 "config" = "Configuration";
 "memo" = "Memo";
+"memos" = "Memos";
 "memocreate" = "Create new memo";
 "memolist" = "List of memo";
 "fullbox" = "Full box";
 
-// Notification
-"show" = "Show Report";
+// MARK: Notification
+"showReport" = "Show Report";
+"officeProximityTitle" = "Office reminder";
+"Youhave" = "You have";
+"activeMemoForThisOffice" = "mémo actif pour ce bureau";
+"activeMemosForThisOffice" = "mémos actif pour ce bureau";
+"showMemo"= "Show";
+"notifRemindLater" = "Notify me later\n(Not before 1 hour)";
+"notifRemindnotToday" = "Notify me later\n(Not until tomorrow)";
 
-// memo type
-"officeReminder" = "Office reminder";
+// MARK: memo type
+"officeReminder" = "Reminder";
 "messToSupervisor" = "Memo sent to supervisor";
 "messToComiteMixte" = "Memo sent to the joint committee";
 
-// memoVocal type
+// MARK: memoVocal type
 "OFFICE-REMINDER" = "Call back to office";
 "SUPERVISOR-SENT" = "Memo sent to supervisor";
 "COMITEMIXTE-SENT" = "Memo sent to the joint committee";
 "MEMO-ONLY" = "Memo";
+
+// MARK: memo
+"noMemoActiveInOffice" = "No active memo";
+"MemosActiveInOffice" = "memos active";
+"MemoActiveInOffice" = "memo active";

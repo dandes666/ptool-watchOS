@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct AudioPlayerView: View {
-    @EnvironmentObject var audioManager: AudioManager
+//    @EnvironmentObject var audioManager: AudioManager
+    @StateObject private var audioManager = AudioManager()
     @Environment(\.dismiss) var dismiss
     
     var url: URL
@@ -32,55 +33,62 @@ struct AudioPlayerView: View {
         //        if let player = audioManager.player {
         ZStack {
             VStack {
-                if let player = audioManager.player {
+//                if let player = audioManager.player {
                     
                     // MARK: Slider Control
                     if mode == .standard {
-                        Slider(value: $value, in: 0...player.duration) { editing in
-                            isEditing = editing
-                            if !editing {
-                                player.currentTime = value
-                            }
-                        }
+//                        Slider(value: $value, in: 0...player.duration) { editing in
+//                            isEditing = editing
+//                            if !editing {
+//                                player.currentTime = value
+//                            }
+//                        }
                     }
                     
                     // MARK: play time
                     if mode == .standard {
-                        HStack {
-                            Text(DateComponentsFormatter.positional.string(from: value) ?? "0:00")
-                            Spacer()
-                            Text(DateComponentsFormatter.positional.string(from: player.duration - value) ?? "0:00")
-                        }
+//                        HStack {
+//                            Text(DateComponentsFormatter.positional.string(from: value) ?? "0:00")
+//                            Spacer()
+//                            Text(DateComponentsFormatter.positional.string(from: player.duration - value) ?? "0:00")
+//                        }
                     }
                     
                     // MARK: Button Control
                     
-                    HStack {
-                        
-                        // MARK: backward Button
-                        if mode != .buttonPlayOnly {
-                            VStack {
-                                PlaybackControlButton(systemName: "gobackward.5", action: audioManager.gobackward)
-                                Text(DateComponentsFormatter.positional.string(from: value) ?? "0:00").font(Font.caption2)
-                                    .foregroundColor(audioManager.isPlaying ? .green : .yellow)
-                            }
+                HStack {
+                    
+                    // MARK: backward Button
+                    if mode == .buttonAndDetail {
+                        VStack {
+                            PlaybackControlButton(systemName: "gobackward.5", action: audioManager.gobackward)
+                            Text(DateComponentsFormatter.positional.string(from: value) ?? "0:00").font(Font.caption2)
+                                .foregroundColor(audioManager.isPlaying ? .green : .yellow)
                         }
-                        Spacer()
-                        
-                        // MARK: playPause Button
-                        
-                        PlaybackControlButton(systemName: audioManager.status == AudioPlayerStatus.play ? "pause.circle.fill" : "play.circle.fill", fontSize: 55, color: .white, action: audioManager.playPause, progress: progress,progressColor: audioManager.isPlaying ? .green : .yellow)
-                        
-                        Spacer()
-                        
-                        // MARK: forward Button
-                        if mode != .buttonPlayOnly {
-                            VStack {
-                                PlaybackControlButton(systemName: "goforward.5", action: audioManager.goforward)
+                    }
+                    Spacer()
+                    
+                    // MARK: playPause Button
+                    
+                    PlaybackControlButton(systemName: audioManager.status == AudioPlayerStatus.play ? "pause.circle.fill" : "play.circle.fill", fontSize: 55, color: .white, action: audioManager.playPause, progress: progress,progressColor: audioManager.isPlaying ? .green : .yellow)
+                    
+                    Spacer()
+                    
+                    // MARK: forward Button
+                    if mode == .buttonAndDetail {
+                        VStack {
+                            PlaybackControlButton(systemName: "goforward.5", action: audioManager.goforward)
+                            if let player = audioManager.player {
                                 Text(DateComponentsFormatter.positional.string(from: player.duration) ?? "0:00").font(Font.caption2)
                             }
                         }
                     }
+                }
+
+                // MARK: Time Left
+                if mode == .buttonPLayAndTimeleft {
+                    Text(DateComponentsFormatter.positional.string(from: value) ?? "0:00").font(Font.caption2)
+                        .foregroundColor(audioManager.isPlaying ? .green : .yellow)
                 }
             }
 //            Rectangle()

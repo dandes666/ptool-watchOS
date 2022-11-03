@@ -26,6 +26,9 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var audioRecorder = AudioRecorder() {
         willSet { objectWillChange.send() }
     }
+    @Published var officeActiveMemoListId : String? {
+        willSet { objectWillChange.send() }
+    }
     @Published var currentPage: Page {
         willSet { objectWillChange.send() }
     }
@@ -170,6 +173,17 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
             case .restricted: return NSLocalizedString("restricted", comment: "")
             case .denied: return  NSLocalizedString("denied", comment: "")
             default: return  NSLocalizedString("default", comment: "")
+        }
+    }
+    func getActiveMemo(officeId: String?) -> [Memo] {
+        if let offId = officeId {
+            return self.memoArray.filter { m in
+                return m.active && m.type == .officeReminder && m.officeId == offId
+            }
+        } else {
+            return self.memoArray.filter { m in
+                return m.active && m.type == .officeReminder
+            }
         }
     }
     func getReportById(reportId: String) -> Report? {
@@ -319,8 +333,9 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         }
     }
     func loadResultData(result: NSDictionary) {
-//        print(result)
-//        print("trace loadResultData")
+
+//  MARK: loadData userInfo
+        
         if let u = result["userInfo"] as? NSDictionary {
             print("Trace loadResultData-userInfo")
             if let userId = u["userId"] as? String {
@@ -348,12 +363,16 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
                 }
             }
         }
+        
+//  MARK: loadData officeInfo
+        
         if let u = result["officeInfo"] as? NSArray {
             print("Trace loadResultData-officeInfo")
             self.officeArray = []
             for off in u {
                 if let office = off as? NSDictionary {
                     if let officeId = office["officeId"] as? String {
+                        print("officeId = \(officeId)")
                         if (officeId == self.userInfo.officeSelected) {
                             self.userInfo.officeIdx = self.officeArray.count
                         }
@@ -372,6 +391,7 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
                                 if let lng = oGps["_longitude"] {
                                     if let latitude = CLLocationDegrees(String(describing: lat)) {
                                         if let longitude = CLLocationDegrees(String(describing: lng)) {
+                                            print("Office Gps lat: \(latitude) lng: \(longitude)")
                                             ofGps = CLLocation(latitude: latitude, longitude: longitude)
                                         }
                                     }
@@ -416,6 +436,9 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
             }
 //            self.loadOfficeArray(officeArray: offArray)
         }
+        
+//  MARK: loadData report
+        
         if let u = result["reportList"] as? NSArray {
             print("Trace loadResultData-reportList")
             self.reportArray = []
@@ -697,21 +720,42 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         
         // duree avec un rappel en seconde
         let dureeRappelNotification: Double = 60
+        let dureeRappelOfficeMemoNotification: Double = 600
         var cptNof: Double = 0
         // duree avant nouvelle notification en sec 60s X 60m X 8hrs = 28800 seconde
 //        let dureeNextDayNotification: Double = 28800
        
         if guardianActive == true {
             if let location = lastLocation {
-                // Verifier les memo
-//                ForEach(self.officeArray) { office in
+                
+                // MARK: verifProximity MEMO
+                
+                for office in self.officeArray {
+                    if let canAdviseAt = office.canAdviseAt {
+                        if Date() > canAdviseAt {
+                            office.canAdviseAt = nil
+                        }
+                    } else if office.gps.distance(from: location) < 30 {
+                        var memoToNotifCpt: Int = 0
+                        for memo in memoArray {
+                            if memo.active && memo.officeId == office.officeId && memo.type == .officeReminder  {
+                                memoToNotifCpt += 1
+                            }
+                        }
+                        if memoToNotifCpt > 0 {
+                            office.canAdviseAt = Date().addingTimeInterval(dureeRappelOfficeMemoNotification)
+                            sendOfficeProximityNotification(officeName: office.name, officeId: office.officeId, cptMemo: memoToNotifCpt)
+                        }
+                    }
 //                    if let gps = office.gps {
-//                        if gps.distance(from: location) < 30 {
+//                        if (gps.distance(from: location) < 30) {
 //                            print("alert verifProximity")
 //                        }
 //                    }
-//                 }
-                //  Verifier Les report
+                 }
+                
+                // MARK: verifProximity REPORT
+                
                 if self.isPoximityReportActive {
                     for i in 0 ..< reportArray.count {
                         let r = reportArray[i]
@@ -744,7 +788,9 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
                         }
                     }
                 }
-                //  Verifier Les Notes
+ 
+                // MARK: verifProximity DeleveryNote
+                
                 if self.isPoximityDeleveryNoteActive {
                     for i in 0 ..< deliveryNoteArray.count {
                         let nt = deliveryNoteArray[i]
@@ -792,6 +838,9 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         }
         return
     }
+    
+    // MARK: sendReportProximityNotification
+    
     func sendReportProximityNotification(report: Report, delay: Double) {
         print("trace sendReportProximityNotification")
         let content = UNMutableNotificationContent()
@@ -808,7 +857,7 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
             "notificationType" : "reportProximityAlert"
         ]
 
-        let show = UNNotificationAction(identifier: "showReport", title: NSLocalizedString("show", comment: ""), options: .foreground)
+        let show = UNNotificationAction(identifier: "showReport", title: NSLocalizedString("showReport", comment: ""), options: .foreground)
 //        let cancel = UNNotificationAction(identifier: "cancel", title: "Ne plus aviser aujourd'hui", options: .foreground)
         let category = UNNotificationCategory(identifier: "Proximity-Alert", actions: [show], intentIdentifiers: [], options: [])
         UNUserNotificationCenter.current().setNotificationCategories([category])
@@ -824,6 +873,42 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
                 print(error.localizedDescription)
             }else{
                 print("notification envoyer delay = \(delay) reportid -> \(report.reportId)")
+            }
+        }
+    }
+    
+    // MARK: sendOfficeProximityNotification
+    
+    func sendOfficeProximityNotification(officeName: String, officeId: String, cptMemo: Int) {
+        print("trace sendOfficeProximityNotification")
+        let content = UNMutableNotificationContent()
+        var request: UNNotificationRequest
+        content.title = "\(NSLocalizedString("officeProximityTitle", comment: "")) \(officeName)"
+        content.body = "\(NSLocalizedString("Youhave", comment: "")) \(cptMemo) \(NSLocalizedString(cptMemo > 1 ? "memos" : "memo", comment: ""))"
+        content.sound = .defaultCritical
+        content.categoryIdentifier = "Proximity-Alert"
+        content.userInfo = [
+            "officeId": officeId,
+            "officeName": officeName,
+            "cptMemo": cptMemo,
+            "notificationType" : "officeProximityAlert"
+        ]
+
+        let showMemo = UNNotificationAction(identifier: "showMemo", title: NSLocalizedString("showMemo", comment: ""), options: .foreground)
+        
+        let notifRemindLater = UNNotificationAction(identifier: "notifRemindLater", title:" \n" + NSLocalizedString("notifRemindLater", comment: "") + "\n ", options: .foreground, icon: UNNotificationActionIcon(systemImageName: "minus.circle.fill"))
+        
+        let notifRemindnotToday = UNNotificationAction(identifier: "notifRemindnotToday", title: NSLocalizedString("notifRemindnotToday", comment: ""), options: .foreground)
+        
+        let category = UNNotificationCategory(identifier: "Proximity-Alert", actions: [showMemo, notifRemindLater, notifRemindnotToday], intentIdentifiers: [], options: [])
+        UNUserNotificationCenter.current().setNotificationCategories([category])
+
+        request = UNNotificationRequest(identifier: "Proximity-Alert", content: content, trigger: nil)
+
+        
+        UNUserNotificationCenter.current().add(request) { (error) in
+            if let error = error{
+                print(error.localizedDescription)
             }
         }
     }

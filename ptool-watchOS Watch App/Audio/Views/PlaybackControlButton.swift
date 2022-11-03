@@ -14,6 +14,7 @@ struct PlaybackControlButton: View {
     var action: () -> Void
     var progress: CGFloat? = nil
     var progressColor: Color = .white
+    var disabled: Bool = false
     @State private var isShow = true
     
     var body: some View {
@@ -41,6 +42,7 @@ struct PlaybackControlButton: View {
                     .font(.system(size: fontSize))
                     .foregroundColor(color)
             }
+            .disabled(disabled)
             .buttonStyle(.plain)
             .padding()
             .font(.system(size: fontSize))

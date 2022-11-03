@@ -48,6 +48,7 @@
 		805EC2E32911919B001FBDDF /* MemoHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805EC2E22911919B001FBDDF /* MemoHeaderView.swift */; };
 		805EC2E72911A61E001FBDDF /* AppTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805EC2E62911A61E001FBDDF /* AppTask.swift */; };
 		805F274928E66349001AB184 /* ReportListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805F274828E66349001AB184 /* ReportListView.swift */; };
+		80641BC02913329700296E36 /* OfficeMemoNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80641BBF2913329700296E36 /* OfficeMemoNotificationView.swift */; };
 		8072BAAF2909E75800D38C4E /* MemoModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8072BAAD2909E75800D38C4E /* MemoModel.xcdatamodeld */; };
 		8072BAB12909E81800D38C4E /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8072BAB02909E81800D38C4E /* DataController.swift */; };
 		8073D17028F230FF00916AC5 /* RouteSelectConfirmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8073D16F28F230FF00916AC5 /* RouteSelectConfirmView.swift */; };
@@ -60,6 +61,7 @@
 		8074EE5C29101F6D00AE70FE /* MemoVocalListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8074EE5B29101F6D00AE70FE /* MemoVocalListView.swift */; };
 		8074EE5E29101FBF00AE70FE /* MemoVocalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8074EE5D29101FBF00AE70FE /* MemoVocalView.swift */; };
 		8074EE61291040AF00AE70FE /* PlaybackControlButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8074EE60291040AF00AE70FE /* PlaybackControlButton.swift */; };
+		8076DC8C2912FE5400FA97F0 /* OfficeActiveMemoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8076DC8B2912FE5400FA97F0 /* OfficeActiveMemoListView.swift */; };
 		8081632528E94B9100A765F2 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8081632428E94B9100A765F2 /* NotificationController.swift */; };
 		8081632728E94BD900A765F2 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8081632628E94BD900A765F2 /* NotificationView.swift */; };
 		8081632A28E968CE00A765F2 /* NotificationReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8081632928E968CE00A765F2 /* NotificationReportView.swift */; };
@@ -168,6 +170,8 @@
 		805EC2E22911919B001FBDDF /* MemoHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoHeaderView.swift; sourceTree = "<group>"; };
 		805EC2E62911A61E001FBDDF /* AppTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTask.swift; sourceTree = "<group>"; };
 		805F274828E66349001AB184 /* ReportListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportListView.swift; sourceTree = "<group>"; };
+		80641BBF2913329700296E36 /* OfficeMemoNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfficeMemoNotificationView.swift; sourceTree = "<group>"; };
+		80641BC12913393400296E36 /* PushNotificationPayloadOffice.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayloadOffice.apns; sourceTree = "<group>"; };
 		8072BAAE2909E75800D38C4E /* MemoModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MemoModel.xcdatamodel; sourceTree = "<group>"; };
 		8072BAB02909E81800D38C4E /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		8073D16F28F230FF00916AC5 /* RouteSelectConfirmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteSelectConfirmView.swift; sourceTree = "<group>"; };
@@ -180,6 +184,7 @@
 		8074EE5B29101F6D00AE70FE /* MemoVocalListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoVocalListView.swift; sourceTree = "<group>"; };
 		8074EE5D29101FBF00AE70FE /* MemoVocalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoVocalView.swift; sourceTree = "<group>"; };
 		8074EE60291040AF00AE70FE /* PlaybackControlButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackControlButton.swift; sourceTree = "<group>"; };
+		8076DC8B2912FE5400FA97F0 /* OfficeActiveMemoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfficeActiveMemoListView.swift; sourceTree = "<group>"; };
 		8081632428E94B9100A765F2 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
 		8081632628E94BD900A765F2 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		8081632928E968CE00A765F2 /* NotificationReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationReportView.swift; sourceTree = "<group>"; };
@@ -243,6 +248,7 @@
 			children = (
 				80997C1228FF27BB00EABC62 /* Localizable.strings */,
 				801E69C028E88B4200919E9F /* PushNotificationPayloadTest.apns */,
+				80641BC12913393400296E36 /* PushNotificationPayloadOffice.apns */,
 				800C78DC28D1885200432CA2 /* ptool-watchOS Watch App */,
 				800C78ED28D1885300432CA2 /* ptool-watchOS Watch AppTests */,
 				800C78F728D1885300432CA2 /* ptool-watchOS Watch AppUITests */,
@@ -320,6 +326,7 @@
 				801E69A328E7AA6700919E9F /* GuardianActiveView.swift */,
 				8074EE4D290D7CF400AE70FE /* toolMenuView.swift */,
 				8074EE4F290D7F2F00AE70FE /* FullBoxListView.swift */,
+				8076DC8B2912FE5400FA97F0 /* OfficeActiveMemoListView.swift */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -460,6 +467,7 @@
 				8081632928E968CE00A765F2 /* NotificationReportView.swift */,
 				80863B0728EA24560014D27A /* NotificationReportBannerView.swift */,
 				80863B0928EA25290014D27A /* NotificationReportTitleView.swift */,
+				80641BBF2913329700296E36 /* OfficeMemoNotificationView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -568,7 +576,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1400;
-				LastUpgradeCheck = 1400;
+				LastUpgradeCheck = 1410;
 				TargetAttributes = {
 					800C78D128D1885200432CA2 = {
 						CreatedOnToolsVersion = 14.0;
@@ -673,6 +681,7 @@
 				80AF57B628DE0922002AF88D /* LoadingView.swift in Sources */,
 				809FEFB428FB1F3F00130B66 /* RecordingDataModel.swift in Sources */,
 				80F0AC3128F32E4C00731752 /* NotificationDelegate.swift in Sources */,
+				80641BC02913329700296E36 /* OfficeMemoNotificationView.swift in Sources */,
 				801E699628E7638400919E9F /* OfficeSelectView.swift in Sources */,
 				805EC2E32911919B001FBDDF /* MemoHeaderView.swift in Sources */,
 				805F274928E66349001AB184 /* ReportListView.swift in Sources */,
@@ -684,6 +693,7 @@
 				80B7B9BB2911EC8A005DB6BD /* ActivityIndicator.swift in Sources */,
 				801A234628ED1CD000999CF3 /* MainMenuView.swift in Sources */,
 				8082260928D6E01600EE53E2 /* SignUpView.swift in Sources */,
+				8076DC8C2912FE5400FA97F0 /* OfficeActiveMemoListView.swift in Sources */,
 				808225EF28D6BC2600EE53E2 /* User.swift in Sources */,
 				801408322905990D00D9E225 /* RadarView.swift in Sources */,
 				8074EE5E29101FBF00AE70FE /* MemoVocalView.swift in Sources */,
@@ -778,6 +788,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -807,6 +818,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -836,6 +848,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -865,6 +878,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;

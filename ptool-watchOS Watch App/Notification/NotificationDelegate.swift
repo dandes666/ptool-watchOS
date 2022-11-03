@@ -24,6 +24,9 @@ class NotificationDelegate: NSObject, UNUserNotificationCenterDelegate {
 //            print("trace receive delegate Proximity-Alert")
             if let notificationType = notificationData?["notificationType"] as? String {
                 switch notificationType {
+                    
+                //  MARK: receive-type reportProximityAlert
+                    
                 case "reportProximityAlert":
                     if let reportData = notificationData?["reportDictionaryFormat"] as? NSDictionary {
                         let reportId = reportData["reportId"] as! String
@@ -31,7 +34,6 @@ class NotificationDelegate: NSObject, UNUserNotificationCenterDelegate {
 //                        print("trace actionIdentifier: \(response.actionIdentifier)")
                         switch response.actionIdentifier {
                         case "showReport":
-                            //             sharedMeetingManager.acceptMeeting(user: userID, meetingID: meetingID)
 //                            print("action -> show")
                             if let report = db.getReportById(reportId: reportId) {
                                 router.reset()
@@ -55,6 +57,39 @@ class NotificationDelegate: NSObject, UNUserNotificationCenterDelegate {
                             break
                         }
                     }
+                
+                //  MARK: receive-type officeProximityAlert
+                   
+                case "officeProximityAlert":
+                    print("officeProximityAlert")
+                    if let officeId = notificationData?["officeId"] as? String {
+                        switch response.actionIdentifier {
+                        case "showMemo":
+                            db.officeActiveMemoListId = officeId
+                            router.reset()
+                            router.path.append(MasterRoute.officeActiveMemoList)
+                            break
+                        case "notifRemindLater":
+                            break
+                        case "notifRemindnotToday":
+                            break
+                        case UNNotificationDismissActionIdentifier:
+//                            print("action -> dismiss")
+                            break
+                        case UNNotificationDefaultActionIdentifier,
+                        UNNotificationDismissActionIdentifier:
+                            // Queue meeting-related notifications for later
+                            //  if the user does not act.
+                            //             sharedMeetingManager.queueMeetingForDelivery(user: userID, meetingID: meetingID)
+//                            print("trace1 actionIdentifier: \(response.actionIdentifier)")
+                            break
+                            
+                        default:
+//                            print("trace2 actionIdentifier: \(response.actionIdentifier)")
+                            break
+                        }
+                    }
+                    
                 default:
                     print("Erreur mauvais type = \(notificationType)")
                 }

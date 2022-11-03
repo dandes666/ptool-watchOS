@@ -13,6 +13,10 @@ struct NotificationView: View {
     var notifMessage: String?
     var notificationType: String?
     var report: Report?
+    var officeName: String?
+    var officeId: String?
+    var cptMemo: Int?
+    
     var body: some View {
         VStack {
             if let type = notificationType {
@@ -21,6 +25,12 @@ struct NotificationView: View {
                         ReportDetailView(report: r)
                     } else {
                         Text("trace 3")
+                    }
+                } else if type == "officeProximityAlert" {
+                    if let officeName = officeName {
+                        if let cptMemo = cptMemo {
+                            OfficeMemoNotificationView(officeName: officeName, cptMemo: cptMemo)
+                        }
                     }
                 } else {
                     Text("trace 2")

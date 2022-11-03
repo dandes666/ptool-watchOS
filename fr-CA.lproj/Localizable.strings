@@ -29,7 +29,7 @@
 "Retour" = "Retour";
 "Aucune note de livraison pour cette route" = "Aucune note de livraison pour cette route";
 "Aucun signalement pour cette route" = "Aucun signalement pour cette route";
-// configView
+// MARK: configView
 "Bureau" = "Bureau";
 "Route" = "Route";
 "Utilisateur" = "Utilisateur";
@@ -39,49 +39,64 @@
 "Signalements" = "Signalements";
 "Notes" = "Notes";
 "Annuler" = "Annuler";
-// userEditView
+// MARK: userEditView
 "Deconnexion" = "Déconnexion";
 "Attention" = "Attention";
 "Corriger" = "Corriger";
 "Reiniatiliser les alertes" = "Réinitialiser les alertes";
-// appManager
+// MARK: appManager
 "notDetermined" = "Localisation non déterminé";
 "authorizedWhenInUse" = "Localisation autorisée seulement lorsque l'application est active";
 "authorizedAlways" = "Localisation autorisée en tout temp";
 "restricted" = "Localisation limitée";
 "denied" ="Localisation non autorisée sur cet appareil";
 "default" = "Localisation non disponible sur cet appareil";
-// Report
+// MARK: Report
 "dog" = "Risque de Chien";
 "ice" = "Risque de glace";
 "brokenstep" = "Escalier endomagé";
 "defaultType" = "Zone Dangereuse";
 "not defined" = "Non défini";
-// RouteSelectConfirmView
+// MARK: RouteSelectConfirmView
 "Voulez-vous charger les information de la route" = "Voulez-vous charger les information de la route";
 "je confirme" = "Je confirme";
-// image
+// MARK: image
 "image-logo-complete" = "Logo-complete-fr";
 "image-logo-error" = "Logo-error-fr";
 
-// navigation title
+// MARK: navigation title
 "nt-home" = "Acceuil";
 "config" = "Configuration";
 "memo" = "Mémo";
+"memos" = "Mémos";
 "memocreate" = "Créer un nouveau mémo";
 "memolist" = "Liste de mémo";
 "fullbox" = "Boîte pleine";
 
-// Notification
-"show" = "Voir le Signalement";
+// MARK: Notification
+"showReport" = "Voir le Signalement";
+"officeProximityTitle" = "Rappel";
+"Youhave" = "Vous avez";
+"activeMemoForThisOffice" = "mémo actif pour ce bureau";
+"activeMemosForThisOffice" = "mémos actif pour ce bureau";
+"showMemo"= "Voir...";
+"notifRemindLater" = "Notifier moi plus tard\n(pas avant 1 heure)";
+"notifRemindnotToday" = "Notifier moi plus tard\n(pas avant demain)";
+"notBefore1h"= "Pas avant 1h";
+"notBeforeTomoro"= "Pas avant demain";
 
-// memo type
-"officeReminder" = "Rappel du bureau";
+// MARK: memo type
+"officeReminder" = "Rappel au bureau";
 "messToSupervisor" = "Mémo envoyé au superviseur";
 "messToComiteMixte" = "Mémo envoyé au comité mixte";
 
-// memoVocal type
+// MARK: memoVocal type
 "OFFICE-REMINDER" = "Rappel au bureau";
 "SUPERVISOR-SENT" = "Mémo envoyé au superviseur";
 "COMITEMIXTE-SENT" = "Mémo envoyé au comité mixte";
 "MEMO-ONLY" = "Mémo";
+
+// MARK: memo
+"noMemoActiveInOffice" = "Aucun mémo actif";
+"MemosActiveInOffice" = "mémos actif";
+"MemoActiveInOffice" = "mémo actif";

@@ -15,9 +15,11 @@ class NotificationController: WKUserNotificationHostingController<NotificationVi
     var message: String?
     var nType: String?
     var report: Report?
+    var officeName: String?
+    var cptMemo: Int?
     
     override var body: NotificationView {
-        NotificationView(notifTitle: title, notifMessage: message, notificationType: nType, report: report)
+        NotificationView(notifTitle: title, notifMessage: message, notificationType: nType, report: report, officeName: officeName, cptMemo: cptMemo)
     }
     
     override func willActivate() {
@@ -50,6 +52,13 @@ class NotificationController: WKUserNotificationHostingController<NotificationVi
             case "reportProximityAlert":
                 if let r = notificationData?["reportDictionaryFormat"] as? NSDictionary{
                     report = Report(dictionaryFormat: r)
+                }
+            case "officeProximityAlert":
+                if let officeName = notificationData?["officeName"] as? String{
+                    self.officeName = officeName
+                }
+                if let cptMemo = notificationData?["cptMemo"] as? Int{
+                    self.cptMemo = cptMemo
                 }
             default:
                 print("Erreur notificationType -> \(notificationType)")

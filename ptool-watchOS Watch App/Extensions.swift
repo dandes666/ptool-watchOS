@@ -34,3 +34,12 @@ extension DateComponentsFormatter {
         return formatter
     }()
 }
+extension Int
+{
+    var string:String {
+        get {
+            return String(self)
+        }
+    }
+}
+
