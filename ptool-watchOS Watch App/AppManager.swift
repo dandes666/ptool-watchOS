@@ -20,13 +20,9 @@ import FirebaseStorage
 class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     let objectWillChange = PassthroughSubject<Void, Never>()
     private let locationManager = CLLocationManager()
-    
-//    private var firebaseAuth
+
     private var signInProcessing = false
     @Published var audioRecorder = AudioRecorder() {
-        willSet { objectWillChange.send() }
-    }
-    @Published var officeActiveMemoListId : String? {
         willSet { objectWillChange.send() }
     }
     @Published var currentPage: Page {
@@ -51,10 +47,10 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var reportArray: [Report] {
         willSet { objectWillChange.send() }
     }
-    @Published var memoArray: [Memo] = []  {
+
+    @Published var memoVocalArray: [MemoVocal] = [] {
         willSet { objectWillChange.send() }
     }
-    
     @Published var alertReportArray: [Report] = []
     @Published var alertDeleveryNote: [DeliveryNote] = []
     @Published var deliveryNoteArray: [DeliveryNote] = []
@@ -151,6 +147,7 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         self.officeArray = []
         self.reportArray = []
         self.userInfo = User(isEmpty: true)
+//        self.memoVocalArray = memoVocals
 
         super.init()
         locationManager.delegate = self
@@ -175,16 +172,14 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
             default: return  NSLocalizedString("default", comment: "")
         }
     }
-    func getActiveMemo(officeId: String?) -> [Memo] {
-        if let offId = officeId {
-            return self.memoArray.filter { m in
-                return m.active && m.type == .officeReminder && m.officeId == offId
-            }
+    func getOfficeById(officeId: String) -> Office? {
+        if let office = officeArray.first(where: {$0.officeId == officeId}) {
+            return office
+           // do something with foo
         } else {
-            return self.memoArray.filter { m in
-                return m.active && m.type == .officeReminder
-            }
+           return nil
         }
+
     }
     func getReportById(reportId: String) -> Report? {
         if let report = reportArray.first(where: {$0.reportId == reportId}) {
@@ -297,7 +292,7 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         }
     }
     func setRouteSelection(officeId:String, routeId: String) {
-        print("set RouteId = \(routeId) officeId = \(officeId)")
+//        print("set RouteId = \(routeId) officeId = \(officeId)")
         let decoder = JSONDecoder()
         self.currentPage = .loadingPage
         decoder.keyDecodingStrategy = .convertFromSnakeCase
@@ -372,7 +367,7 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
             for off in u {
                 if let office = off as? NSDictionary {
                     if let officeId = office["officeId"] as? String {
-                        print("officeId = \(officeId)")
+//                        print("officeId = \(officeId)")
                         if (officeId == self.userInfo.officeSelected) {
                             self.userInfo.officeIdx = self.officeArray.count
                         }
@@ -391,7 +386,7 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
                                 if let lng = oGps["_longitude"] {
                                     if let latitude = CLLocationDegrees(String(describing: lat)) {
                                         if let longitude = CLLocationDegrees(String(describing: lng)) {
-                                            print("Office Gps lat: \(latitude) lng: \(longitude)")
+//                                            print("Office Gps lat: \(latitude) lng: \(longitude)")
                                             ofGps = CLLocation(latitude: latitude, longitude: longitude)
                                         }
                                     }
@@ -737,8 +732,10 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
                         }
                     } else if office.gps.distance(from: location) < 30 {
                         var memoToNotifCpt: Int = 0
-                        for memo in memoArray {
-                            if memo.active && memo.officeId == office.officeId && memo.type == .officeReminder  {
+
+                        for memo in memoVocalArray {
+                            print("trace check memovocalArray")
+                            if memo.active && memo.officeId == office.officeId && memo.memoType == .officeReminder  {
                                 memoToNotifCpt += 1
                             }
                         }
@@ -747,11 +744,7 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
                             sendOfficeProximityNotification(officeName: office.name, officeId: office.officeId, cptMemo: memoToNotifCpt)
                         }
                     }
-//                    if let gps = office.gps {
-//                        if (gps.distance(from: location) < 30) {
-//                            print("alert verifProximity")
-//                        }
-//                    }
+
                  }
                 
                 // MARK: verifProximity REPORT
@@ -872,7 +865,7 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
             if let error = error{
                 print(error.localizedDescription)
             }else{
-                print("notification envoyer delay = \(delay) reportid -> \(report.reportId)")
+//                print("notification envoyer delay = \(delay) reportid -> \(report.reportId)")
             }
         }
     }
@@ -896,9 +889,9 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
 
         let showMemo = UNNotificationAction(identifier: "showMemo", title: NSLocalizedString("showMemo", comment: ""), options: .foreground)
         
-        let notifRemindLater = UNNotificationAction(identifier: "notifRemindLater", title:" \n" + NSLocalizedString("notifRemindLater", comment: "") + "\n ", options: .foreground, icon: UNNotificationActionIcon(systemImageName: "minus.circle.fill"))
+        let notifRemindLater = UNNotificationAction(identifier: "notifRemindLater", title:" \n" + NSLocalizedString("notifRemindLater", comment: "") + "\n ", options: .destructive, icon: UNNotificationActionIcon(systemImageName: "minus.circle.fill"))
         
-        let notifRemindnotToday = UNNotificationAction(identifier: "notifRemindnotToday", title: NSLocalizedString("notifRemindnotToday", comment: ""), options: .foreground)
+        let notifRemindnotToday = UNNotificationAction(identifier: "notifRemindnotToday", title: " \n" + NSLocalizedString("notifRemindnotToday", comment: "") + "\n ", options: .destructive)
         
         let category = UNNotificationCategory(identifier: "Proximity-Alert", actions: [showMemo, notifRemindLater, notifRemindnotToday], intentIdentifiers: [], options: [])
         UNUserNotificationCenter.current().setNotificationCategories([category])
@@ -921,7 +914,7 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
             secureDistance = securedistance
         }
         let region = CLCircularRegion(center: center, radius: secureDistance, identifier: report.reportId)
-        print("Secure dist: \(secureDistance) lat: \(report.gps.coordinate.latitude) lng: \(report.gps.coordinate.longitude)")
+//        print("Secure dist: \(secureDistance) lat: \(report.gps.coordinate.latitude) lng: \(report.gps.coordinate.longitude)")
         region.notifyOnEntry = true
         region.notifyOnExit = false
         return UNLocationNotificationTrigger(region: region, repeats: true)

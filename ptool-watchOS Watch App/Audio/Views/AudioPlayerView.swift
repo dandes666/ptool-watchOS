@@ -30,71 +30,87 @@ struct AudioPlayerView: View {
         .autoconnect()
     
     var body: some View {
-        //        if let player = audioManager.player {
-        ZStack {
+        GeometryReader { (geometry: GeometryProxy) in
             VStack {
-//                if let player = audioManager.player {
-                    
-                    // MARK: Slider Control
-                    if mode == .standard {
-//                        Slider(value: $value, in: 0...player.duration) { editing in
-//                            isEditing = editing
-//                            if !editing {
-//                                player.currentTime = value
-//                            }
-//                        }
-                    }
-                    
-                    // MARK: play time
-                    if mode == .standard {
-//                        HStack {
-//                            Text(DateComponentsFormatter.positional.string(from: value) ?? "0:00")
-//                            Spacer()
-//                            Text(DateComponentsFormatter.positional.string(from: player.duration - value) ?? "0:00")
-//                        }
-                    }
-                    
-                    // MARK: Button Control
-                    
-                HStack {
-                    
-                    // MARK: backward Button
-                    if mode == .buttonAndDetail {
-                        VStack {
-                            PlaybackControlButton(systemName: "gobackward.5", action: audioManager.gobackward)
-                            Text(DateComponentsFormatter.positional.string(from: value) ?? "0:00").font(Font.caption2)
-                                .foregroundColor(audioManager.isPlaying ? .green : .yellow)
-                        }
-                    }
-                    Spacer()
-                    
-                    // MARK: playPause Button
-                    
-                    PlaybackControlButton(systemName: audioManager.status == AudioPlayerStatus.play ? "pause.circle.fill" : "play.circle.fill", fontSize: 55, color: .white, action: audioManager.playPause, progress: progress,progressColor: audioManager.isPlaying ? .green : .yellow)
-                    
-                    Spacer()
-                    
-                    // MARK: forward Button
-                    if mode == .buttonAndDetail {
-                        VStack {
-                            PlaybackControlButton(systemName: "goforward.5", action: audioManager.goforward)
-                            if let player = audioManager.player {
-                                Text(DateComponentsFormatter.positional.string(from: player.duration) ?? "0:00").font(Font.caption2)
-                            }
-                        }
-                    }
+                
+                // MARK: Slider Control
+                if mode == .standard {
+                    //                        Slider(value: $value, in: 0...player.duration) { editing in
+                    //                            isEditing = editing
+                    //                            if !editing {
+                    //                                player.currentTime = value
+                    //                            }
+                    //                        }
                 }
+                
+                // MARK: play time
+                if mode == .standard {
+                    //                        HStack {
+                    //                            Text(DateComponentsFormatter.positional.string(from: value) ?? "0:00")
+                    //                            Spacer()
+                    //                            Text(DateComponentsFormatter.positional.string(from: player.duration - value) ?? "0:00")
+                    //                        }
+                }
+                
+                // MARK: Button Control
+//                ZStack {
+//                    Color.blue
+                    HStack {
+                        Spacer()
+                        // MARK: backward Button
+                        if mode == .buttonAndDetail {
+                            VStack {
+                                PlaybackControlButton(systemName: "gobackward.5", fontSize: geometry.size.width * 0.17, action: audioManager.gobackward)
+                                //                            Text(DateComponentsFormatter.positional.string(from: value) ?? "0:00").font(Font.caption2)
+                                //                                .foregroundColor(audioManager.isPlaying ? .green : .yellow)
+                            }
+                            //                        .frame(width: geometry.size.width * 0.2)
+                        }
+                        Spacer()
+                        
+                        // MARK: playPause Button
+                        
+                        PlaybackControlButton(systemName: audioManager.status == AudioPlayerStatus.play ? "pause.circle.fill" : "play.circle.fill", fontSize: getPlayPauseSize(size: geometry.size), color: .white, action: audioManager.playPause, progress: progress,progressColor: audioManager.isPlaying ? .green : .yellow)
 
-                // MARK: Time Left
-                if mode == .buttonPLayAndTimeleft {
-                    Text(DateComponentsFormatter.positional.string(from: value) ?? "0:00").font(Font.caption2)
-                        .foregroundColor(audioManager.isPlaying ? .green : .yellow)
+                        //                        .frame(width: geometry.size.width * 0.45)
+                        Spacer()
+                        
+                        // MARK: forward Button
+                        if mode == .buttonAndDetail {
+                            VStack {
+                                PlaybackControlButton(systemName: "goforward.5", fontSize: geometry.size.width * 0.17, action: audioManager.goforward)
+                                //                            if let player = audioManager.player {
+                                //                                Text(DateComponentsFormatter.positional.string(from: player.duration) ?? "0:00").font(Font.caption2)
+                                //                            } else {
+                                //                                Text("--:--").font(Font.caption2)
+                                //                            }
+                            }
+                            //                        .frame(width: geometry.size.width * 0.2)
+                        }
+                        Spacer()
+                    }
+//                    .frame(width: geometry.size.width)
+//                }
+                HStack {
+                    // MARK: Time Left
+                    if mode == .buttonPLayAndTimeleft || mode == .buttonAndDetail {
+                        Text(DateComponentsFormatter.positional.string(from: value) ?? "0:00").font(Font.caption2)
+                            .foregroundColor(audioManager.isPlaying ? .green : .yellow)
+                            .padding(.leading, 10)
+                        
+                        Spacer()
+                        if let player = audioManager.player {
+                            Text(DateComponentsFormatter.positional.string(from: player.duration) ?? "0:00").font(Font.caption2)
+                                .padding(.trailing, 10)
+                        } else {
+                            Text("--:--").font(Font.caption2)
+                                .padding(.trailing, 10)
+                        }
+                        
+                    }
                 }
             }
-//            Rectangle()
-//                .background(.black)
-//                .opacity(0.25)
-//                .ignoresSafeArea()
+            .position(x: geometry.size.width * 0.5, y: geometry.size.height * 0.5)
         }
         .onAppear {
             if autoStart {
@@ -127,7 +143,18 @@ struct AudioPlayerView: View {
         }
         //        }
     }
-    
+    func getPlayPauseSize(size: CGSize) -> CGFloat {
+        switch mode {
+        case .standard:
+            return size.width * 0.4
+        case .buttonPlayOnly:
+            return size.width
+        case .buttonPLayAndTimeleft:
+            return size.width
+        case .buttonAndDetail:
+            return size.width * 0.4
+        }
+    }
     func getButtonImageName(aStatus: AudioPlayerStatus) -> String {
         switch aStatus {
         case .stop:
@@ -146,8 +173,14 @@ struct AudioPlayerView_Previews: PreviewProvider {
         let url = documentPath.appendingPathComponent("memo-29-10-22_at_13:38:59.m4a")
 
         NavigationStack {
-            AudioPlayerView(url: url, height: 100, width: 100, isPreview: true)
-                .environmentObject(AudioManager())
+            ZStack{
+                Color.brown
+                    .frame(width: 175, height: 140)
+                AudioPlayerView(url: url, mode: .buttonAndDetail, height: 100, width: 100, isPreview: true)
+                    .environmentObject(AppManager())
+                    .environmentObject(AudioManager())
+                    .frame(width: 175, height: 140)
+            }
         }
     }
 }

@@ -6,6 +6,54 @@
 //
 
 import Foundation
+import SwiftUI
+
+extension MemoVocal
+{
+    var color: Color
+    {
+        switch self.memoType {
+        case .officeReminder:
+            return Color.purple
+        case .messToSupervisor:
+            return Color.brown
+        case .messToComiteMixte:
+            return Color.blue
+        case .memoOnly:
+            return Color.cyan
+        }
+    }
+    var memoType: MemoType
+    {
+        switch self.type {
+        case "OFFICE-REMINDER":
+            return .officeReminder
+        case "SUPERVISOR-SENT":
+            return .messToSupervisor
+        case "COMITEMIXTE-SENT":
+            return .messToComiteMixte
+        case .none:
+            return .memoOnly
+        case .some(_):
+            return .memoOnly
+        }
+    }
+    func duration() -> CGFloat {
+        if let createdAt = self.createdAt {
+            if let createdFrom = self.createdFrom {
+                return createdAt.timeIntervalSince(createdFrom)
+            } else {
+                return 0
+            }
+        } else {
+            return 0
+        }
+    }
+    func durationString() -> String {
+        return DateComponentsFormatter.positional.string(from: self.duration()) ?? "0:00"
+        
+    }
+}
 extension Date
 {
     func toString( dateFormat format  : String ) -> String
@@ -13,6 +61,19 @@ extension Date
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = format
         return dateFormatter.string(from: self)
+    }
+
+    public func setTime(hour: Int, min: Int, sec: Int, timeZoneAbbrev: String = "UTC") -> Date? {
+        let x: Set<Calendar.Component> = [.year, .month, .day, .hour, .minute, .second]
+        let cal = Calendar.current
+        var components = cal.dateComponents(x, from: self)
+
+        components.timeZone = TimeZone(abbreviation: timeZoneAbbrev)
+        components.hour = hour
+        components.minute = min
+        components.second = sec
+
+        return cal.date(from: components)
     }
 }
 extension DateComponentsFormatter {

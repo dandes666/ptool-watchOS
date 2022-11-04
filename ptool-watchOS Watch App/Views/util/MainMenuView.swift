@@ -129,10 +129,9 @@ struct MainMenuView: View {
                             CompleteView(width: 130, height: 130, title: "Envoit de memo")
                         case .error:
                             ErrorView(width: 100, height: 100, title: "Erreur", desc: "")
-                        case .officeActiveMemoList:
-                            OfficeActiveMemoListView()
                         }
                     }
+                    
                     .navigationBarTitleDisplayMode(.inline)
                     .navigationTitle("\(db.getCurrentRouteName())-\(db.getCurrentOfficeName())")
                 }

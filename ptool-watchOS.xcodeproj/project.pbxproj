@@ -38,6 +38,7 @@
 		801E69C228E88B4200919E9F /* PushNotificationPayloadTest.apns in Resources */ = {isa = PBXBuildFile; fileRef = 801E69C028E88B4200919E9F /* PushNotificationPayloadTest.apns */; };
 		801E69C328E88B4200919E9F /* PushNotificationPayloadTest.apns in Resources */ = {isa = PBXBuildFile; fileRef = 801E69C028E88B4200919E9F /* PushNotificationPayloadTest.apns */; };
 		801E69C428E88B4200919E9F /* PushNotificationPayloadTest.apns in Resources */ = {isa = PBXBuildFile; fileRef = 801E69C028E88B4200919E9F /* PushNotificationPayloadTest.apns */; };
+		802BC28D29157F7A0013477D /* MemoListParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802BC28C29157F7A0013477D /* MemoListParam.swift */; };
 		802F527A28E1E17600E79AF1 /* Office.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802F527928E1E17600E79AF1 /* Office.swift */; };
 		802F527C28E1E1E300E79AF1 /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802F527B28E1E1E300E79AF1 /* Report.swift */; };
 		802F528528E1F53300E79AF1 /* ReportImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802F528428E1F53300E79AF1 /* ReportImage.swift */; };
@@ -61,7 +62,6 @@
 		8074EE5C29101F6D00AE70FE /* MemoVocalListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8074EE5B29101F6D00AE70FE /* MemoVocalListView.swift */; };
 		8074EE5E29101FBF00AE70FE /* MemoVocalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8074EE5D29101FBF00AE70FE /* MemoVocalView.swift */; };
 		8074EE61291040AF00AE70FE /* PlaybackControlButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8074EE60291040AF00AE70FE /* PlaybackControlButton.swift */; };
-		8076DC8C2912FE5400FA97F0 /* OfficeActiveMemoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8076DC8B2912FE5400FA97F0 /* OfficeActiveMemoListView.swift */; };
 		8081632528E94B9100A765F2 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8081632428E94B9100A765F2 /* NotificationController.swift */; };
 		8081632728E94BD900A765F2 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8081632628E94BD900A765F2 /* NotificationView.swift */; };
 		8081632A28E968CE00A765F2 /* NotificationReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8081632928E968CE00A765F2 /* NotificationReportView.swift */; };
@@ -159,6 +159,7 @@
 		801E69BC28E8081200919E9F /* RouteClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteClass.swift; sourceTree = "<group>"; };
 		801E69BE28E8812000919E9F /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		801E69C028E88B4200919E9F /* PushNotificationPayloadTest.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayloadTest.apns; sourceTree = "<group>"; };
+		802BC28C29157F7A0013477D /* MemoListParam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoListParam.swift; sourceTree = "<group>"; };
 		802F527928E1E17600E79AF1 /* Office.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Office.swift; sourceTree = "<group>"; };
 		802F527B28E1E1E300E79AF1 /* Report.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
 		802F528428E1F53300E79AF1 /* ReportImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportImage.swift; sourceTree = "<group>"; };
@@ -184,7 +185,6 @@
 		8074EE5B29101F6D00AE70FE /* MemoVocalListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoVocalListView.swift; sourceTree = "<group>"; };
 		8074EE5D29101FBF00AE70FE /* MemoVocalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoVocalView.swift; sourceTree = "<group>"; };
 		8074EE60291040AF00AE70FE /* PlaybackControlButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackControlButton.swift; sourceTree = "<group>"; };
-		8076DC8B2912FE5400FA97F0 /* OfficeActiveMemoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfficeActiveMemoListView.swift; sourceTree = "<group>"; };
 		8081632428E94B9100A765F2 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
 		8081632628E94BD900A765F2 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		8081632928E968CE00A765F2 /* NotificationReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationReportView.swift; sourceTree = "<group>"; };
@@ -326,7 +326,6 @@
 				801E69A328E7AA6700919E9F /* GuardianActiveView.swift */,
 				8074EE4D290D7CF400AE70FE /* toolMenuView.swift */,
 				8074EE4F290D7F2F00AE70FE /* FullBoxListView.swift */,
-				8076DC8B2912FE5400FA97F0 /* OfficeActiveMemoListView.swift */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -382,6 +381,7 @@
 				801E69BC28E8081200919E9F /* RouteClass.swift */,
 				808225EE28D6BC2600EE53E2 /* User.swift */,
 				808D713B29023F6600227AB0 /* Memo.swift */,
+				802BC28C29157F7A0013477D /* MemoListParam.swift */,
 				805EC2E62911A61E001FBDDF /* AppTask.swift */,
 			);
 			path = "Table Class";
@@ -683,6 +683,7 @@
 				80F0AC3128F32E4C00731752 /* NotificationDelegate.swift in Sources */,
 				80641BC02913329700296E36 /* OfficeMemoNotificationView.swift in Sources */,
 				801E699628E7638400919E9F /* OfficeSelectView.swift in Sources */,
+				802BC28D29157F7A0013477D /* MemoListParam.swift in Sources */,
 				805EC2E32911919B001FBDDF /* MemoHeaderView.swift in Sources */,
 				805F274928E66349001AB184 /* ReportListView.swift in Sources */,
 				80997C0D28FF145E00EABC62 /* DeliveryNoteItemView.swift in Sources */,
@@ -693,7 +694,6 @@
 				80B7B9BB2911EC8A005DB6BD /* ActivityIndicator.swift in Sources */,
 				801A234628ED1CD000999CF3 /* MainMenuView.swift in Sources */,
 				8082260928D6E01600EE53E2 /* SignUpView.swift in Sources */,
-				8076DC8C2912FE5400FA97F0 /* OfficeActiveMemoListView.swift in Sources */,
 				808225EF28D6BC2600EE53E2 /* User.swift in Sources */,
 				801408322905990D00D9E225 /* RadarView.swift in Sources */,
 				8074EE5E29101FBF00AE70FE /* MemoVocalView.swift in Sources */,

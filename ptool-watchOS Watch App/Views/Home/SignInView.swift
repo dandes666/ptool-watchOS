@@ -106,9 +106,7 @@ struct SignInView: View {
                             print(muid)
                             if (muid == uid) {
                                 print(muid)
-                                if let memoId = m.id {
-                                    db.memoArray += [Memo(id: memoId, type: db.getMemoTypeFromString(mString: m.type ?? ""), officeId: m.officeId ?? "", routeId: m.routeId ?? "", fileURL: m.url ?? URL(filePath: ""), downloadURL: m.downloadURL, createdAt: m.createdAt ?? Date(), createdFrom: m.createdFrom ?? Date(), adviseAt: m.adviseAt, active: m.active)]
-                                }
+                                db.memoVocalArray += [m]
                             }
                         }
                         

@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct PlaybackControlButton: View {
-    var systemName: String = "play"
-    var fontSize: CGFloat = 44
+    var systemName: String = "play.circle.fill"
+    var fontSize: CGFloat = 64
     var color: Color = .white
     var action: () -> Void
     var progress: CGFloat? = nil
@@ -25,6 +25,7 @@ struct PlaybackControlButton: View {
                     .opacity(0.4)
                     .foregroundColor(progressColor)
                     .padding()
+                    .frame(width: fontSize, height: fontSize)
                 Circle()
                     .trim(from: 0.0, to: CGFloat(min(progress, 8.0)))
                     .stroke(style: StrokeStyle(lineWidth: 7.0, lineCap: .round, lineJoin: .round))
@@ -32,6 +33,7 @@ struct PlaybackControlButton: View {
                     .rotationEffect(Angle(degrees: 270.0))
                     .animation(.linear, value: isShow)
                     .padding()
+                    .frame(width: fontSize, height: fontSize)
 //                    .withAnimation(.linear, {})
             }
 //                .font(.system(size: fontSize))
@@ -39,7 +41,7 @@ struct PlaybackControlButton: View {
                 action()
             } label: {
                 Image(systemName: systemName)
-                    .font(.system(size: fontSize))
+                    .font(.system(size: self.progress == nil ? fontSize : fontSize * 0.65 ))
                     .foregroundColor(color)
             }
             .disabled(disabled)

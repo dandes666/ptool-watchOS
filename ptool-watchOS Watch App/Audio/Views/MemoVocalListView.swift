@@ -8,60 +8,60 @@
 import SwiftUI
 
 struct MemoVocalListView: View {
+    @EnvironmentObject var db: AppManager
     @Environment(\.managedObjectContext) var moc
     @FetchRequest(sortDescriptors: [SortDescriptor(\.createdAt, order: .reverse)]) var memoVocals: FetchedResults<MemoVocal>
+    
+    var memoListParam: MemoListParam
+    var mode: MemoListMode = .standart
+    var filterOfficeId: String? = nil
+    var filterType: MemoType? = nil
+    
+    var filteredMemoVocals: [MemoVocal] {
+        switch memoListParam.mode {
+        case .standart:
+            return memoVocals.filter { $0.active }
+        case .officeSelected:
+            return memoVocals.filter { $0.officeId == db.userInfo.officeSelected }
+        case .paramFecth:
+            if let officeId = memoListParam.officeId {
+                if let memoType = memoListParam.memoType {
+                    let type = db.getMemoTypeString(memoType: memoType)
+                    return memoVocals.filter { $0.officeId == officeId && $0.type == type }
+                } else {
+                    return memoVocals.filter { $0.officeId == officeId }
+                }
+            } else {
+                if let memoType = memoListParam.memoType {
+                    let type = db.getMemoTypeString(memoType: memoType)
+                    return memoVocals.filter { $0.type == type }
+                } else {
+                    return memoVocals.filter { $0.active }
+                }
+            }
+        case .memoSelect:
+            if let memoId = memoListParam.memoId {
+                return memoVocals.filter { $0.id == memoId }
+            } else {
+                return memoVocals.filter { $0.active }
+            }
+        }
+
+    }
     var body: some View {
         VStack {
-//            Text(NSLocalizedString("Memo vocal", comment: ""))
             List{
-                ForEach(memoVocals) { memoVocal in
-                    NavigationLink(value: memoVocal) {
-                        HStack {
-//                            VStack {
-//                                if let type = memoVocal.type {
-//                                    Text(NSLocalizedString(type, comment: ""))
-//                                        .font(Font.subheadline)
-//                                        .foregroundColor(Color.purple)
-//                                } else {
-//                                    Text(NSLocalizedString("Memo vocal", comment: ""))
-//                                        .font(Font.subheadline)
-//                                        .foregroundColor(Color.purple)
-//                                }
-//                                if let createdAt = memoVocal.createdAt {
-//                                    Text(createdAt.toString(dateFormat: "YY-MM-dd hh:mm"))
-//                                        .font(Font.caption2)
-//                                    if let createdFrom = memoVocal.createdFrom {
-//                                        HStack{
-//                                            Text("\(NSLocalizedString("duration", comment: "")) : ")
-//                                                .font(Font.caption2)
-//                                                .foregroundColor(.gray)
-//                                            Text("\(DateComponentsFormatter.positional.string(from: createdAt.timeIntervalSince(createdFrom)) ?? "0:00")")
-//                                                .font(Font.caption2)
-//                                                .foregroundColor(.yellow)
-//                                        }
-//                                    }
-//                                }
-//                            }
-                            MemoHeaderView(memoVocal: memoVocal)
-                            Spacer()
-                            Image("next")
-                                .resizable()
-                                .frame(width: 20, height: 20, alignment: .leading)
-                        }
-                    }
+                ForEach(filteredMemoVocals) { memoVocal in
+                    MemoView(memoVocal: memoVocal)
                 }
                 .onDelete(perform: deleteMemo)
-                .listRowInsets(EdgeInsets(top: 5, leading: 7, bottom: 10, trailing: 0))
-            }
-//            .listRowInsets(EdgeInsets(top: 30, leading: 0, bottom: 50, trailing: 0))
-            .navigationDestination(for: MemoVocal.self) { m in
-                MemoVocalView(memoVocal: m)
+//                .listRowInsets(EdgeInsets(top: 5, leading: 1, bottom: 40, trailing: 0))
             }
         }
     }
     func deleteMemo(at offsets: IndexSet) {
         for offset in offsets {
-            let memo = memoVocals[offset]
+            let memo = filteredMemoVocals[offset]
             if let url = memo.url {
 //                print("delete file")
                 try? FileManager.default.removeItem(at: url)
@@ -74,6 +74,6 @@ struct MemoVocalListView: View {
 
 struct MemoVocalListView_Previews: PreviewProvider {
     static var previews: some View {
-        MemoVocalListView()
+        MemoVocalListView(memoListParam: MemoListParam(mode: .standart))
     }
 }

@@ -13,7 +13,7 @@ struct MemoVocalView: View {
         VStack {
             Text(NSLocalizedString("Memo vocal", comment: ""))
             if let createDate = memoVocal.createdAt {
-                Text("\(NSLocalizedString("Creer le", comment: "")) : \(createDate.toString(dateFormat: "YY-MM-dd hh:mm"))")
+                Text("\(NSLocalizedString("Creer le", comment: "")) : \(createDate.toString(dateFormat: "YY-MM-dd HH:MM"))")
             }
             Spacer()
             if let url = memoVocal.url {

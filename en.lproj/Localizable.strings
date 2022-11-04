@@ -80,8 +80,8 @@
 "activeMemoForThisOffice" = "mémo actif pour ce bureau";
 "activeMemosForThisOffice" = "mémos actif pour ce bureau";
 "showMemo"= "Show";
-"notifRemindLater" = "Notify me later\n(Not before 1 hour)";
-"notifRemindnotToday" = "Notify me later\n(Not until tomorrow)";
+"notifRemindLater" = "Advise me later\n(Not before 1 hour)";
+"notifRemindnotToday" = "Advise me later\n(Not until tomorrow)";
 
 // MARK: memo type
 "officeReminder" = "Reminder";

@@ -14,7 +14,7 @@ struct RecordingView: View {
             Text(NSLocalizedString("Memo vocal", comment: ""))
                 .font(Font.subheadline)
                 .foregroundColor(Color.purple)
-            Text(rec.createdAt.toString(dateFormat: "YY-MM-dd hh:mm"))
+            Text(rec.createdAt.toString(dateFormat: "YY-MM-dd HH:MM"))
                 .font(Font.caption2)
 //            Text("\(NSLocalizedString("duration", comment: "")) : \(DateComponentsFormatter.positional.string(from: rec.createdAt.timeIntervalSince(rec.createdFrom)) ?? "0:00")")
                 .font(Font.caption2)

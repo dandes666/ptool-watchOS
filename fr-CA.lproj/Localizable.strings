@@ -80,8 +80,8 @@
 "activeMemoForThisOffice" = "mémo actif pour ce bureau";
 "activeMemosForThisOffice" = "mémos actif pour ce bureau";
 "showMemo"= "Voir...";
-"notifRemindLater" = "Notifier moi plus tard\n(pas avant 1 heure)";
-"notifRemindnotToday" = "Notifier moi plus tard\n(pas avant demain)";
+"notifRemindLater" = "Avisez moi plus tard\n(pas avant 1 heure)";
+"notifRemindnotToday" = "Avisez moi plus tard\n(pas avant demain)";
 "notBefore1h"= "Pas avant 1h";
 "notBeforeTomoro"= "Pas avant demain";
 

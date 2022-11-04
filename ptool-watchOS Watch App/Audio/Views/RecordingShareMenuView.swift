@@ -94,7 +94,7 @@ struct RecordingShareMenuView: View {
                         .onDisappear() {
                             self.router.reset()
                             self.router.path.append(MasterRoute.tool)
-                            self.router.path.append(ToolRoute.memoList)
+                            self.router.path.append(MemoListParam(mode: .standart))
                             audioRecorder.currentRecording = nil
                         }
                 case .done:
@@ -127,8 +127,7 @@ struct RecordingShareMenuView: View {
         memoVocal.createdFrom = rec.createdFrom
         memoVocal.type = db.getMemoTypeString(memoType: type)
         try? moc.save()
-        db.memoArray += [Memo(id: rec.id, type: MemoType.officeReminder,officeId: db.userInfo.officeSelected, routeId: db.userInfo.routeSelected, fileURL: rec.fileURL, downloadURL: downloadURL, createdAt: rec.createdAt, createdFrom: rec.createdFrom, adviseAt: nil, active: true)]
-        db.currentTask.status = .success
+
     }
 }
 

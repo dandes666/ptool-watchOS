@@ -10,14 +10,12 @@ import Foundation
 enum MasterRoute: Hashable {
     case reportList
     case deliveryNoteList
-    case officeActiveMemoList
     case config
     case tool
     case complete
     case error
 }
 enum ToolRoute: Hashable {
-    case memoList
     case fullbox
     case memo
 }
@@ -51,6 +49,12 @@ enum MemoType {
     case messToSupervisor
     case messToComiteMixte
     case memoOnly
+}
+enum MemoListMode {
+    case standart
+    case officeSelected
+    case paramFecth
+    case memoSelect
 }
 enum AudioPlayerStatus {
     case stop

@@ -65,27 +65,39 @@ class NotificationDelegate: NSObject, UNUserNotificationCenterDelegate {
                     if let officeId = notificationData?["officeId"] as? String {
                         switch response.actionIdentifier {
                         case "showMemo":
-                            db.officeActiveMemoListId = officeId
                             router.reset()
-                            router.path.append(MasterRoute.officeActiveMemoList)
+                            router.path.append(MasterRoute.tool)
+                            router.path.append(MemoListParam(mode: .paramFecth, officeId: officeId, memoType: .officeReminder))
                             break
                         case "notifRemindLater":
+                            print("notifRemindLater")
+                            if let office = db.getOfficeById(officeId: officeId) {
+                                office.canAdviseAt = Date().addingTimeInterval(360)
+                            }
                             break
                         case "notifRemindnotToday":
+                            print("notifRemindnotToday")
+                            if let office = db.getOfficeById(officeId: officeId) {
+//                                let cal = Calendar.current
+                                let d = Date().addingTimeInterval(86400)
+                                office.canAdviseAt = Calendar.current.startOfDay(for: d)
+//                                if let da = office.canAdviseAt {
+//                                    print(da.toString(dateFormat: "YY-MM-dd HH:mm"))
+//                                }
+                            }
                             break
                         case UNNotificationDismissActionIdentifier:
 //                            print("action -> dismiss")
+                             // n
                             break
-                        case UNNotificationDefaultActionIdentifier,
-                        UNNotificationDismissActionIdentifier:
-                            // Queue meeting-related notifications for later
-                            //  if the user does not act.
-                            //             sharedMeetingManager.queueMeetingForDelivery(user: userID, meetingID: meetingID)
-//                            print("trace1 actionIdentifier: \(response.actionIdentifier)")
+                        case UNNotificationDefaultActionIdentifier:
+
+                            router.reset()
+                            router.path.append(MasterRoute.tool)
+                            router.path.append(MemoListParam(mode: .paramFecth, officeId: officeId, memoType: .officeReminder))
                             break
                             
                         default:
-//                            print("trace2 actionIdentifier: \(response.actionIdentifier)")
                             break
                         }
                     }

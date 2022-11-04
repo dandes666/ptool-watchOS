@@ -20,27 +20,7 @@ struct ConfigView: View {
                         .font(.system(size: 11))
                 }
             }
-            if let cptMemo = db.getActiveMemo(officeId: db.userInfo.officeSelected).count {
-                NavigationLink(value: MasterRoute.officeActiveMemoList) {
-                    VStack {
-                        if cptMemo > 1 {
-                            Text("\(cptMemo.string) \(NSLocalizedString("MemosActiveInOffice", comment: ""))")
-                                .lineLimit(3)
-                                .foregroundColor(Color.green)
-                        } else if cptMemo > 0 {
-                            Text("\(cptMemo.string) \(NSLocalizedString("MemoActiveInOffice", comment: ""))")
-                                .lineLimit(3)
-                                .foregroundColor(Color.green)
-                        } else {
-                            Text(NSLocalizedString("noMemoActiveInOffice", comment: ""))
-                                .foregroundColor(Color.yellow)
-                        }
-//                        Text("\(String(cptMemo))")
-//                            .font(.system(size: 11))
-                    }
-                }.disabled(cptMemo == 0)
-            }
-//                Spacer()
+
             Text(NSLocalizedString("Route", comment: ""))
                 .padding(EdgeInsets.init(top: 15, leading: 0, bottom: 0, trailing: 0))
             NavigationLink(value: ConfigRoute.routeSelect) {
