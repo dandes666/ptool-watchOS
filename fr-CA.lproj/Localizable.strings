@@ -29,6 +29,7 @@
 "Retour" = "Retour";
 "Aucune note de livraison pour cette route" = "Aucune note de livraison pour cette route";
 "Aucun signalement pour cette route" = "Aucun signalement pour cette route";
+"Aucune boite plienne pour cette route" = "No full box for this route";
 // MARK: configView
 "Bureau" = "Bureau";
 "Route" = "Route";

@@ -8,6 +8,81 @@
 import Foundation
 import SwiftUI
 
+extension PdrType
+{
+    func getTypeInText() -> String {
+        switch self {
+        case .domicile:
+            return "Hou/Dom"
+        case .appartement:
+            return "Apt/App"
+        case .commerce:
+            return "Bus/com"
+        case .ferme:
+            return "Frm/Frm"
+        }
+    }
+    func getTypefromText(type: String) -> PdrType {
+        switch type {
+        case "Hou/Dom":
+            return .domicile
+        case "Apt/App":
+            return .appartement
+        case "Bus/com":
+            return .commerce
+        case "Frm/Frm":
+            return .ferme
+        default:
+            return .ferme
+        }
+    }
+}
+extension PdrTpType
+{
+    func getTypeInText() -> String {
+        switch self {
+        case .dtd:
+            return "dtd"
+        case .cmb:
+            return "cmb"
+        case .lba:
+            return "lba"
+        case .aptlba:
+            return "aptlba"
+        case .ksk:
+            return "ksk"
+        case .dflb:
+            return "dflb"
+        case .rmb:
+            return "rmb"
+        case .cntr:
+            return "cntr"
+
+        }
+    }
+    func getTypefromText(type: String) -> PdrTpType {
+        switch type {
+        case "dtd":
+            return .dtd
+        case "cmb":
+            return .cmb
+        case "lba":
+            return .lba
+        case "aptlba":
+            return .aptlba
+        case "ksk":
+            return .ksk
+        case "dflb":
+            return .dflb
+        case "rmb":
+            return .rmb
+        case "cntr":
+            return .cntr
+        default:
+            return .dtd
+        }
+    }
+}
 extension MemoVocal
 {
     var color: Color

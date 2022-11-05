@@ -13,6 +13,7 @@ class AppTask: NSObject, Identifiable {
     let id = UUID()
     @Published var status: TaskStatus {
         willSet { objectWillChange.send() }
+        didSet { objectWillChange.send() }
     }
     @Published var title: String?
     @Published var error: NSError?
@@ -37,5 +38,6 @@ class AppTask: NSObject, Identifiable {
         self.message = nil
         self.resultString1 = nil
         self.progress = nil
+        objectWillChange.send()
     }
 }

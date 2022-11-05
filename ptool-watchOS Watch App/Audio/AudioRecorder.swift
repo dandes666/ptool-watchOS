@@ -51,10 +51,10 @@ class AudioRecorder: NSObject,ObservableObject {
         AVAudioSession.sharedInstance().requestRecordPermission { granted in
             if granted {
                 // The user granted access. Present recording interface.
-                print("acces ok")
+//                print("acces ok")
                 self.canRecord = true
             } else {
-                print("acces pas ok")
+//                print("acces pas ok")
                 self.canRecord = false
                 return
                 // Present message to user indicating that recording

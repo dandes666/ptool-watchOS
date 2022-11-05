@@ -28,6 +28,7 @@ struct RecordingShareMenuView: View {
                         
                         db.currentTask.message = NSLocalizedString("Me rappeler a mon retour au bureau", comment: "")
                         saveNewMemo(type: .officeReminder, downloadURL: nil)
+                        db.currentTask.status = .success
                     }
                     .lineLimit(3)
                     .padding(.bottom, 7)
@@ -114,7 +115,7 @@ struct RecordingShareMenuView: View {
     }
     func saveNewMemo(type: MemoType, downloadURL: URL?) {
         let memoVocal = MemoVocal(context: moc)
-        
+        db.currentTask.status = .inProgress
         memoVocal.id = rec.id
         memoVocal.active = true
         memoVocal.url = rec.fileURL
@@ -127,7 +128,10 @@ struct RecordingShareMenuView: View {
         memoVocal.createdFrom = rec.createdFrom
         memoVocal.type = db.getMemoTypeString(memoType: type)
         try? moc.save()
-
+//        db.currentTask.status = .success
+        db.setCurrentTaskstatus(status: .success)
+        print("trace status", db.currentTask.status)
+//        audioRecorder.currentRecording = nil
     }
 }
 

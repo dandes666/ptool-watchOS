@@ -67,3 +67,19 @@ enum AudioPlayerMode {
     case buttonPLayAndTimeleft
     case buttonAndDetail
 }
+enum PdrType {
+    case appartement
+    case domicile
+    case ferme
+    case commerce
+}
+enum PdrTpType {
+    case dtd
+    case cmb
+    case lba
+    case aptlba
+    case ksk
+    case dflb
+    case rmb
+    case cntr
+}

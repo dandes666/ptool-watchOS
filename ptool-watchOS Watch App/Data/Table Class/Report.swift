@@ -187,7 +187,7 @@ class Report: NSObject, Identifiable {
                 if let r = re as? NSDictionary {
                     return ReportPocInfo(dictionaryFormat: r)
                 } else {
-                    return ReportPocInfo(pocId: "")
+                    return ReportPocInfo(dictionaryFormat: NSDictionary())
                 }
             }
         } else {
@@ -240,7 +240,7 @@ class Report: NSObject, Identifiable {
     }
     func getReportNotificationSubTitle() -> String {
         if pocList.count > 0 {
-            return pocList[0].getAddress()
+            return pocList[0].address
         } else {
             if let t = self.type {
                 switch t {

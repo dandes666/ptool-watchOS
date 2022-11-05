@@ -8,13 +8,50 @@
 import SwiftUI
 
 struct FullBoxListView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+    @EnvironmentObject var db: AppManager
+    var fullBoxArray: [Report] {
+        return db.getFullBoxArray()
     }
+    var pocArray: [ReportPocInfo] {
+        var pocArray: [ReportPocInfo] = []
+        for f in fullBoxArray {
+            pocArray += f.pocList
+        }
+        return pocArray.sorted {
+            $0.seqPosTot < $1.seqPosTot
+        }
+    }
+    var body: some View {
+        ScrollView {
+            VStack {
+                if pocArray.count > 0 {
+                    Text("Boite Pleine")
+                    ForEach(pocArray) { poc in
+                        Text(poc.address)
+                            .foregroundColor(poc.color)
+                    }
+                } else {
+                    HStack {
+                        Text("\(NSLocalizedString("Aucune boite plienne pour cette route", comment: "")) (")
+                            .fontWeight(Font.Weight.bold)
+                            .foregroundColor(Color.red)
+                        + Text(db.getCurrentRouteName())
+                            .fontWeight(Font.Weight.black)
+                        + Text(")")
+                            .fontWeight(Font.Weight.bold)
+                            .foregroundColor(Color.red)
+                    }
+                        .lineLimit(5)
+                }
+            }
+        }
+    }
+    
 }
 
 struct FullBoxListView_Previews: PreviewProvider {
     static var previews: some View {
         FullBoxListView()
+            .environmentObject(AppManager())
     }
 }

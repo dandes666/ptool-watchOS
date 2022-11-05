@@ -196,6 +196,7 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     func getCurrentOfficeName() -> String {
         return officeArray[userInfo.officeIdx].name
     }
+
     func getFullBoxArray() -> [Report] {
         return self.reportArray.filter { r in
             return r.type == "fullbox"
@@ -500,13 +501,43 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
                         if let pocList = report["pocList"] as? NSArray {
 
                             for poc in pocList {
+                                print("trace Start -->")
                                 if let p = poc as? NSDictionary {
                                     if let pocId = p["pocId"] as? String {
-                                        let pocInfo = ReportPocInfo(pocId: pocId)
-                                        if let add = p["address"] as? String {
-                                            pocInfo.address = add
+//                                        let pocInfo = ReportPocInfo(pocId: pocId)
+                                        if let address = p["address"] as? String {
+                                            if let pdrType = p["pdrType"] as? String {
+                                                if let tpType = p["tpType"] as? String {
+                                                    if let seq = p["seq"] as? NSDictionary {
+                                                        if let tier = seq["tier"] as? Int {
+                                                            
+                                                                if let seqPosTot = seq["seqPosTot"] as? Int {
+                                                                    if let codeId = seq["codeId"] as? String {
+                                                                        if let codeName = seq["codeName"] as? String {
+                                                                            o.pocList += [ReportPocInfo(pocId: pocId, address: address, codeId: codeId, codeName: codeName, seqPosTot: seqPosTot, tier: tier, type: PdrType.domicile.getTypefromText(type: pdrType), tpType: PdrTpType.dtd.getTypefromText(type: tpType))]
+                                                                            print("poc load success codeId = String")
+                                                                        } else if let codeName = seq["codeName"] as? Int {
+                                                                            o.pocList += [ReportPocInfo(pocId: pocId, address: address, codeId: codeId, codeName: String(codeName), seqPosTot: seqPosTot, tier: tier, type: PdrType.domicile.getTypefromText(type: pdrType), tpType: PdrTpType.dtd.getTypefromText(type: tpType))]
+                                                                            print("poc load success codeId = String")
+                                                                        }
+                                                                    } else if let codeIdInt = seq["codeId"] as? Int {
+                                                                        if let codeName = seq["codeName"] as? String {
+                                                                            o.pocList += [ReportPocInfo(pocId: pocId, address: address, codeId: String(codeIdInt), codeName: codeName, seqPosTot: seqPosTot, tier: tier, type: PdrType.domicile.getTypefromText(type: pdrType), tpType: PdrTpType.dtd.getTypefromText(type: tpType))]
+                                                                            print("poc load success codeId = Int")
+                                                                        } else if let codeName = seq["codeName"] as? Int {
+                                                                            o.pocList += [ReportPocInfo(pocId: pocId, address: address, codeId: String(codeIdInt), codeName: String(codeName), seqPosTot: seqPosTot, tier: tier, type: PdrType.domicile.getTypefromText(type: pdrType), tpType: PdrTpType.dtd.getTypefromText(type: tpType))]
+                                                                            print("poc load success codeId = Int")
+                                                                        }
+                                                                    }
+                                                                }
+//                                                            } else {print("trace codeId")}
+                                                        }
+                                                    }
+                                                }
+                                            }
                                         }
-                                        o.pocList += [pocInfo]
+                                        
+//                                        o.pocList += [pocInfo]
                                     }
                                 }
 
@@ -547,6 +578,10 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     }
     func createMemoOfficeNotification(rec: Recording) {
 //        let memo = Memo(officeId: <#T##String#>, fileURL: <#T##URL#>)
+    }
+    func setCurrentTaskstatus (status: TaskStatus) {
+        currentTask.status = status
+        objectWillChange.send()
     }
     func sendMemoTo(downloadURL: URL, to: String, completion: @escaping (URL?, NSError?) -> Void) {
         print("trace sendMemoTo")
@@ -734,7 +769,6 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
                         var memoToNotifCpt: Int = 0
 
                         for memo in memoVocalArray {
-                            print("trace check memovocalArray")
                             if memo.active && memo.officeId == office.officeId && memo.memoType == .officeReminder  {
                                 memoToNotifCpt += 1
                             }

@@ -52,7 +52,7 @@ class DeliveryNote: NSObject, Identifiable {
                 if let r = re as? NSDictionary {
                     return ReportPocInfo(dictionaryFormat: r)
                 } else {
-                    return ReportPocInfo(pocId: "")
+                    return ReportPocInfo(dictionaryFormat: NSDictionary())
                 }
             }
         } else {
