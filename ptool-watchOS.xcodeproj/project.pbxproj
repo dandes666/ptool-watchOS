@@ -974,7 +974,6 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "ptool-watchOS";
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "ptool.ptool-watchOS";
-				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = "ptool.ptool-watchOS.watchkitapp";
 				"PRODUCT_BUNDLE_IDENTIFIER[sdk=watchos*]" = "ptool.ptool-watchOS.watchkitapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -997,7 +996,6 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "ptool-watchOS";
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "ptool.ptool-watchOS";
-				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = "ptool.ptool-watchOS.watchkitapp";
 				"PRODUCT_BUNDLE_IDENTIFIER[sdk=watchos*]" = "ptool.ptool-watchOS.watchkitapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;

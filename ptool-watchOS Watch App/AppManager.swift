@@ -191,10 +191,14 @@ class AppManager: NSObject, ObservableObject, CLLocationManagerDelegate {
 
     }
     func getCurrentRouteName() -> String {
-        return officeArray[userInfo.officeIdx].routeArray[userInfo.routeIdx].name
+        if officeArray.count > 0 {
+            return officeArray[userInfo.officeIdx].routeArray[userInfo.routeIdx].name
+        } else {return ""}
     }
     func getCurrentOfficeName() -> String {
-        return officeArray[userInfo.officeIdx].name
+        if officeArray.count > 0 {
+            return officeArray[userInfo.officeIdx].name
+        } else {return ""}
     }
 
     func getFullBoxArray() -> [Report] {

@@ -11,10 +11,21 @@ struct PlaybackControlButton: View {
     var systemName: String = "play.circle.fill"
     var fontSize: CGFloat = 64
     var color: Color = .white
-    var action: () -> Void
+    
+    
     var progress: CGFloat? = nil
     var progressColor: Color = .white
+    
+    var labelCenter: String? = nil
+    var labelCenterFontSize: CGFloat = 32
+    var labelCenterColor: Color = Color.white
+    
+    var labelBottom: String? = nil
+    var labelBottomFontSize: CGFloat = 32
+    var labelBottomColor: Color = Color.white
+    
     var disabled: Bool = false
+    var action: () -> Void
     @State private var isShow = true
     
     var body: some View {
@@ -37,23 +48,36 @@ struct PlaybackControlButton: View {
 //                    .withAnimation(.linear, {})
             }
 //                .font(.system(size: fontSize))
-            Button {
-                action()
-            } label: {
-                Image(systemName: systemName)
-                    .font(.system(size: self.progress == nil ? fontSize : fontSize * 0.65 ))
-                    .foregroundColor(color)
+            VStack {
+                Button {
+                    action()
+                } label: {
+                    Image(systemName: systemName)
+                        .font(.system(size: self.progress == nil ? fontSize : fontSize * 0.65 ))
+                        .foregroundColor(color)
+                }
+                .disabled(disabled)
+                .buttonStyle(.plain)
+                .padding(0)
+                .font(.system(size: fontSize))
+                if let labelBottom = labelBottom {
+                    Text(labelBottom)
+                        .font(.system(size: labelBottomFontSize))
+                        .foregroundColor(labelBottomColor)
+                        
+                }
             }
-            .disabled(disabled)
-            .buttonStyle(.plain)
-            .padding()
-            .font(.system(size: fontSize))
+            if let labelCenter = labelCenter {
+                Text(labelCenter)
+                    .font(.system(size: labelCenterFontSize))
+                    .foregroundColor(labelCenterColor)
+            }
         }
     }
 }
 
 struct PlaybackControlButton_Previews: PreviewProvider {
     static var previews: some View {
-        PlaybackControlButton(action: {}, progress: 0.75)
+        PlaybackControlButton(systemName: "clipboard", fontSize: 80, color: .red, progress: nil, progressColor: .red, labelCenter: "6", labelCenterFontSize: 32, labelBottom: nil, labelBottomFontSize: 32, disabled: false, action: {})
     }
 }

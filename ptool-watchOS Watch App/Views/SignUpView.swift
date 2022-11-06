@@ -52,7 +52,7 @@ struct SignUpView_Previews: PreviewProvider {
 
 struct LogoView: View {
     var body: some View {
-        Image("Logo")
+        Image(NSLocalizedString("image-logo-app", comment: ""))
             .resizable()
             .aspectRatio(contentMode: .fit)
             .frame(width: 300, height: 150)

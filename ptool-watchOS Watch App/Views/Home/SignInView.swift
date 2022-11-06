@@ -15,10 +15,10 @@ struct SignInView: View {
     
     @EnvironmentObject var db: AppManager
     
-    @State var email = "dave.thibeault@me.com"
-    @State var password = "chr1st1naT"
-//    @State var email = ""
-//    @State var password = ""
+//    @State var email = "dave.thibeault@me.com"
+//    @State var password = "chr1st1naT"
+    @State var email = ""
+    @State var password = ""
     
     @State var signInProcessing = false
     @State var signInErrorMessage = ""
@@ -42,7 +42,7 @@ struct SignInView: View {
                     signInUser(userEmail: email, userPassword: password)
                 }) {
                     HStack {
-                        Image("Logo")
+                        Image(NSLocalizedString("image-logo-app", comment: ""))
                             .resizable()
                             .frame(width: 30, height: 30, alignment: .topLeading)
                         Spacer()

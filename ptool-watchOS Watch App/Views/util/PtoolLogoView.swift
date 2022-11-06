@@ -13,7 +13,7 @@ struct PtoolLogoView: View {
     
     var body: some View {
         HStack {
-            Image("Logo")
+            Image(NSLocalizedString("image-logo-app", comment: ""))
                 .resizable()
                 .frame(width: imageWidth, height: imageHeight, alignment: .center)
                 

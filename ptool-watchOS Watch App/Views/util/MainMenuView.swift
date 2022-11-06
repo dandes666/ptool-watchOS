@@ -10,145 +10,116 @@ import SwiftUI
 struct MainMenuView: View {
     @EnvironmentObject var router: Router
     @EnvironmentObject var db: AppManager
-    
+    var deliveryNoteDistanceText: String {
+        if (db.isPoximityDeleveryNoteActive && (db.deliveryNoteArray.count > 0))  {
+            if let myLocation = db.lastLocation {
+                return db.getCleanDistanceDislpayMax100(loc1: db.deliveryNoteArray[0].gps, loc2: myLocation)
+            } else {return ""}
+        } else {return ""}
+    }
+    var deliveryNoteDistanceColor: Color {
+        if (db.isPoximityDeleveryNoteActive && (db.deliveryNoteArray.count > 0))  {
+            if let myLocation = db.lastLocation {
+                if db.deliveryNoteArray[0].gps.distance(from: myLocation) < 100 {
+                    return .red
+                } else {
+                    return .green
+                }
+            } else {return .green}
+        } else {return .green}
+    }
+    var reportDistanceText: String {
+        if (db.isPoximityReportActive && (db.reportArray.count > 0))  {
+            if let myLocation = db.lastLocation {
+                return db.getCleanDistanceDislpayMax100(loc1: db.reportArray[0].gps, loc2: myLocation)
+            } else {return ""}
+        } else {return ""}
+    }
+    var reportDistanceColor: Color {
+        if (db.isPoximityDeleveryNoteActive && (db.reportArray.count > 0))  {
+            if let myLocation = db.lastLocation {
+                if db.reportArray[0].gps.distance(from: myLocation) < 100 {
+                    return .red
+                } else {
+                    return .green
+                }
+            } else {return .green}
+        } else {return .green}
+    }
     var body: some View {
-        
-        GeometryReader { geometry in
-            ZStack {
-                NavigationStack(path: $router.path) {
-
+        ZStack {
+            
+            NavigationStack(path: $router.path) {
+                GeometryReader { geometry in
                     VStack {
                         // ligne haut
                         HStack {
-                            NavigationLink(value: MasterRoute.deliveryNoteList) {
-                                ZStack {
-                                    //                                Image("menu-note")
-                                    Image(systemName: "clipboard")
-                                        .resizable()
-                                        .foregroundColor(Color.yellow)
-                                        .scaledToFit()
-                                    Text("\(db.deliveryNoteArray.count)")
-                                        .position(CGPoint(x: geometry.size.width * 0.2, y: 30))
-                                        .font(Font.title3)
-                                }
-                                
-                            }
-                            //                            .buttonStyle(.plain)
-                            NavigationLink(value: MasterRoute.reportList) {
-                                ZStack {
-                                    //                                Image("menu-alert")
-                                    Image(systemName: "clipboard")
-                                        .resizable()
-                                        .scaledToFit()
-                                        .foregroundColor(Color.red)
-                                    Text("\(db.getProximityRepportArray().count)")
-                                        .position(CGPoint(x: geometry.size.width * 0.2  , y: 30))
-                                    //                                        .position(CGPoint.centered)
-                                        .font(Font.title3)
-                                }
-                                
-                            }
-                        }
-                        // ligne Centre
-                        HStack {
-                            //                            Spacer()
-                            if (db.isPoximityDeleveryNoteActive && (db.deliveryNoteArray.count > 0))  {
-                                if let myLocation = db.lastLocation {
-                                    if let rLocation = db.deliveryNoteArray[0].gps {
-                                        Text(db.getCleanDistanceDislpayMax100(loc1: rLocation, loc2: myLocation))
-                                            .foregroundColor(Color.green)
-                                            .frame(width: geometry.size.width * 0.43, alignment: .center)
-                                    } else {
-                                        Text("-----")
-                                            .frame(width: geometry.size.width * 0.43, alignment: .center)
-                                    }
-                                    
-                                } else {
-                                    Text("-----")
-                                        .frame(width: geometry.size.width * 0.43, alignment: .center)
-                                }
-                            } else {
-                                Text("-----")
-                                    .foregroundColor(Color.red)
-                                    .frame(width: geometry.size.width * 0.43, alignment: .center)
+                            Spacer()
+                            PlaybackControlButton(systemName: "clipboard",fontSize: geometry.size.height * 0.43, color: .yellow, labelCenter: "\(db.deliveryNoteArray.count)", labelCenterFontSize: geometry.size.width * 0.16, labelCenterColor: .yellow, labelBottom: deliveryNoteDistanceText,labelBottomFontSize: geometry.size.width * 0.08, labelBottomColor: deliveryNoteDistanceColor) {
+                                router.path.append(MasterRoute.deliveryNoteList)
                             }
                             Spacer()
-                            if (db.isPoximityReportActive && (db.reportArray.count > 0)) {
-                                if let myLocation = db.lastLocation {
-                                    if let rLocation = db.reportArray[0].gps {
-                                        Text(db.getCleanDistanceDislpayMax100(loc1: rLocation, loc2: myLocation))
-                                            .foregroundColor(Color.green)
-                                            .frame(width: geometry.size.width * 0.43, alignment: .center)
-                                    } else {
-                                        Text("-----")
-                                            .foregroundColor(Color.red)
-                                            .frame(width: geometry.size.width * 0.43, alignment: .center)
-                                    }
-                                } else {
-                                    Text("-----")
-                                        .foregroundColor(Color.red)
-                                        .frame(width: geometry.size.width * 0.43, alignment: .center)
-                                }
-                            } else {
-                                Text("-----")
-                                    .foregroundColor(Color.red)
-                                    .frame(width: geometry.size.width * 0.43, alignment: .center)
+                            Spacer()
+                            PlaybackControlButton(systemName: "clipboard",fontSize: geometry.size.height * 0.43, color: .red, labelCenter: "\(db.getProximityRepportArray().count)", labelCenterFontSize: geometry.size.width * 0.16, labelCenterColor: .red, labelBottom: reportDistanceText,labelBottomFontSize: geometry.size.width * 0.08, labelBottomColor: reportDistanceColor) {
+                                router.path.append(MasterRoute.reportList)
                             }
+                            Spacer()
+
                         }
-                        // ligne Bas
+
                         HStack {
-                            NavigationLink(value: MasterRoute.config) {
-                                Image(systemName: "gearshape.fill")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .foregroundColor(Color.gray)
+                            Spacer()
+                            PlaybackControlButton(systemName: "gearshape.fill",fontSize: geometry.size.height * 0.4, color: .gray) {
+                                router.path.append(MasterRoute.config)
                             }
-                            
-                            NavigationLink(value: MasterRoute.tool) {
-                                Image(systemName: "square.and.arrow.down.on.square")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .foregroundColor(Color.green)
+                            Spacer()
+                            Spacer()
+                            PlaybackControlButton(systemName: "square.and.arrow.down.on.square",fontSize: geometry.size.height * 0.4, color: .green) {
+                                router.path.append(MasterRoute.tool)
                             }
+                            Spacer()
                         }
                         
                     }
-
-    
-                    .navigationDestination(for: MasterRoute.self) { r in
-                        switch r {
-                        case .tool:
-                            toolMenuView()
-                        case .config:
-                            ConfigView()
-                        case .reportList:
-                            ReportListView()
-                        case .deliveryNoteList:
-                            DeliveryNoteListView()
-                        case .complete:
-                            CompleteView(width: 130, height: 130, title: "Envoit de memo")
-                        case .error:
-                            ErrorView(width: 100, height: 100, title: "Erreur", desc: "")
-                        }
-                    }
-                    
-                    .navigationBarTitleDisplayMode(.inline)
-                    .navigationTitle("\(db.getCurrentRouteName())-\(db.getCurrentOfficeName())")
-                }
-
-                if router.path.count < 1 {
-                    if db.guardianActive == true && db.lastLocation != nil {
-                        RadarView(width: 30, height: 30)
-                    } else {
-                        Image("guardian-off")
-                            .resizable()
-                            .frame(width: 25, height: 25, alignment: .center)
-                    }
                 }
                 
+                .navigationDestination(for: MasterRoute.self) { r in
+                    switch r {
+                    case .tool:
+                        toolMenuView()
+                    case .config:
+                        ConfigView()
+                    case .reportList:
+                        ReportListView()
+                    case .deliveryNoteList:
+                        DeliveryNoteListView()
+                    case .complete:
+                        CompleteView(width: 130, height: 130, title: "Envoit de memo")
+                    case .error:
+                        ErrorView(width: 100, height: 100, title: "Erreur", desc: "")
+                    }
+                }
+                .navigationBarTitleDisplayMode(.inline)
+                .navigationTitle("\(db.getCurrentRouteName())-\(db.getCurrentOfficeName())")
+            
+        }
+            if router.path.count < 1 {
+                if db.guardianActive == true && db.lastLocation != nil {
+//                if db.guardianActive == true {
+                    RadarView(width: 30, height: 30)
+                        .padding(.top, 35)
+                } else {
+                    Image("guardian-off")
+                        .resizable()
+//                        .padding(.top, 25)
+                        .frame(width: 30, height: 30, alignment: .center)
+                        .padding(.top, 35)
+                }
             }
+            
         }
     }
+
 }
 
 struct MainMenuView_Previews: PreviewProvider {

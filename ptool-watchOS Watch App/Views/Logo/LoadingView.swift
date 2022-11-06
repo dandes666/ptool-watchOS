@@ -18,7 +18,7 @@ struct LoadingView: View {
             
             ZStack {
                 GeometryReader { (geometry: GeometryProxy) in
-                    Image("Logo")
+                    Image(NSLocalizedString("image-logo-app", comment: ""))
                         .resizable()
 //                        .frame(width: 90, height: 90, alignment: .trailing)
                         .frame(width: getBestSquareSize(geo: geometry) * 0.61, height: getBestSquareSize(geo: geometry) * 0.61)

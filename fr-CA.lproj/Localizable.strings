@@ -64,6 +64,7 @@
 // MARK: image
 "image-logo-complete" = "Logo-complete-fr";
 "image-logo-error" = "Logo-error-fr";
+"image-logo-app" = "Logo-app-fr";
 
 // MARK: navigation title
 "nt-home" = "Acceuil";

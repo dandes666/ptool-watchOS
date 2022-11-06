@@ -69,8 +69,10 @@ struct AudioPlayerView: View {
                         Spacer()
                         
                         // MARK: playPause Button
+
+                        PlaybackControlButton(systemName: audioManager.status == AudioPlayerStatus.play ? "pause.circle.fill" : "play.circle.fill", fontSize: getPlayPauseSize(size: geometry.size), color: .white, progress: progress,progressColor: audioManager.isPlaying ? .green : .yellow, action: audioManager.playPause)
                         
-                        PlaybackControlButton(systemName: audioManager.status == AudioPlayerStatus.play ? "pause.circle.fill" : "play.circle.fill", fontSize: getPlayPauseSize(size: geometry.size), color: .white, action: audioManager.playPause, progress: progress,progressColor: audioManager.isPlaying ? .green : .yellow)
+
 
                         //                        .frame(width: geometry.size.width * 0.45)
                         Spacer()

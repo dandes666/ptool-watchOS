@@ -64,6 +64,7 @@
 // MARK: image
 "image-logo-complete" = "Logo-complete-en";
 "image-logo-error" = "Logo-error-en";
+"image-logo-app" = "Logo-app-en";
 
 // MARK: navigation
 "nt-home" = "Home";
