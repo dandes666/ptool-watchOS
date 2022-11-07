@@ -109,9 +109,10 @@ struct MainMenuView: View {
                     RadarView(width: 30, height: 30)
                         .padding(.top, 35)
                 } else {
-                    Image("guardian-off")
+                    Image(systemName: "location.slash.fill")
                         .resizable()
 //                        .padding(.top, 25)
+                        .foregroundColor(.red)
                         .frame(width: 30, height: 30, alignment: .center)
                         .padding(.top, 35)
                 }

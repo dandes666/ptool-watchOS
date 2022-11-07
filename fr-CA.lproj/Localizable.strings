@@ -62,9 +62,9 @@
 "Voulez-vous charger les information de la route" = "Voulez-vous charger les information de la route";
 "je confirme" = "Je confirme";
 // MARK: image
-"image-logo-complete" = "Logo-complete-fr";
-"image-logo-error" = "Logo-error-fr";
-"image-logo-app" = "Logo-app-fr";
+"image-logo-complete" = "Logo-complete-dark-fr";
+"image-logo-error" = "Logo-error-dark-fr";
+"image-logo-app" = "Logo-app-dark-fr";
 
 // MARK: navigation title
 "nt-home" = "Acceuil";

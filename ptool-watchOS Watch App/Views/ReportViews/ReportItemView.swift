@@ -11,7 +11,9 @@ struct ReportItemView: View {
     var report: Report
     var body: some View {
         HStack {
-            Image(report.getReportImageName())
+            Image(systemName: report.getReportImageName())
+                .foregroundColor(report.getReportImageColor())
+            Spacer()
             VStack {
                 Text(report.getReportTypeTitle())
                     .font(.system(size: 15, weight: .medium))
@@ -27,6 +29,7 @@ struct ReportItemView: View {
                 }
                 
             }
+            Spacer()
         }
     }
 }

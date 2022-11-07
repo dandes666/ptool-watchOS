@@ -62,9 +62,9 @@
 "Voulez-vous charger les information de la route" = "Do you want to load route information";
 "je confirme" = "I confirm";
 // MARK: image
-"image-logo-complete" = "Logo-complete-en";
-"image-logo-error" = "Logo-error-en";
-"image-logo-app" = "Logo-app-en";
+"image-logo-complete" = "Logo-complete-dark-en";
+"image-logo-error" = "Logo-error-dark-en";
+"image-logo-app" = "Logo-app-dark-en";
 
 // MARK: navigation
 "nt-home" = "Home";

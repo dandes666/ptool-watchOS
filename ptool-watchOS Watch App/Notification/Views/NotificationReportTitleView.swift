@@ -14,45 +14,20 @@ struct NotificationReportTitleView: View {
     var body: some View {
         
         VStack {
-            if let type = report.type {
-                HStack {
-                    switch type {
-
-                    case "dog":
-                        Image("Dog")
-                            .resizable()
-                            .frame(width: 40, height: 40, alignment: .leading)
-                    case "brokenstep":
-                        Image("BrokenStep")
-                            .resizable()
-                            .frame(width: 40, height: 40, alignment: .leading)
-                    case "ice":
-                        Image("Ice")
-                            .resizable()
-                            .frame(width: 40, height: 40, alignment: .leading)
-                    default:
-                        Image("Alert")
-                            .resizable()
-                            .frame(width: 40, height: 40, alignment: .center)
-                    }
-                    
-                    VStack(alignment: .center) {
-                        Text(report.getReportTypeTitle())
-                            .font(.system(size: 16, weight: .bold))
-                            .lineLimit(3)
-                            .foregroundColor(Color.red)
-                    }
+            HStack {
+                Image(systemName: report.getReportImageName())
+                    .resizable()
+                    .foregroundColor(report.getReportImageColor())
+                    .frame(width: 40, height: 40, alignment: .leading)
+                
+                VStack(alignment: .center) {
+                    Text(report.getReportTypeTitle())
+                        .font(.system(size: 16, weight: .bold))
+                        .lineLimit(3)
+                        .foregroundColor(Color.red)
                 }
-//                .padding(2)
             }
-//            if let nMessage = message {
-//                Text(nMessage)
-//                    .font(.headline)
-//                    .lineLimit(nil)
-////                    .padding(1)
-//                    .foregroundColor(Color.red)
-//
-//            }
+
         }
     }
 }

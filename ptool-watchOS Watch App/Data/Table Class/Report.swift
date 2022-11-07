@@ -5,7 +5,7 @@
 //  Created by Dave Thibeault on 2022-09-26.
 //
 
-import Foundation
+import SwiftUI
 import CoreLocation
 
 //extension CLLocation {
@@ -262,16 +262,32 @@ class Report: NSObject, Identifiable {
         if let t = self.type {
             switch t {
             case "dog":
-                return "Dog"
+                return "pawprint.fill"
             case "ice":
-                return "Ice"
+                return "snowflake"
             case "brokenstep":
-                return "BrokenStep"
+                return "figure.stair.stepper"
             default:
-                return "Alert"
+                return "exclamationmark.triangle.fill"
             }
         } else {
-            return "Alert"
+            return "exclamationmark.triangle.fill"
+        }
+    }
+    func getReportImageColor () -> Color {
+        if let t = self.type {
+            switch t {
+            case "dog":
+                return .red
+            case "ice":
+                return .red
+            case "brokenstep":
+                return .red
+            default:
+                return .red
+            }
+        } else {
+            return .red
         }
     }
     func getName() -> String {

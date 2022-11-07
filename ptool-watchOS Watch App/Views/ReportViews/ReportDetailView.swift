@@ -22,8 +22,9 @@ struct ReportDetailView: View {
                                 .frame(width: 30, height: 30, alignment: .center)
                             
                         default:
-                            Image("Alert")
+                            Image(systemName: "exclamationmark.triangle.fill")
                                 .resizable()
+                                .foregroundColor(.red)
                                 .frame(width: 30, height: 30, alignment: .center)
                         }
                         Text(report.getReportTypeTitle())
