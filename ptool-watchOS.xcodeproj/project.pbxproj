@@ -74,6 +74,7 @@
 		808D71402904F84F00227AB0 /* CompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808D713F2904F84F00227AB0 /* CompleteView.swift */; };
 		8092EC702919CDCE00797746 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8092EC722919CDCE00797746 /* InfoPlist.strings */; };
 		8092EC752919D35700797746 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8092EC722919CDCE00797746 /* InfoPlist.strings */; };
+		8092EC762919E94B00797746 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 801E698F28E7497C00919E9F /* GoogleService-Info.plist */; };
 		80997C0D28FF145E00EABC62 /* DeliveryNoteItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80997C0C28FF145E00EABC62 /* DeliveryNoteItemView.swift */; };
 		80997C1028FF27BB00EABC62 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 80997C1228FF27BB00EABC62 /* Localizable.strings */; };
 		809FEFAE28F8EA4F00130B66 /* AudioRecorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809FEFAD28F8EA4F00130B66 /* AudioRecorderView.swift */; };
@@ -163,7 +164,6 @@
 		802F528428E1F53300E79AF1 /* ReportImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportImage.swift; sourceTree = "<group>"; };
 		802F528628E1F58000E79AF1 /* ReportNote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportNote.swift; sourceTree = "<group>"; };
 		802F528828E1F5F300E79AF1 /* ReportPocInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportPocInfo.swift; sourceTree = "<group>"; };
-		802F536D28E2405800E79AF1 /* ptool-watchOS-Watch-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "ptool-watchOS-Watch-App-Info.plist"; sourceTree = SOURCE_ROOT; };
 		8048D70F2905D41600D4870D /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		8048D7112905DEA500D4870D /* Enumeration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enumeration.swift; sourceTree = "<group>"; };
 		805EC2E22911919B001FBDDF /* MemoHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoHeaderView.swift; sourceTree = "<group>"; };
@@ -271,7 +271,6 @@
 			isa = PBXGroup;
 			children = (
 				809FEFAB28F4CC0A00130B66 /* INFO.md */,
-				802F536D28E2405800E79AF1 /* ptool-watchOS-Watch-App-Info.plist */,
 				801E698F28E7497C00919E9F /* GoogleService-Info.plist */,
 				800C78DD28D1885200432CA2 /* ptool_watchOSApp.swift */,
 				80B9581A28EA82AA00097827 /* AppManager.swift */,
@@ -621,6 +620,7 @@
 			files = (
 				801E69C128E88B4200919E9F /* PushNotificationPayloadTest.apns in Resources */,
 				8092EC702919CDCE00797746 /* InfoPlist.strings in Resources */,
+				8092EC762919E94B00797746 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -917,7 +917,6 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = media;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "ton micro";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKWatchOnly = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -954,7 +953,6 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = media;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "ton micro";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKWatchOnly = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
