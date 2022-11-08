@@ -33,7 +33,6 @@
 		801E69B928E806C100919E9F /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = 801E69B828E806C100919E9F /* FirebaseFunctions */; };
 		801E69BB28E806C100919E9F /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 801E69BA28E806C100919E9F /* FirebaseStorage */; };
 		801E69BD28E8081200919E9F /* RouteClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801E69BC28E8081200919E9F /* RouteClass.swift */; };
-		801E69BF28E8812000919E9F /* PushNotificationPayload.apns in Resources */ = {isa = PBXBuildFile; fileRef = 801E69BE28E8812000919E9F /* PushNotificationPayload.apns */; };
 		801E69C128E88B4200919E9F /* PushNotificationPayloadTest.apns in Resources */ = {isa = PBXBuildFile; fileRef = 801E69C028E88B4200919E9F /* PushNotificationPayloadTest.apns */; };
 		801E69C228E88B4200919E9F /* PushNotificationPayloadTest.apns in Resources */ = {isa = PBXBuildFile; fileRef = 801E69C028E88B4200919E9F /* PushNotificationPayloadTest.apns */; };
 		801E69C328E88B4200919E9F /* PushNotificationPayloadTest.apns in Resources */ = {isa = PBXBuildFile; fileRef = 801E69C028E88B4200919E9F /* PushNotificationPayloadTest.apns */; };
@@ -157,7 +156,6 @@
 		801E69A328E7AA6700919E9F /* GuardianActiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianActiveView.swift; sourceTree = "<group>"; };
 		801E69A528E7C43800919E9F /* ReportItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportItemView.swift; sourceTree = "<group>"; };
 		801E69BC28E8081200919E9F /* RouteClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteClass.swift; sourceTree = "<group>"; };
-		801E69BE28E8812000919E9F /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		801E69C028E88B4200919E9F /* PushNotificationPayloadTest.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayloadTest.apns; sourceTree = "<group>"; };
 		802BC28C29157F7A0013477D /* MemoListParam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoListParam.swift; sourceTree = "<group>"; };
 		802F527928E1E17600E79AF1 /* Office.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Office.swift; sourceTree = "<group>"; };
@@ -273,7 +271,6 @@
 			isa = PBXGroup;
 			children = (
 				809FEFAB28F4CC0A00130B66 /* INFO.md */,
-				801E69BE28E8812000919E9F /* PushNotificationPayload.apns */,
 				802F536D28E2405800E79AF1 /* ptool-watchOS-Watch-App-Info.plist */,
 				801E698F28E7497C00919E9F /* GoogleService-Info.plist */,
 				800C78DD28D1885200432CA2 /* ptool_watchOSApp.swift */,
@@ -634,7 +631,6 @@
 				800C78E528D1885300432CA2 /* Preview Assets.xcassets in Resources */,
 				8092EC752919D35700797746 /* InfoPlist.strings in Resources */,
 				80997C1028FF27BB00EABC62 /* Localizable.strings in Resources */,
-				801E69BF28E8812000919E9F /* PushNotificationPayload.apns in Resources */,
 				801E699028E7497C00919E9F /* GoogleService-Info.plist in Resources */,
 				801E69C228E88B4200919E9F /* PushNotificationPayloadTest.apns in Resources */,
 				800C78E228D1885300432CA2 /* Assets.xcassets in Resources */,

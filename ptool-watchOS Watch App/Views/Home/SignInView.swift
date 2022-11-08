@@ -17,10 +17,10 @@ struct SignInView: View {
     
 //    @State var email = "dave.thibeault@me.com"
 //    @State var password = "chr1st1naT"
-    @State var email = "service@ptool.ca"
-    @State var password = "skjhwaESidwie1zwrv83"
-//    @State var email = ""
-//    @State var password = ""
+//    @State var email = "service@ptool.ca"
+//    @State var password = "skjhwaESidwie1zwrv83"
+    @State var email = ""
+    @State var password = ""
     
     @State var signInProcessing = false
     @State var signInErrorMessage = ""
