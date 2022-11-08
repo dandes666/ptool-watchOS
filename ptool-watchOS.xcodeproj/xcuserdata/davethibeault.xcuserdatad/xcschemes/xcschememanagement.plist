@@ -4,13 +4,6 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Copy of ptool-watchOS Watch App (Notification office).xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-			<key>orderHint</key>
-			<integer>4</integer>
-		</dict>
 		<key>Notification - office.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
@@ -63,27 +56,6 @@
 			<key>orderHint</key>
 			<integer>9</integer>
 		</dict>
-		<key>ptool-watchOS (notification) shene.xcscheme_^#shared#^_</key>
-		<dict>
-			<key>isShown</key>
-			<true/>
-			<key>orderHint</key>
-			<integer>1</integer>
-		</dict>
-		<key>ptool-watchOS Notification Office.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<true/>
-			<key>orderHint</key>
-			<integer>8</integer>
-		</dict>
-		<key>ptool-watchOS Watch App (Notification).xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<true/>
-			<key>orderHint</key>
-			<integer>2</integer>
-		</dict>
 		<key>ptool-watchOS Watch App-English.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
@@ -93,18 +65,6 @@
 		<dict>
 			<key>orderHint</key>
 			<integer>7</integer>
-		</dict>
-		<key>ptool-watchOS-test-notif.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<true/>
-			<key>orderHint</key>
-			<integer>0</integer>
-		</dict>
-		<key>ptool-watchOS.xcscheme_^#shared#^_</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>12</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
