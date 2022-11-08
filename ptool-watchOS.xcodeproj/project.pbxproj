@@ -73,6 +73,10 @@
 		80863B0A28EA25290014D27A /* NotificationReportTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80863B0928EA25290014D27A /* NotificationReportTitleView.swift */; };
 		808D713E2904F83800227AB0 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808D713D2904F83800227AB0 /* ErrorView.swift */; };
 		808D71402904F84F00227AB0 /* CompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808D713F2904F84F00227AB0 /* CompleteView.swift */; };
+		8092EC6D2919CCAC00797746 /* backFR.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8092EC6C2919CCAC00797746 /* backFR.strings */; };
+		8092EC6F2919CCD100797746 /* backEN.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8092EC6E2919CCD100797746 /* backEN.strings */; };
+		8092EC702919CDCE00797746 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8092EC722919CDCE00797746 /* InfoPlist.strings */; };
+		8092EC752919D35700797746 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8092EC722919CDCE00797746 /* InfoPlist.strings */; };
 		80997C0D28FF145E00EABC62 /* DeliveryNoteItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80997C0C28FF145E00EABC62 /* DeliveryNoteItemView.swift */; };
 		80997C1028FF27BB00EABC62 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 80997C1228FF27BB00EABC62 /* Localizable.strings */; };
 		809FEFAE28F8EA4F00130B66 /* AudioRecorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809FEFAD28F8EA4F00130B66 /* AudioRecorderView.swift */; };
@@ -194,9 +198,13 @@
 		80863B0928EA25290014D27A /* NotificationReportTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationReportTitleView.swift; sourceTree = "<group>"; };
 		808D713D2904F83800227AB0 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		808D713F2904F84F00227AB0 /* CompleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteView.swift; sourceTree = "<group>"; };
+		8092EC6C2919CCAC00797746 /* backFR.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = backFR.strings; sourceTree = "<group>"; };
+		8092EC6E2919CCD100797746 /* backEN.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = backEN.strings; sourceTree = "<group>"; };
+		8092EC712919CDCE00797746 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		8092EC732919CE0E00797746 /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		8092EC742919CE6A00797746 /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		80997C0C28FF145E00EABC62 /* DeliveryNoteItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryNoteItemView.swift; sourceTree = "<group>"; };
 		80997C1128FF27BB00EABC62 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		80997C1928FF2D0400EABC62 /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		809FEFAB28F4CC0A00130B66 /* INFO.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = INFO.md; sourceTree = "<group>"; };
 		809FEFAD28F8EA4F00130B66 /* AudioRecorderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorderView.swift; sourceTree = "<group>"; };
 		809FEFAF28FA10C500130B66 /* AudioRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
@@ -242,7 +250,10 @@
 		800C78CB28D1885100432CA2 = {
 			isa = PBXGroup;
 			children = (
+				8092EC6E2919CCD100797746 /* backEN.strings */,
+				8092EC6C2919CCAC00797746 /* backFR.strings */,
 				80997C1228FF27BB00EABC62 /* Localizable.strings */,
+				8092EC722919CDCE00797746 /* InfoPlist.strings */,
 				801E69C028E88B4200919E9F /* PushNotificationPayloadTest.apns */,
 				80641BC12913393400296E36 /* PushNotificationPayloadOffice.apns */,
 				800C78DC28D1885200432CA2 /* ptool-watchOS Watch App */,
@@ -594,7 +605,6 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
-				Base,
 				"fr-CA",
 			);
 			mainGroup = 800C78CB28D1885100432CA2;
@@ -618,7 +628,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8092EC6D2919CCAC00797746 /* backFR.strings in Resources */,
 				801E69C128E88B4200919E9F /* PushNotificationPayloadTest.apns in Resources */,
+				8092EC6F2919CCD100797746 /* backEN.strings in Resources */,
+				8092EC702919CDCE00797746 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -627,6 +640,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				800C78E528D1885300432CA2 /* Preview Assets.xcassets in Resources */,
+				8092EC752919D35700797746 /* InfoPlist.strings in Resources */,
 				80997C1028FF27BB00EABC62 /* Localizable.strings in Resources */,
 				801E69BF28E8812000919E9F /* PushNotificationPayload.apns in Resources */,
 				801E699028E7497C00919E9F /* GoogleService-Info.plist in Resources */,
@@ -764,11 +778,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		8092EC722919CDCE00797746 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8092EC712919CDCE00797746 /* en */,
+				8092EC732919CE0E00797746 /* fr-CA */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		80997C1228FF27BB00EABC62 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				80997C1128FF27BB00EABC62 /* en */,
-				80997C1928FF2D0400EABC62 /* fr-CA */,
+				8092EC742919CE6A00797746 /* fr-CA */,
 			);
 			name = Localizable.strings;
 			sourceTree = SOURCE_ROOT;
@@ -903,10 +926,10 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "ptool-watchOS-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "GUARDIAN pour PTOOL";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = media;
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Vous devez autoriser la localisation pour le bon fonctionnement de l'application";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Vous devez autoriser la localisation pour le bon fonctionnement de l'application";
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "L'acces au microphone vous permet d'envoyer des message vocal";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "ton micro";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKWatchOnly = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -940,10 +963,10 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "ptool-watchOS-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "GUARDIAN pour PTOOL";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = media;
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Vous devez autoriser la localisation pour le bon fonctionnement de l'application";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Vous devez autoriser la localisation pour le bon fonctionnement de l'application";
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "L'acces au microphone vous permet d'envoyer des message vocal";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "ton micro";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKWatchOnly = YES;
 				LD_RUNPATH_SEARCH_PATHS = (

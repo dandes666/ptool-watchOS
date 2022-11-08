@@ -55,12 +55,12 @@ struct MainMenuView: View {
                         // ligne haut
                         HStack {
                             Spacer()
-                            PlaybackControlButton(systemName: "clipboard",fontSize: geometry.size.height * 0.43, color: .yellow, labelCenter: "\(db.deliveryNoteArray.count)", labelCenterFontSize: geometry.size.width * 0.16, labelCenterColor: .yellow, labelBottom: deliveryNoteDistanceText,labelBottomFontSize: geometry.size.width * 0.08, labelBottomColor: deliveryNoteDistanceColor) {
+                            PlaybackControlButton(systemName: "clipboard",fontSize: geometry.size.height * 0.43, color: .yellow, labelCenter: "\(db.deliveryNoteArray.count)", labelCenterFontSize: geometry.size.width * 0.16, labelCenterColor: .yellow, labelBottom: deliveryNoteDistanceText,labelBottomFontSize: geometry.size.width * 0.08, labelBottomColor: deliveryNoteDistanceColor, labelBottomPaddingOptionSet: .trailing) {
                                 router.path.append(MasterRoute.deliveryNoteList)
                             }
                             Spacer()
                             Spacer()
-                            PlaybackControlButton(systemName: "clipboard",fontSize: geometry.size.height * 0.43, color: .red, labelCenter: "\(db.getProximityRepportArray().count)", labelCenterFontSize: geometry.size.width * 0.16, labelCenterColor: .red, labelBottom: reportDistanceText,labelBottomFontSize: geometry.size.width * 0.08, labelBottomColor: reportDistanceColor) {
+                            PlaybackControlButton(systemName: "clipboard",fontSize: geometry.size.height * 0.43, color: .red, labelCenter: "\(db.getProximityRepportArray().count)", labelCenterFontSize: geometry.size.width * 0.16, labelCenterColor: .red, labelBottom: reportDistanceText,labelBottomFontSize: geometry.size.width * 0.08, labelBottomColor: reportDistanceColor, labelBottomPaddingOptionSet: .leading) {
                                 router.path.append(MasterRoute.reportList)
                             }
                             Spacer()
@@ -106,14 +106,14 @@ struct MainMenuView: View {
             if router.path.count < 1 {
                 if db.guardianActive == true && db.lastLocation != nil {
 //                if db.guardianActive == true {
-                    RadarView(width: 30, height: 30)
+                    RadarView(width: 27, height: 27)
                         .padding(.top, 35)
                 } else {
                     Image(systemName: "location.slash.fill")
                         .resizable()
 //                        .padding(.top, 25)
                         .foregroundColor(.red)
-                        .frame(width: 30, height: 30, alignment: .center)
+                        .frame(width: 27, height: 27, alignment: .center)
                         .padding(.top, 35)
                 }
             }

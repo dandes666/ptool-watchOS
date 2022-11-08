@@ -23,6 +23,7 @@ struct PlaybackControlButton: View {
     var labelBottom: String? = nil
     var labelBottomFontSize: CGFloat = 32
     var labelBottomColor: Color = Color.white
+    var labelBottomPaddingOptionSet: Edge.Set? = nil
     
     var disabled: Bool = false
     var action: () -> Void
@@ -64,7 +65,7 @@ struct PlaybackControlButton: View {
                     Text(labelBottom)
                         .font(.system(size: labelBottomFontSize))
                         .foregroundColor(labelBottomColor)
-                        
+                        .padding(labelBottomPaddingOptionSet ?? .bottom, 10)
                 }
             }
             if let labelCenter = labelCenter {

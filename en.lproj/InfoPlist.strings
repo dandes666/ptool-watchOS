@@ -1,0 +1,14 @@
+/* 
+  InfoPlist.strings
+  ptool-watchOS
+
+  Created by Dave Thibeault on 2022-11-07.
+  
+*/
+"CFBundleDisplayName" = "Guardian";
+"CFBundleName" = "Guardian for PTOOL";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "testwer23";
+"NSLocationWhenInUseUsageDescription" = "Location is required to allow the app to check reviews based on your location.";
+"NSLocationAlwaysUsageDescription" = "Location is required to allow the app to check reviews based on your location.";
+"NSLocationUsageDescription" = "Location is required to allow the app to check reviews based on your location.";
+"NSMicrophoneUsageDescription" = "The use of the microphone is necessary to allow you to create memos.";

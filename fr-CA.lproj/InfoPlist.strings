@@ -1,0 +1,14 @@
+/* 
+  InfoPlist.strings
+  ptool-watchOS
+
+  Created by Dave Thibeault on 2022-11-07.
+  
+*/
+"CFBundleDisplayName" = "Gardien";
+"CFBundleName" = "Gardien pour PTOOL";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "La localisation est nécessaire pour permettre a l'application de vérifier les avis selon votre position.";
+"NSLocationWhenInUseUsageDescription" = "La localisation est nécessaire pour permettre a l'application de vérifier les avis selon votre position.";
+"NSLocationAlwaysUsageDescription" = "La localisation est nécessaire pour permettre a l'application de vérifier les avis selon votre position.";
+"NSLocationUsageDescription" = "La localisation est nécessaire pour permettre a l'application de vérifier les avis selon votre position.";
+"NSMicrophoneUsageDescription" = "L'usage du microphone est nécessaire pour vous permettre de créer des mémos.";

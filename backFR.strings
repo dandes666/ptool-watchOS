@@ -1,10 +1,17 @@
 /* 
-  appLocalizable.strings
+  backFR.strings
   ptool-watchOS
 
-  Created by Dave Thibeault on 2022-10-18.
+  Created by Dave Thibeault on 2022-11-07.
   
 */
+"CFBundleDisplayName" = "Gardien";
+"CFBundleName" = "Gardien pour PTOOL";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "testwer23";
+"NSLocationWhenInUseUsageDescription" = "La localisation est nécessaire pour permettre a l'application de vérifier les avis selon votre position.";
+"NSLocationAlwaysUsageDescription" = "La localisation est nécessaire pour permettre a l'application de vérifier les avis selon votre position.";
+"NSLocationUsageDescription" = "La localisation est nécessaire pour permettre a l'application de vérifier les avis selon votre position.";
+"NSMicrophoneUsageDescription" = "L'usager du microphone est nécessaire pour vous permettre de créer des mémos.";
 "Guardian" = "Gardien";
 "welcome" = "Bienvenue";
 "enter" = "Entrer";
@@ -84,6 +91,8 @@
 "showMemo"= "Voir...";
 "notifRemindLater" = "Avisez moi plus tard\n(pas avant 1 heure)";
 "notifRemindnotToday" = "Avisez moi plus tard\n(pas avant demain)";
+"notBefore1h"= "Pas avant 1h";
+"notBeforeTomoro"= "Pas avant demain";
 
 // MARK: memo type
 "officeReminder" = "Rappel au bureau";
